@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:background="#F2171717"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_nav_menu"
+        app:menu="@menu/nav_menu"
         app:itemTextColor="@drawable/nav_item_color"
         app:itemIconTint="@drawable/nav_item_color"
         />
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/mobile_navigation" />
+        app:navGraph="@navigation/navigation" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

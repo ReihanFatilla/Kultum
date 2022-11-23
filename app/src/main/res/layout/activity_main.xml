@@ -20,6 +20,12 @@
         app:itemIconTint="@drawable/nav_item_color"
         />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="#BF000000" />
+
     <ImageView
         android:id="@+id/btn_post"
         android:layout_width="wrap_content"

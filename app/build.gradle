@@ -53,4 +53,7 @@ dependencies {
 
     // Android Youtube Player
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0'
+
+    // Rounded Image View
+    implementation 'com.makeramen:roundedimageview:2.3.0'
 }

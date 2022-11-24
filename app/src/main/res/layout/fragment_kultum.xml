@@ -70,23 +70,27 @@
 
     <TextView
         android:id="@+id/tv_caption"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:textColor="@color/white"
         android:fontFamily="@font/poppins_medium"
+        android:maxLines="3"
         android:text="Khatib Jumat dan Ceramah\nDi Masjid Baiturrahmah\n#Khutbah #jumat"
         app:layout_constraintBottom_toBottomOf="@id/bottom_guide_line"
+        app:layout_constraintEnd_toStartOf="@id/btn_share"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tv_creator"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:textColor="@color/white"
         android:fontFamily="@font/poppins_semibold"
         android:text="\@reihanfatilla"
+        android:maxLines="1"
+        app:layout_constraintEnd_toStartOf="@id/btn_share"
         app:layout_constraintBottom_toTopOf="@id/tv_caption"
         app:layout_constraintStart_toStartOf="parent" />
 

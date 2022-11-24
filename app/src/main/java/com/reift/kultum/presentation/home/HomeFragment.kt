@@ -25,8 +25,12 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(layoutInflater)
 
         setUpKultumViewPager()
+        setUpSeekbar()
 
         return binding.root
+    }
+
+    private fun setUpSeekbar() {
     }
 
     private fun setUpKultumViewPager() {

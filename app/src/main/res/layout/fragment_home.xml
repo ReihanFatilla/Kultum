@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.home.HomeFragment">
 
     <com.reift.kultum.customview.VerticalViewPager
@@ -12,8 +13,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="175dp"
-        android:layout_marginBottom="58dp"
+        android:layout_height="225dp"
         android:background="@drawable/shadow_bottom_home"
         android:layout_gravity="bottom" />
 
@@ -24,10 +24,6 @@
         android:background="@drawable/shadow_bottom_home"
         android:layout_gravity="top" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:layout_gravity="bottom"
-        android:background="#BF000000" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

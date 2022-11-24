@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../../../../layout/custom_preview.xml" value="0.14994934143870314" />
+        <entry key="app/src/main/res/drawable-v24/ic_helpful_inactive.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/nav_item_color.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/bg_bottom_navigation.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_helpful_selector.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_post.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_profile.xml" value="0.1" />

@@ -11,18 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="225dp"
-        android:background="@drawable/shadow_bottom_home"
-        android:layout_gravity="bottom" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:rotation="180"
-        android:background="@drawable/shadow_bottom_home"
-        android:layout_gravity="top" />
+    
 
 
 

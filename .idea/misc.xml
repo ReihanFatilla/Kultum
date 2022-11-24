@@ -5,6 +5,7 @@
       <map>
         <entry key="../../../../../../../layout/custom_preview.xml" value="0.14994934143870314" />
         <entry key="app/src/main/res/drawable-v24/ic_helpful_inactive.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-v24/ic_tab_selector.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/nav_item_color.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/bg_bottom_navigation.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_helpful_selector.xml" value="0.1" />
@@ -12,6 +13,7 @@
         <entry key="app/src/main/res/drawable/ic_post.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_profile.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/shadow_bottom_home.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/tab_icon_color_selector.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25400950113932297" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_kultum.xml" value="0.28229166666666666" />

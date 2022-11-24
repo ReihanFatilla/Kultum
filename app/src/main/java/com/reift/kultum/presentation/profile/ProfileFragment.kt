@@ -41,7 +41,7 @@ class ProfileFragment : Fragment() {
             TabLayoutMediator(profileTab, vpProfile){ tab, position ->
                 when(position){
                     0 -> tab.icon = context?.getDrawable(R.drawable.ic_book)
-                    1 -> tab.icon = context?.getDrawable(R.drawable.ic_love)
+                    1 -> tab.icon = context?.getDrawable(R.drawable.ic_helpful_inactive)
                 }
             }.attach()
 

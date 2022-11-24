@@ -2,22 +2,25 @@ package com.reift.core.domain.usecase.home
 
 import androidx.lifecycle.LiveData
 import com.reift.core.domain.model.Kultum
+import com.reift.core.domain.repository.HomeRepository
 import org.w3c.dom.Comment
 
-class HomeInteractor: HomeUseCase {
+class HomeInteractor(
+    val homeRepository: HomeRepository
+): HomeUseCase {
     override fun getKultumForYou(): LiveData<List<Kultum>> {
-        TODO("Not yet implemented")
+        return homeRepository.getKultumForYou()
     }
 
     override fun addHelpfulKultum(kultum: Kultum) {
-        TODO("Not yet implemented")
+        homeRepository.addHelpfulKultum(kultum)
     }
 
     override fun removeHelpfulKultum(kultum: Kultum) {
-        TODO("Not yet implemented")
+        homeRepository.removeHelpfulKultum(kultum)
     }
 
     override fun addComment(comment: Comment) {
-        TODO("Not yet implemented")
+        homeRepository.addComment(comment)
     }
 }

@@ -3,17 +3,20 @@ package com.reift.core.domain.usecase.profile
 import androidx.lifecycle.LiveData
 import com.reift.core.domain.model.Kultum
 import com.reift.core.domain.model.User
+import com.reift.core.domain.repository.ProfileRepository
 
-class ProfileInteractor: ProfileUseCase {
+class ProfileInteractor(
+    val profileRepository: ProfileRepository
+): ProfileUseCase {
     override fun getUserDetail(username: String): LiveData<User> {
-        TODO("Not yet implemented")
+        return profileRepository.getUserDetail(username)
     }
 
     override fun getPostedKultum(username: String): LiveData<List<Kultum>> {
-        TODO("Not yet implemented")
+        return profileRepository.getPostedKultum(username)
     }
 
     override fun getHelpfulKultum(username: String): LiveData<List<Kultum>> {
-        TODO("Not yet implemented")
+        return profileRepository.getHelpfulKultum(username)
     }
 }

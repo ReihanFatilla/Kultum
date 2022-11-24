@@ -1,9 +1,12 @@
 package com.reift.core.domain.usecase.login
 
 import androidx.lifecycle.LiveData
+import com.reift.core.domain.repository.LoginRepository
 
-class LoginInteractor: LoginUseCase {
+class LoginInteractor(
+    val loginRepository: LoginRepository
+): LoginUseCase {
     override fun checkIfLoginValid(email: String, password: String): LiveData<Boolean> {
-        TODO("Not yet implemented")
+        return loginRepository.checkIfLoginValid(email, password)
     }
 }

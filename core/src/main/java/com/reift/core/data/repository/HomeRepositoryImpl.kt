@@ -42,17 +42,17 @@ class HomeRepositoryImpl(
         return listKultum
     }
 
-    override fun addHelpfulKultum(kultum: Kultum) {
+    override fun addHelpfulKultum(urlKultum: String) {
         firebaseDataSource.getReference(Ref.KULTUM)
-            .child(kultum.urlKey)
+            .child(urlKultum)
             .child(Ref.HELPFUL)
             .child(currentUser)
             .setValue(currentUser)
     }
 
-    override fun removeHelpfulKultum(kultum: Kultum) {
+    override fun removeHelpfulKultum(urlKultum: String) {
         firebaseDataSource.getReference(Ref.KULTUM)
-            .child(kultum.urlKey)
+            .child(urlKultum)
             .child(Ref.HELPFUL)
             .child(currentUser)
             .removeValue()

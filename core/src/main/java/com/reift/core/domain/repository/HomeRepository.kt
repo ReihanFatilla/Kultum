@@ -7,7 +7,7 @@ import org.w3c.dom.Comment
 
 interface HomeRepository {
     fun getKultumForYou(): LiveData<List<Kultum>>
-    fun addHelpfulKultum(kultum: Kultum)
-    fun removeHelpfulKultum(kultum: Kultum)
+    fun addHelpfulKultum(urlKultum: String)
+    fun removeHelpfulKultum(urlKultum: String)
     fun addComment(comment: Comments, urlKultum: String)
 }

@@ -12,12 +12,12 @@ class HomeInteractor(
         return homeRepository.getKultumForYou()
     }
 
-    override fun addHelpfulKultum(kultum: Kultum) {
-        homeRepository.addHelpfulKultum(kultum)
+    override fun addHelpfulKultum(urlKultum: String) {
+        homeRepository.addHelpfulKultum(urlKultum)
     }
 
-    override fun removeHelpfulKultum(kultum: Kultum) {
-        homeRepository.removeHelpfulKultum(kultum)
+    override fun removeHelpfulKultum(urlKultum: String) {
+        homeRepository.removeHelpfulKultum(urlKultum)
     }
 
     override fun addComment(comment: Comments, urlKultum: String) {

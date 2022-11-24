@@ -36,7 +36,4 @@ android {
 dependencies {
     // Firebase
     implementation 'com.google.firebase:firebase-database-ktx:20.1.0'
-
-    // DataStore
-    implementation "androidx.datastore:datastore-preferences:1.0.0"
 }

@@ -6,6 +6,7 @@ data class User(
     var email: String,
     var photoUrl: String,
     var bio: String,
+    var password: String,
     var kultum: List<Kultum>,
     var followers: List<User>,
     var follwings: List<User>,

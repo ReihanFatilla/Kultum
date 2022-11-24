@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "652223747901",
+    "project_id": "kultum-c086a",
+    "storage_bucket": "kultum-c086a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:652223747901:android:d0716602a4aa0d8af81754",
+        "android_client_info": {
+          "package_name": "com.reift.kultum"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "652223747901-kfcqjn6ovsfer6r1k8p462pvg9laqqmk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCo3mribyRueZL32GlShfQoGkR8LBubQI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "652223747901-kfcqjn6ovsfer6r1k8p462pvg9laqqmk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

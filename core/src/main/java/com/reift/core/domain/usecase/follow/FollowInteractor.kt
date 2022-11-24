@@ -1,4 +1,4 @@
 package com.reift.core.domain.usecase.follow
 
-class FollowInteractor {
+class FollowInteractor: FollowUseCase {
 }

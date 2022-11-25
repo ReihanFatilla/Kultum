@@ -39,6 +39,28 @@ class RegisterRepositoryImpl(
         return isTaken
     }
 
+    override fun checkIfUsernameTaken(username: String): LiveData<Boolean> {
+        val isTaken = MutableLiveData(true)
+        firebaseDataSource.getReference(Ref.USER).addValueEventListener(
+            object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for(i in snapshot.children){
+                        val user = i.getValue(User::class.java)
+                        if(user?.usernname == username) continue
+                        isTaken.value = false
+                        break
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            }
+        )
+        return isTaken
+    }
+
     override fun saveUser(user: User) {
         firebaseDataSource.getReference(Ref.USER)
             .child(user.usernname)

@@ -9,7 +9,7 @@ import org.koin.dsl.module
 
 val firebaseSourceModule = module {
     factory {
-        FirebaseDataSource(FirebaseDatabase.getInstance())
+        FirebaseDataSource(FirebaseDatabase.getInstance("https://kultum-c086a-default-rtdb.asia-southeast1.firebasedatabase.app"))
     }
 }
 

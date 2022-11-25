@@ -11,6 +11,10 @@ class RegisterInteractor(
         return registerRepository.checkIfEmailTaken(email)
     }
 
+    override fun checkIfUsernameTaken(username: String): LiveData<Boolean> {
+        return registerRepository.checkIfUsernameTaken(username)
+    }
+
     override fun saveUser(user: User) {
         return registerRepository.saveUser(user)
     }

@@ -7,4 +7,7 @@ object Ref {
     // Kultum Key
     const val HELPFUL = "helpful"
     const val COMMENTS = "comments"
+    // User Key
+    const val FOLLOWERS = "followers"
+    const val FOLLOWINGS = "followings"
 }

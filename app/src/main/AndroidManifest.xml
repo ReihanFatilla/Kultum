@@ -19,7 +19,7 @@
         <activity
             android:name=".presentation.splash.SplashActivity"
             android:exported="true"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/Theme.Kultum.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

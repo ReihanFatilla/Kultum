@@ -28,39 +28,45 @@ class RegisterActivity : AppCompatActivity() {
     private fun setUpRegisterFunction() {
         binding.apply {
             btnRegis.setOnClickListener {
-                if (!userInputIsValid()) return@setOnClickListener
-                Log.i(
-                    "setUpRegisterFunctionAa",
-                    "setUpRegisterFunction: ${viewModel.checkIfEmailTaken(edtEmail.text.toString())}"
-                )
-                viewModel.checkIfEmailTaken(edtEmail.text.toString())
-                    .observe(this@RegisterActivity) {
-                        if (it) {
-                            edtEmail.error = "Email is Taken"
-                        } else {
-                            viewModel.checkIfUsernameTaken(edtUsername.text.toString())
-                                .observe(this@RegisterActivity) { bool ->
-                                    if (bool) {
-                                        edtUsername.error = "Username is Taken"
-                                    } else {
-                                        viewModel.saveUser(
-                                            User(
-                                                usernname = edtUsername.text.toString(),
-                                                email = edtEmail.text.toString(),
-                                                password = edtPassword.text.toString()
-                                            )
-                                        )
-                                        startActivity(
-                                            Intent(this@RegisterActivity, LoginActivity::class.java)
-                                        )
-                                    }
-                                }
-
-                        }
-                    }
-
-
+                if (userInputIsValid()) {
+                    emailValidationObserver()
+                }
             }
+        }
+    }
+
+    private fun emailValidationObserver() {
+        binding.apply {
+            viewModel.checkIfEmailTaken(edtEmail.text.toString())
+                .observe(this@RegisterActivity) {
+                    if (it) {
+                        edtEmail.error = "Email is Taken"
+                    } else {
+                        userNameValidationObserver()
+                    }
+                }
+        }
+    }
+
+    private fun userNameValidationObserver() {
+        binding.apply {
+            viewModel.checkIfUsernameTaken(edtUsername.text.toString())
+                .observe(this@RegisterActivity) {
+                    if (it) {
+                        edtUsername.error = "Username is Taken"
+                    } else {
+                        viewModel.saveUser(
+                            User(
+                                usernname = edtUsername.text.toString(),
+                                email = edtEmail.text.toString(),
+                                password = edtPassword.text.toString()
+                            )
+                        )
+                        startActivity(
+                            Intent(this@RegisterActivity, LoginActivity::class.java)
+                        )
+                    }
+                }
         }
     }
 

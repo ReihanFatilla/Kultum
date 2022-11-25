@@ -22,15 +22,9 @@
         <item name="android:statusBarColor" >@color/white</item>
     </style>
 
-    <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.Kultum.SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/bg_splash</item>
-        <item name="android:statusBarColor">@color/primary_color</item>
-        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">@color/white</item>
     </style>
 
-    <style name="Theme.Kultum.Starting" >
-        <!-- Set the splash screen background, animated icon, and animation duration. -->
-        <item name="android:windowSplashScreenBackground" tools:targetApi="s">@color/primary_color</item>
-        <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="s">@drawable/logoapp</item>
-    </style>
 </resources>

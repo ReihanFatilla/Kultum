@@ -1,5 +1,6 @@
 package com.reift.kultum.presentation.register
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.reift.core.domain.model.User
@@ -10,6 +11,7 @@ class RegisterViewModel(
 ): ViewModel() {
 
     fun checkIfEmailTaken(email: String): LiveData<Boolean> {
+        Log.i("Keluarataumasuk", "Ini Di View Model: ${registerUseCase.checkIfEmailTaken(email)}")
         return registerUseCase.checkIfEmailTaken(email)
     }
 

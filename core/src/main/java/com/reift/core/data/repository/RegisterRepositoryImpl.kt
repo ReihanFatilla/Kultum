@@ -1,5 +1,6 @@
 package com.reift.core.data.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.database.DataSnapshot
@@ -18,15 +19,20 @@ class RegisterRepositoryImpl(
 ): RegisterRepository {
 
     override fun checkIfEmailTaken(email: String): LiveData<Boolean> {
-        val isTaken = MutableLiveData(true)
+        var isTaken = MutableLiveData(true)
         firebaseDataSource.getReference(Ref.USER).addValueEventListener(
             object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
                     for(i in snapshot.children){
                         val user = i.getValue(User::class.java)
-                        if(user?.email == email) continue
-                        isTaken.value = false
-                        break
+                        if(user?.email != email) {
+                            isTaken.value = false
+                            Log.i("Keluarataumasuk", " 1 = $isTaken")
+                            break
+                        } else {
+                            Log.i("Keluarataumasuk", " 2 = $isTaken")
+                        }
+                        Log.i("Keluarataumasuk", " 3 = $isTaken")
                     }
                 }
 
@@ -36,6 +42,7 @@ class RegisterRepositoryImpl(
 
             }
         )
+        Log.i("Keluarataumasuk", "4 = $isTaken")
         return isTaken
     }
 

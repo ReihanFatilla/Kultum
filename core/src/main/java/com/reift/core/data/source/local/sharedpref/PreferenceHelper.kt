@@ -27,7 +27,7 @@ class PreferenceHelper(val context: Context) {
     }
 
     companion object {
-        const val PREF_USER = "pref_userrr"
+        const val PREF_USER = "pref_user_database"
     }
 
 }

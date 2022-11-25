@@ -1,11 +1,10 @@
 package com.reift.kultum.presentation.register
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.reift.core.domain.model.User
-import com.reift.kultum.MainActivity
-import com.reift.kultum.R
 import com.reift.kultum.databinding.ActivityRegisterBinding
 import com.reift.kultum.presentation.login.LoginActivity
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -14,7 +13,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private val viewModel: RegisterViewModel by viewModel()
 
-    private var _binding : ActivityRegisterBinding? = null
+    private var _binding: ActivityRegisterBinding? = null
     private val binding get() = _binding as ActivityRegisterBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,24 +29,37 @@ class RegisterActivity : AppCompatActivity() {
         binding.apply {
             btnRegis.setOnClickListener {
                 if (!userInputIsValid()) return@setOnClickListener
-                if(viewModel.checkIfEmailTaken(edtEmail.text.toString()).value == false) {
-                    edtEmail.error = "Email is Taken"
-                    return@setOnClickListener
-                }
-                if(viewModel.checkIfUsernameTaken(edtUsername.text.toString()).value == false) {
-                    edtUsername.error = "Username is Taken"
-                    return@setOnClickListener
-                }
-                viewModel.saveUser(
-                    User(
-                        usernname = edtUsername.text.toString(),
-                        email = edtEmail.text.toString(),
-                        password = edtPassword.text.toString()
-                    )
+                Log.i(
+                    "setUpRegisterFunctionAa",
+                    "setUpRegisterFunction: ${viewModel.checkIfEmailTaken(edtEmail.text.toString())}"
                 )
-                startActivity(
-                    Intent(this@RegisterActivity, LoginActivity::class.java)
-                )
+                viewModel.checkIfEmailTaken(edtEmail.text.toString())
+                    .observe(this@RegisterActivity) {
+                        if (it) {
+                            edtEmail.error = "Email is Taken"
+                        } else {
+                            viewModel.checkIfUsernameTaken(edtUsername.text.toString())
+                                .observe(this@RegisterActivity) { bool ->
+                                    if (bool) {
+                                        edtUsername.error = "Username is Taken"
+                                    } else {
+                                        viewModel.saveUser(
+                                            User(
+                                                usernname = edtUsername.text.toString(),
+                                                email = edtEmail.text.toString(),
+                                                password = edtPassword.text.toString()
+                                            )
+                                        )
+                                        startActivity(
+                                            Intent(this@RegisterActivity, LoginActivity::class.java)
+                                        )
+                                    }
+                                }
+
+                        }
+                    }
+
+
             }
         }
     }

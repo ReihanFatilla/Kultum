@@ -6,6 +6,7 @@ object Ref {
     const val KULTUM = "kultum"
     // Kultum Key
     const val HELPFUL = "helpful"
+    const val CREATOR = "creator"
     const val COMMENTS = "comments"
     // User Key
     const val FOLLOWERS = "followers"

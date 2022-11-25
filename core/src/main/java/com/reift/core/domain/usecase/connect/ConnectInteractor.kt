@@ -12,12 +12,12 @@ class ConnectInteractor(
         return connectRepository.getUserByUsername(username)
     }
 
-    override fun followUser(user: User) {
-        connectRepository.followUser(user)
+    override fun followUser(username: String) {
+        connectRepository.followUser(username)
     }
 
-    override fun unfollowUser(user: User) {
-        connectRepository.followUser(user)
+    override fun unfollowUser(username: String) {
+        connectRepository.followUser(username)
     }
 
     override fun getPostedKultum(username: String): LiveData<List<Kultum>> {

@@ -35,6 +35,40 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+    private fun userInputIsValid(): Boolean {
+        binding.apply {
+            if (edtEmail.text.isNullOrEmpty()) {
+                edtEmail.error = "Please Fill your Email"
+                edtEmail.requestFocus()
+                return false
+            }
+            if (edtPassword.text.isNullOrEmpty()) {
+                edtPassword.error = "Please Fill your Password"
+                edtPassword.requestFocus()
+                return false
+            }
+            if (edtUsername.text.isNullOrEmpty()) {
+                edtUsername.error = "Please Enter Your Username"
+                edtUsername.requestFocus()
+                return false
+            }
+            if (!edtEmail.text.contains("@")) {
+                edtEmail.error = "Please use \"@\" for valid Email"
+                edtEmail.requestFocus()
+                return false
+            }
+            return true
+        }
+    }
+
+    private fun setUpView() {
+        binding.tvLogin.setOnClickListener {
+            startActivity(
+                Intent(this, LoginActivity::class.java)
+            )
+        }
+    }
+
     private fun emailValidationObserver() {
         binding.apply {
             viewModel.checkIfEmailTaken(edtEmail.text.toString())
@@ -67,40 +101,6 @@ class RegisterActivity : AppCompatActivity() {
                         )
                     }
                 }
-        }
-    }
-
-    private fun userInputIsValid(): Boolean {
-        binding.apply {
-            if (edtEmail.text.isNullOrEmpty()) {
-                edtEmail.error = "Please Fill your Email"
-                edtEmail.requestFocus()
-                return false
-            }
-            if (edtPassword.text.isNullOrEmpty()) {
-                edtPassword.error = "Please Fill your Password"
-                edtPassword.requestFocus()
-                return false
-            }
-            if (edtUsername.text.isNullOrEmpty()) {
-                edtUsername.error = "Please Enter Your Username"
-                edtUsername.requestFocus()
-                return false
-            }
-            if (!edtEmail.text.contains("@")) {
-                edtEmail.error = "Please use \"@\" for valid Email"
-                edtEmail.requestFocus()
-                return false
-            }
-            return true
-        }
-    }
-
-    private fun setUpView() {
-        binding.tvLogin.setOnClickListener {
-            startActivity(
-                Intent(this, LoginActivity::class.java)
-            )
         }
     }
 

@@ -2,6 +2,7 @@ package com.reift.kultum.presentation.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.reift.kultum.MainActivity
 import com.reift.kultum.databinding.ActivityLoginBinding
@@ -28,13 +29,9 @@ class LoginActivity : AppCompatActivity() {
     private fun setUpLoginFunction() {
         binding.apply {
             btnLogin.setOnClickListener {
-                if (!userInputIsValid()) return@setOnClickListener
-                viewModel.checkIfLoginValid(edtEmail.text.toString(), edtPassword.text.toString())
-                    .observe(this@LoginActivity) {
-                        if (it) {
-                            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                        }
-                    }
+                if (userInputIsValid()) {
+                    loginValidationObserver()
+                }
             }
         }
     }
@@ -57,6 +54,19 @@ class LoginActivity : AppCompatActivity() {
                 return false
             }
             return true
+        }
+    }
+
+    private fun loginValidationObserver() {
+        binding.apply {
+            viewModel.checkIfLoginValid(edtEmail.text.toString(), edtPassword.text.toString())
+                .observe(this@LoginActivity) {
+                    if (it) {
+                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                    } else {
+                        Toast.makeText(applicationContext, "Incorrect Email or Password", Toast.LENGTH_SHORT).show()
+                    }
+                }
         }
     }
 

@@ -18,7 +18,7 @@ class RegisterRepositoryImpl(
 ): RegisterRepository {
 
     override fun checkIfEmailTaken(email: String): LiveData<Boolean> {
-        val isTaken = MutableLiveData<Boolean>()
+        val isTaken = MutableLiveData(true)
         firebaseDataSource.getReference(Ref.USER).addValueEventListener(
             object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {

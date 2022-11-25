@@ -11,6 +11,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.ui.views.YouTubePlayerSeekBarListener
+import com.reift.core.domain.model.Kultum
 import com.reift.kultum.R
 import com.reift.kultum.`interface`.YoutubePlayCallBack
 import com.reift.kultum.adapter.viewpager.KultumViewPagerAdapter
@@ -21,7 +22,7 @@ class KultumFragment : Fragment() {
     private var _binding: FragmentKultumBinding? = null
     private val binding get() = _binding as FragmentKultumBinding
 
-    private lateinit var url: String
+    private lateinit var kultum: Kultum
 
     private var isPlaying = true
 
@@ -31,7 +32,7 @@ class KultumFragment : Fragment() {
     ): View {
         _binding = FragmentKultumBinding.inflate(layoutInflater)
 
-        url = arguments?.getString(KultumViewPagerAdapter.BUNDlE_VIDEO_URL) ?: "nFr1Jj1KxVk"
+        kultum = arguments?.getParcelable(KultumViewPagerAdapter.BUNDLE_KULTUM)!!
 
         setUpShortsVideo()
         lifecycle.addObserver(binding.ytPlayer)
@@ -46,15 +47,15 @@ class KultumFragment : Fragment() {
 
             ytPlayer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
                 override fun onReady(youTubePlayer: YouTubePlayer) {
-                    youTubePlayer.loadVideo(url, 0f)
+                    youTubePlayer.loadVideo(kultum.urlKey, 0f)
 
                     playPauseArea.setOnClickListener {
-                        if (isPlaying) {
+                        isPlaying = if (isPlaying) {
                             youTubePlayer.pause()
-                            isPlaying = false
+                            false
                         } else {
                             youTubePlayer.play()
-                            isPlaying = true
+                            true
                         }
                     }
 

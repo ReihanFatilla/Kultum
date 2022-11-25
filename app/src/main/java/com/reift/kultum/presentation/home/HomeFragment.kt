@@ -1,19 +1,18 @@
 package com.reift.kultum.presentation.home
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.reift.kultum.R
+import com.reift.core.domain.model.Kultum
 import com.reift.kultum.adapter.viewpager.KultumViewPagerAdapter
-import com.reift.kultum.databinding.ActivityMainBinding
 import com.reift.kultum.databinding.FragmentHomeBinding
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
 
-    private lateinit var viewModel: HomeViewModel
+    private val viewModel: HomeViewModel by viewModel()
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding as FragmentHomeBinding
@@ -24,29 +23,19 @@ class HomeFragment : Fragment() {
     ): View? {
         _binding = FragmentHomeBinding.inflate(layoutInflater)
 
-        setUpKultumViewPager()
-        setUpSeekbar()
+        initObservers()
 
         return binding.root
     }
 
-    private fun setUpSeekbar() {
+    private fun initObservers() {
+        viewModel.getKultumForYou().observe(viewLifecycleOwner){
+            setUpKultumViewPager(it)
+        }
     }
 
-    private fun setUpKultumViewPager() {
-        val dummyKultum = getDummyKultum()
-        binding.vpKultum.adapter = activity?.let { KultumViewPagerAdapter(it.supportFragmentManager, dummyKultum, dummyKultum.size) }
-    }
-
-    private fun getDummyKultum(): List<String> {
-        return listOf(
-            "6waRY3TmrDA",
-            "XDD3XWnCzxg",
-            "nFr1Jj1KxVk",
-            "JQFCyrMb5FI",
-            "mjc6YEWD4x0",
-            "MaBT61Hic1U",
-        )
+    private fun setUpKultumViewPager(listKultum: List<Kultum>) {
+        binding.vpKultum.adapter = activity?.let { KultumViewPagerAdapter(it.supportFragmentManager, listKultum, listKultum.size) }
     }
 
 }

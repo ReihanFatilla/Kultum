@@ -7,11 +7,12 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.ui.views.YouTubePlayerSeekBar
+import com.reift.core.domain.model.Kultum
 import com.reift.kultum.presentation.home.fragment.KultumFragment
 
 class KultumViewPagerAdapter(
     fm: FragmentManager,
-    val url: List<String>,
+    val url: List<Kultum>,
     val totalVideo: Int
 ) : FragmentPagerAdapter(fm){
 
@@ -20,13 +21,13 @@ class KultumViewPagerAdapter(
     override fun getItem(position: Int): Fragment {
         val bundle = Bundle()
         val kultumFragment = KultumFragment()
-        bundle.putString(BUNDlE_VIDEO_URL, url[position])
+        bundle.putParcelable(BUNDLE_KULTUM, url[position])
         kultumFragment.arguments = bundle
         return kultumFragment
     }
 
     companion object{
-        const val BUNDlE_VIDEO_URL = "BUNDlE_VIDEO_URL"
+        const val BUNDLE_KULTUM = "BUNDLE_KULTUM"
     }
 
 }

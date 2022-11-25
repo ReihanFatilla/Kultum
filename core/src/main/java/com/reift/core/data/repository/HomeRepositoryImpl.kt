@@ -30,7 +30,7 @@ class HomeRepositoryImpl(
                         val kultum = i.getValue(Kultum::class.java) ?: return
                         list.add(kultum)
                     }
-                    listKultum.value = list
+                    listKultum.value = list.shuffled()
                 }
 
                 override fun onCancelled(error: DatabaseError) {

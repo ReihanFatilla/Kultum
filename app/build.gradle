@@ -4,6 +4,8 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+apply from: '../shared.gradle'
+
 android {
     compileSdk 32
 

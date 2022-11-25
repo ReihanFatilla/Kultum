@@ -3,7 +3,7 @@ package com.reift.core.data.source.local.sharedpref
 import android.content.Context
 import android.content.SharedPreferences
 
-class PreferenceHelper(context: Context) {
+class PreferenceHelper(val context: Context) {
 
     var sharedPreferences = context.getSharedPreferences(PREF_USER, 0)
     val editor: SharedPreferences.Editor = sharedPreferences.edit()

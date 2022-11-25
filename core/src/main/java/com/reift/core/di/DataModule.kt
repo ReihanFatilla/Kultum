@@ -8,7 +8,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
 val firebaseSourceModule = module {
-    single {
+    factory {
         FirebaseDataSource(FirebaseDatabase.getInstance())
     }
 }
@@ -20,7 +20,7 @@ val localSourceModule = module {
 }
 
 val preferenceModule = module {
-    single {
+    factory {
         PreferenceHelper(androidContext())
     }
 }

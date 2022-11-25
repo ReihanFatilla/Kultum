@@ -5,7 +5,7 @@ import com.reift.core.domain.model.Kultum
 import com.reift.core.domain.model.User
 
 interface ProfileUseCase {
-    fun getUserDetail(username: String): LiveData<User>
-    fun getPostedKultum(username: String): LiveData<List<Kultum>>
-    fun getHelpfulKultum(username: String): LiveData<List<Kultum>>
+    fun getUserDetail(): LiveData<User>
+    fun getPostedKultum(): LiveData<List<Kultum>>
+    fun getHelpfulKultum(): LiveData<List<Kultum>>
 }

@@ -8,15 +8,15 @@ import com.reift.core.domain.repository.ProfileRepository
 class ProfileInteractor(
     val profileRepository: ProfileRepository
 ): ProfileUseCase {
-    override fun getUserDetail(username: String): LiveData<User> {
-        return profileRepository.getUserDetail(username)
+    override fun getUserDetail(): LiveData<User> {
+        return profileRepository.getUserDetail()
     }
 
-    override fun getPostedKultum(username: String): LiveData<List<Kultum>> {
-        return profileRepository.getPostedKultum(username)
+    override fun getPostedKultum(): LiveData<List<Kultum>> {
+        return profileRepository.getPostedKultum()
     }
 
-    override fun getHelpfulKultum(username: String): LiveData<List<Kultum>> {
-        return profileRepository.getHelpfulKultum(username)
+    override fun getHelpfulKultum(): LiveData<List<Kultum>> {
+        return profileRepository.getHelpfulKultum()
     }
 }

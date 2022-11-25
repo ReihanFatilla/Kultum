@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.getValue
 import com.reift.core.constant.Pref
 import com.reift.core.constant.Ref
 import com.reift.core.data.source.local.LocalDataSource
@@ -40,6 +41,28 @@ class HomeRepositoryImpl(
             }
         )
         return listKultum
+    }
+
+    override fun isKultumHelpfuled(urlKultum: String): LiveData<Boolean> {
+        val isHelpfuled = MutableLiveData(false)
+        firebaseDataSource.getReference(Ref.KULTUM)
+            .child(Ref.HELPFUL)
+            .addValueEventListener(
+                object : ValueEventListener{
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        for(i in snapshot.children){
+                            val userHelpful = i.getValue<String>()
+                            if(userHelpful == currentUser) isHelpfuled.value = true
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+
+                }
+            )
+        return isHelpfuled
     }
 
     override fun addHelpfulKultum(urlKultum: String) {

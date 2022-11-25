@@ -12,12 +12,15 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.You
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.ui.views.YouTubePlayerSeekBarListener
 import com.reift.core.domain.model.Kultum
-import com.reift.kultum.R
 import com.reift.kultum.`interface`.YoutubePlayCallBack
 import com.reift.kultum.adapter.viewpager.KultumViewPagerAdapter
 import com.reift.kultum.databinding.FragmentKultumBinding
+import com.reift.kultum.presentation.home.HomeViewModel
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class KultumFragment : Fragment() {
+
+    private val viewModel: HomeViewModel by viewModel()
 
     private var _binding: FragmentKultumBinding? = null
     private val binding get() = _binding as FragmentKultumBinding
@@ -34,10 +37,25 @@ class KultumFragment : Fragment() {
 
         kultum = arguments?.getParcelable(KultumViewPagerAdapter.BUNDLE_KULTUM)!!
 
-        setUpShortsVideo()
         lifecycle.addObserver(binding.ytPlayer)
+        setUpShortsVideo()
+        setUpHelfpulButton()
 
         return binding.root
+    }
+
+    private fun setUpHelfpulButton() {
+        binding.apply {
+            viewModel.isKultumHelpfuled(kultum.urlKey).observe(viewLifecycleOwner){
+                if(it){
+                    btnHelpful.isChecked = true
+                    viewModel.addHelpfulKultum(kultum.urlKey)
+                } else {
+                    btnHelpful.isChecked = false
+                    viewModel.removeKultum(kultum.urlKey)
+                }
+            }
+        }
     }
 
     private fun setUpShortsVideo() {

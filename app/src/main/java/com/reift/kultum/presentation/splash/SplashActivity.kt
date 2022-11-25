@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.reift.kultum.MainActivity
+import com.reift.kultum.presentation.login.LoginActivity
 import com.reift.kultum.presentation.register.RegisterActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -22,7 +23,7 @@ class SplashActivity : AppCompatActivity() {
                 )
             } else {
                 startActivity(
-                    Intent(this, RegisterActivity::class.java)
+                    Intent(this, LoginActivity::class.java)
                 )
             }
         }

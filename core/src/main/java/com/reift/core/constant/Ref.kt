@@ -11,4 +11,8 @@ object Ref {
     // User Key
     const val FOLLOWERS = "followers"
     const val FOLLOWINGS = "followings"
+    const val NAME = "name"
+    const val USERNAME = "username"
+    const val BIO = "bio"
+    const val photoUrl = "PhotoUrl"
 }

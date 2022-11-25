@@ -4,6 +4,6 @@ import androidx.lifecycle.LiveData
 import com.reift.core.domain.model.User
 
 interface EditUseCase {
-    fun saveEditedProfile(username: String, name: String, bio: String, photoUrl: String)
+    fun saveEditedProfile(username: String? = null, name: String? = null, bio: String? = null, photoUrl: String? = null)
     fun checkIfUserTaken(username: String): LiveData<Boolean>
 }

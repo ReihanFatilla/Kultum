@@ -12,4 +12,13 @@
     <string name="let_s_create_your_account_first">let\'s create your account first</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="register">Register</string>
+    <string name="image_for_back">Image for Back</string>
+    <string name="image_for_logout">Image for Logout</string>
+    <string name="change_photo">Change photo</string>
+    <string name="username">Username</string>
+    <string name="name">Name</string>
+    <string name="bio">Bio</string>
+    <string name="save">Save</string>
+    <string name="already_have_an_account">Already have an Account?</string>
+    <string name="don_t_have_an_account">Don\'t have an Account?</string>
 </resources>

@@ -67,16 +67,16 @@
 
     <EditText
         android:id="@+id/tv_username_fill"
-        android:layout_width="170dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="65dp"
         android:autofillHints=""
         android:inputType="textPersonName"
         android:maxLines="1"
         android:text="@string/username"
+        android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="@id/tv_username"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/tv_username"
+        app:layout_constraintStart_toStartOf="@id/tv_change_photo"
         app:layout_constraintTop_toTopOf="@id/tv_username" />
 
     <TextView
@@ -90,16 +90,16 @@
 
     <EditText
         android:id="@+id/tv_name_fill"
-        android:layout_width="170dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="65dp"
         android:autofillHints=""
         android:inputType="textPersonName"
         android:maxLines="1"
         android:text="@string/name"
+        android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="@id/tv_name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/tv_name"
+        app:layout_constraintStart_toStartOf="@id/tv_change_photo"
         app:layout_constraintTop_toTopOf="@id/tv_name" />
 
     <TextView
@@ -113,16 +113,16 @@
 
     <EditText
         android:id="@+id/tv_bio_fill"
-        android:layout_width="170dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="65dp"
         android:autofillHints=""
         android:inputType="text"
         android:maxLines="2"
         android:text="@string/bio"
+        android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="@id/tv_bio"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/tv_bio"
+        app:layout_constraintStart_toStartOf="@id/tv_change_photo"
         app:layout_constraintTop_toTopOf="@id/tv_bio" />
 
     <com.google.android.material.button.MaterialButton

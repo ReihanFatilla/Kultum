@@ -37,6 +37,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginHorizontal="24dp"
+        android:background="@drawable/bg_edit_text"
+        android:paddingVertical="14dp"
+        android:paddingHorizontal="20dp"
         android:hint="@string/txt_email"
         android:inputType="textEmailAddress"
         android:autofillHints="" />
@@ -50,6 +53,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginHorizontal="24dp"
+        android:background="@drawable/bg_edit_text"
+        android:paddingVertical="14dp"
+        android:paddingHorizontal="20dp"
         android:hint="@string/username"
         android:autofillHints="" />
 
@@ -62,6 +68,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginHorizontal="24dp"
+        android:background="@drawable/bg_edit_text"
+        android:paddingVertical="14dp"
+        android:paddingHorizontal="20dp"
         android:hint="@string/txt_password"
         android:inputType="textPassword"
         android:autofillHints="" />

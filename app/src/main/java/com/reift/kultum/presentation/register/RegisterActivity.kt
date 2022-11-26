@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.reift.core.domain.model.User
 import com.reift.kultum.databinding.ActivityRegisterBinding
+import com.reift.kultum.presentation.edit.EditActivity
 import com.reift.kultum.presentation.login.LoginActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -99,7 +100,7 @@ class RegisterActivity : AppCompatActivity() {
                             )
                         )
                         startActivity(
-                            Intent(this@RegisterActivity, LoginActivity::class.java)
+                            Intent(this@RegisterActivity, EditActivity::class.java)
                         )
                     }
                 }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.reift.kultum.R
 import com.reift.kultum.databinding.ActivityEditBinding
+import com.reift.kultum.presentation.edit.dialog.PhotoUrlDialogFragment
 
 class EditActivity : AppCompatActivity() {
 
@@ -26,7 +27,7 @@ class EditActivity : AppCompatActivity() {
     }
 
     private fun showPhotoUrlDialog() {
-        TODO("Not yet implemented")
+        PhotoUrlDialogFragment().show(supportFragmentManager, PhotoUrlDialogFragment.TAG)
     }
 
 

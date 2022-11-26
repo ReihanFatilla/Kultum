@@ -1,4 +1,4 @@
-package com.reift.kultum.presentation.register.dialog
+package com.reift.kultum.presentation.edit.dialog
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -41,7 +41,7 @@ class PhotoUrlDialogFragment : DialogFragment() {
 
     companion object {
 
-        const val TAG = "DialogWithData"
+        const val TAG = "PHOTO_URL_DIALOG"
 
     }
 

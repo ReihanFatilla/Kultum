@@ -17,7 +17,7 @@ class LoginRepositoryImpl(
     val localDataSource: LocalDataSource
 ): LoginRepository {
     override fun checkIfLoginValid(email: String, password: String): LiveData<Boolean> {
-        val isLoginValid = MutableLiveData(false)
+        val isLoginValid = MutableLiveData<Boolean>()
         firebaseDataSource.getReference(Ref.USER).addValueEventListener(
             object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -28,6 +28,9 @@ class LoginRepositoryImpl(
                         isLoginValid.value = true
                         localDataSource.add(Pref.CURRENT_USER, user.usernname)
                         localDataSource.add(Pref.IS_USER_LOGIN, true)
+                    }
+                    if(isLoginValid.value != true){
+                        isLoginValid.value = false
                     }
                 }
 

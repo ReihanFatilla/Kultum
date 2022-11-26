@@ -1,6 +1,7 @@
 package com.reift.kultum.di
 
 import com.reift.core.domain.usecase.splash.SplashUseCase
+import com.reift.kultum.presentation.home.HomeViewModel
 import com.reift.kultum.presentation.login.LoginViewModel
 import com.reift.kultum.presentation.register.RegisterViewModel
 import com.reift.kultum.presentation.splash.SplashViewModel
@@ -11,4 +12,5 @@ val viewModelModule = module {
     viewModel { SplashViewModel(get()) }
     viewModel { LoginViewModel(get()) }
     viewModel { RegisterViewModel(get()) }
+    viewModel { HomeViewModel(get()) }
 }

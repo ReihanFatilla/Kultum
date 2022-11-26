@@ -6,14 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
-import com.reift.kultum.R
-import com.reift.kultum.databinding.ActivityEditBinding
 import com.reift.kultum.databinding.FragmentPhotoUrlDialogBinding
+import com.reift.kultum.presentation.edit.EditViewModel
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class PhotoUrlDialogFragment : DialogFragment() {
 
     private var _binding: FragmentPhotoUrlDialogBinding? = null
     private val binding get() = _binding as FragmentPhotoUrlDialogBinding
+
+    private val viewModel: EditViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,11 +36,23 @@ class PhotoUrlDialogFragment : DialogFragment() {
     }
 
     private fun setUpView() {
-        binding.edtImageUrl.setOnClickListener {
-            dismiss()
-        }
-        binding.btnCancel.setOnClickListener {
-            dismiss()
+        binding.apply {
+            binding.btnConfirm.setOnClickListener {
+                if (edtImageUrl.text.isNullOrEmpty()) {
+                    edtImageUrl.requestFocus()
+                    edtImageUrl.error = "Please fill the Url"
+                } else if (edtImageUrl.text.contains("png") || edtImageUrl.text.contains("jpeg") || edtImageUrl.text.contains("jpg")) {
+                    viewModel.editPhotoUrl(edtImageUrl.text.toString())
+                    dismiss()
+                } else {
+                    edtImageUrl.requestFocus()
+                    edtImageUrl.setText("")
+                    edtImageUrl.error = "Please choose the \"Copy Image Address\""
+                }
+            }
+            btnCancel.setOnClickListener {
+                dismiss()
+            }
         }
     }
 

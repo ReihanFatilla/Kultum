@@ -29,6 +29,6 @@ class EditInteractor(
     }
 
     override fun getCurrentUser(): LiveData<User> {
-        TODO("Not yet implemented")
+        return editRepository.getCurrentUser()
     }
 }

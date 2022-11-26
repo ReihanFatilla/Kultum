@@ -73,6 +73,7 @@ class RegisterActivity : AppCompatActivity() {
         binding.apply {
             viewModel.checkIfEmailTaken(edtEmail.text.toString())
                 .observe(this@RegisterActivity) {
+                    Log.i("emailValidationObserverAA", "1: $it")
                     if (it) {
                         edtEmail.error = "Email is Taken"
                     } else {
@@ -86,6 +87,7 @@ class RegisterActivity : AppCompatActivity() {
         binding.apply {
             viewModel.checkIfUsernameTaken(edtUsername.text.toString())
                 .observe(this@RegisterActivity) {
+                    Log.i("emailValidationObserverAA", "2: $it")
                     if (it) {
                         edtUsername.error = "Username is Taken"
                     } else {

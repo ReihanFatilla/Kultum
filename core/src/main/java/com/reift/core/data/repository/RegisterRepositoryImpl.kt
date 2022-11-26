@@ -16,46 +16,45 @@ import com.reift.core.domain.repository.RegisterRepository
 class RegisterRepositoryImpl(
     val firebaseDataSource: FirebaseDataSource,
     val localDataSource: LocalDataSource
-): RegisterRepository {
+) : RegisterRepository {
 
     override fun checkIfEmailTaken(email: String): LiveData<Boolean> {
-        var isTaken = MutableLiveData(true)
+        val isTaken = MutableLiveData<Boolean>()
         firebaseDataSource.getReference(Ref.USER).addValueEventListener(
-            object : ValueEventListener{
+            object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    for(i in snapshot.children){
+                    for (i in snapshot.children) {
                         val user = i.getValue(User::class.java)
-                        if(user?.email != email) {
-                            isTaken.value = false
-                            Log.i("Keluarataumasuk", " 1 = $isTaken")
-                            break
-                        } else {
-                            Log.i("Keluarataumasuk", " 2 = $isTaken")
-                        }
-                        Log.i("Keluarataumasuk", " 3 = $isTaken")
+                        if (user?.email == email) continue
+                        isTaken.value = false
+                        break
+                    }
+                    if (isTaken.value != false) {
+                        isTaken.value = true
                     }
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
                 }
 
             }
         )
-        Log.i("Keluarataumasuk", "4 = $isTaken")
         return isTaken
     }
 
     override fun checkIfUsernameTaken(username: String): LiveData<Boolean> {
-        val isTaken = MutableLiveData(true)
+        val isTaken = MutableLiveData<Boolean>()
         firebaseDataSource.getReference(Ref.USER).addValueEventListener(
-            object : ValueEventListener{
+            object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    for(i in snapshot.children){
+                    for (i in snapshot.children) {
                         val user = i.getValue(User::class.java)
-                        if(user?.usernname == username) continue
+                        if (user?.usernname == username) continue
                         isTaken.value = false
                         break
+                    }
+                    if (isTaken.value != false) {
+                        isTaken.value = true
                     }
                 }
 

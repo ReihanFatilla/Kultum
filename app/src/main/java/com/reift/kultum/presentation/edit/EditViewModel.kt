@@ -2,11 +2,16 @@ package com.reift.kultum.presentation.edit
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.reift.core.domain.model.User
 import com.reift.core.domain.usecase.edit.EditUseCase
 
 class EditViewModel(
     val editUseCase: EditUseCase
 ): ViewModel() {
+
+    fun getCurrentUser(): LiveData<User> {
+        return editUseCase.getCurrentUser()
+    }
 
     fun editUsername(username: String){
         editUseCase.editUsername(username)

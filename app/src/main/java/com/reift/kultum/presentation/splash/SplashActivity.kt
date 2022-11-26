@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.reift.kultum.MainActivity
+import com.reift.kultum.presentation.edit.EditActivity
 import com.reift.kultum.presentation.login.LoginActivity
 import com.reift.kultum.presentation.register.RegisterActivity
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -19,7 +20,7 @@ class SplashActivity : AppCompatActivity() {
         viewModel.isLogin.observe(this){
             if(it){
                 startActivity(
-                    Intent(this, MainActivity::class.java)
+                    Intent(this, EditActivity::class.java)
                 )
                 finish()
             } else {

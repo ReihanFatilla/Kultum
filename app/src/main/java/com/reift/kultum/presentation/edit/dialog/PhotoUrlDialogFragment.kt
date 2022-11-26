@@ -19,7 +19,7 @@ class PhotoUrlDialogFragment : DialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentPhotoUrlDialogBinding.inflate(layoutInflater)
         setUpView()
         return binding.root
@@ -35,6 +35,9 @@ class PhotoUrlDialogFragment : DialogFragment() {
 
     private fun setUpView() {
         binding.edtImageUrl.setOnClickListener {
+            dismiss()
+        }
+        binding.btnCancel.setOnClickListener {
             dismiss()
         }
     }

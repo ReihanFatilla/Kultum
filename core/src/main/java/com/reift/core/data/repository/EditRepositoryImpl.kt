@@ -76,6 +76,25 @@ class EditRepositoryImpl(
         return isTaken
     }
 
+    override fun getCurrentUser(): LiveData<User> {
+        val user = MutableLiveData<User>()
+        firebaseDataSource.getReference(Ref.USER)
+            .child(currentUser)
+            .addValueEventListener(
+                object: ValueEventListener{
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        user.value = snapshot.getValue(User::class.java)
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+
+                }
+            )
+        return user
+    }
+
     private fun changeNewUsername(userRef: DatabaseReference, newUsername: String): User? {
         var username: User? = null
         userRef.addValueEventListener(object : ValueEventListener {

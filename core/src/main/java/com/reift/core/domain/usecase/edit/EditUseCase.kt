@@ -9,4 +9,5 @@ interface EditUseCase {
     fun editBio(bio: String)
     fun editPhotoUrl(photoUrl: String)
     fun checkIfUserTaken(username: String): LiveData<Boolean>
+    fun getCurrentUser(): LiveData<User>
 }

@@ -1,6 +1,7 @@
 package com.reift.core.domain.usecase.edit
 
 import androidx.lifecycle.LiveData
+import com.reift.core.domain.model.User
 import com.reift.core.domain.repository.EditRepository
 
 class EditInteractor(
@@ -25,5 +26,9 @@ class EditInteractor(
 
     override fun checkIfUserTaken(username: String): LiveData<Boolean> {
         return editRepository.checkIfUserTaken(username)
+    }
+
+    override fun getCurrentUser(): LiveData<User> {
+        TODO("Not yet implemented")
     }
 }

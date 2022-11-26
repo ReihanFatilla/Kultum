@@ -22,7 +22,7 @@ class EditRepositoryImpl(
 
     val currentUser = localDataSource.getString(Pref.CURRENT_USER) ?: ""
 
-    override fun saveEditedProfile(
+    fun saveEditedProfile(
         username: String?,
         name: String?,
         bio: String?,
@@ -92,6 +92,22 @@ class EditRepositoryImpl(
 
                 }
             )
+    }
+
+    override fun editUsername(username: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun editName(name: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun editBio(bio: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun editPhotoUrl(photoUrl: String) {
+        TODO("Not yet implemented")
     }
 
     override fun checkIfUserTaken(username: String): LiveData<Boolean> {

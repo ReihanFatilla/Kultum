@@ -3,6 +3,9 @@ package com.reift.core.domain.repository
 import androidx.lifecycle.LiveData
 
 interface EditRepository {
-    fun saveEditedProfile(username: String? = null, name: String? = null, bio: String? = null, photoUrl: String? = null)
+    fun editUsername(username: String)
+    fun editName(name: String)
+    fun editBio(bio: String)
+    fun editPhotoUrl(photoUrl: String)
     fun checkIfUserTaken(username: String): LiveData<Boolean>
 }

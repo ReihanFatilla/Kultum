@@ -14,6 +14,7 @@ import com.reift.core.data.source.remote.FirebaseDataSource
 import com.reift.core.domain.model.Kultum
 import com.reift.core.domain.model.User
 import com.reift.core.domain.repository.EditRepository
+import com.reift.core.utils.UsernameChangeHelper
 
 class EditRepositoryImpl(
     val firebaseDataSource: FirebaseDataSource,
@@ -22,92 +23,34 @@ class EditRepositoryImpl(
 
     val currentUser = localDataSource.getString(Pref.CURRENT_USER) ?: ""
 
-    fun saveEditedProfile(
-        username: String?,
-        name: String?,
-        bio: String?,
-        photoUrl: String?
-    ) {
-        val userRef = firebaseDataSource.getReference(Ref.USER).child(currentUser)
-        if (username != null) {
-            if (checkIfUserTaken(username).value == true) return
-            userRef.setValue(changeNewUsername(userRef, username))
-            changeKultumCreator(username)
-            changeFollowOnNewUsername(username)
-        }
-    }
-
-    private fun changeFollowOnNewUsername(newUsername: String) {
-        firebaseDataSource.getReference(Ref.USER)
-            .addValueEventListener(
-                object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        for (i in snapshot.children) {
-                            val user = i.getValue(User::class.java)
-                            user?.followers?.forEach {
-                                if (it.username != currentUser) return
-                                val followersRef = firebaseDataSource.getReference(Ref.USER)
-                                    .child(user.usernname)
-                                    .child(Ref.FOLLOWERS)
-                                followersRef.child(currentUser).removeValue()
-                                followersRef.child(newUsername).setValue(newUsername)
-                            }
-                            user?.follwings?.forEach {
-                                if (it.username != currentUser) return
-                                val followingsRef = firebaseDataSource.getReference(Ref.USER)
-                                    .child(user.usernname)
-                                    .child(Ref.FOLLOWINGS)
-                                followingsRef.child(currentUser).removeValue()
-                                followingsRef.child(newUsername).setValue(newUsername)
-                            }
-                        }
-                    }
-
-                    override fun onCancelled(error: DatabaseError) {
-                        TODO("Not yet implemented")
-                    }
-
-                }
-            )
-    }
-
-    private fun changeKultumCreator(newUsername: String) {
-        firebaseDataSource.getReference(Ref.KULTUM)
-            .addValueEventListener(
-                object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        for (i in snapshot.children) {
-                            val kultum = snapshot.getValue(Kultum::class.java)
-                            if (kultum?.creator != currentUser) continue
-                            firebaseDataSource.getReference(Ref.KULTUM)
-                                .child(kultum.urlKey)
-                                .child(Ref.CREATOR)
-                                .setValue(newUsername)
-                        }
-                    }
-
-                    override fun onCancelled(error: DatabaseError) {
-                        TODO("Not yet implemented")
-                    }
-
-                }
-            )
-    }
-
     override fun editUsername(username: String) {
-        TODO("Not yet implemented")
+        val userRef = firebaseDataSource.getReference(Ref.USER).child(currentUser)
+        if (checkIfUserTaken(username).value == true) return
+        userRef.setValue(changeNewUsername(userRef, username))
+        val changeHelper = UsernameChangeHelper(username, currentUser, firebaseDataSource)
+        changeHelper.changeKultumCreator()
+        changeHelper.changeFollowOnNewUsername()
     }
 
     override fun editName(name: String) {
-        TODO("Not yet implemented")
+        firebaseDataSource.getReference(Ref.USER)
+            .child(currentUser)
+            .child(Ref.NAME)
+            .setValue(name)
     }
 
     override fun editBio(bio: String) {
-        TODO("Not yet implemented")
+        firebaseDataSource.getReference(Ref.USER)
+            .child(currentUser)
+            .child(Ref.BIO)
+            .setValue(bio)
     }
 
     override fun editPhotoUrl(photoUrl: String) {
-        TODO("Not yet implemented")
+        firebaseDataSource.getReference(Ref.USER)
+            .child(currentUser)
+            .child(Ref.PHOTO_URL)
+            .setValue(photoUrl)
     }
 
     override fun checkIfUserTaken(username: String): LiveData<Boolean> {

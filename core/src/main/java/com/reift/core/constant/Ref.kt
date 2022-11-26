@@ -14,5 +14,5 @@ object Ref {
     const val NAME = "name"
     const val USERNAME = "username"
     const val BIO = "bio"
-    const val photoUrl = "PhotoUrl"
+    const val PHOTO_URL = "photoUrl"
 }

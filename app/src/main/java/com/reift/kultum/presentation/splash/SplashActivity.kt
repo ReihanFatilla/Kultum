@@ -20,7 +20,7 @@ class SplashActivity : AppCompatActivity() {
         viewModel.isLogin.observe(this){
             if(it){
                 startActivity(
-                    Intent(this, EditActivity::class.java)
+                    Intent(this, MainActivity::class.java)
                 )
                 finish()
             } else {

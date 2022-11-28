@@ -43,7 +43,7 @@ class ProfileKultumFragment : Fragment() {
                     R.drawable.img_profile_sample,
                     R.drawable.img_profile_sample,
                     R.drawable.img_profile_sample,
-                    R.drawable.img_profile_sample,
+                    R.drawable.img_profile_sample
                 )
             )
         }

@@ -33,10 +33,11 @@
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@id/img_profile"
-        android:layout_width="127dp"
-        android:layout_height="150dp"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
         android:layout_marginTop="30dp"
         android:src="@drawable/img_profile_sample"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/img_logout"
@@ -117,7 +118,6 @@
         android:layout_height="wrap_content"
         android:autofillHints=""
         android:inputType="text"
-        android:maxLines="2"
         android:text="@string/bio"
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="@id/tv_bio"

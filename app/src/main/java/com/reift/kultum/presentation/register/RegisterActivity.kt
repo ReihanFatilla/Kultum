@@ -102,6 +102,7 @@ class RegisterActivity : AppCompatActivity() {
                         startActivity(
                             Intent(this@RegisterActivity, EditActivity::class.java)
                         )
+                        finish()
                     }
                 }
         }

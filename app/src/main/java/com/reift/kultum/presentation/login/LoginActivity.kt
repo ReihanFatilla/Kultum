@@ -63,6 +63,7 @@ class LoginActivity : AppCompatActivity() {
                 .observe(this@LoginActivity) {
                     if (it) {
                         startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                        finish()
                     } else {
                         Toast.makeText(applicationContext, "Incorrect Email or Password", Toast.LENGTH_SHORT).show()
                     }

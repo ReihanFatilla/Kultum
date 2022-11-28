@@ -1,14 +1,18 @@
 package com.reift.kultum.presentation.edit
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.reift.core.domain.model.User
+import com.reift.kultum.MainActivity
 import com.reift.kultum.databinding.ActivityEditBinding
 import com.reift.kultum.presentation.edit.dialog.PhotoUrlDialogFragment
+import com.reift.kultum.presentation.home.HomeFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class EditActivity : AppCompatActivity() {
@@ -17,6 +21,8 @@ class EditActivity : AppCompatActivity() {
     private val binding get() = _binding as ActivityEditBinding
 
     private val viewModel: EditViewModel by viewModel()
+
+    private var user: User? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,9 +43,12 @@ class EditActivity : AppCompatActivity() {
     private fun setUpUserProfile(user: User) {
         binding.apply {
             with(user) {
+                this@EditActivity.user = user
+
                 tvNameFill.setText(name)
                 tvBioFill.setText(bio)
                 tvUsernameFill.setText(usernname)
+
 
                 Glide.with(this@EditActivity)
                     .load(photoUrl)
@@ -52,8 +61,36 @@ class EditActivity : AppCompatActivity() {
     }
 
     private fun setUpView() {
-        binding.tvChangePhoto.setOnClickListener {
-            showPhotoUrlDialog()
+        binding.apply {
+            btnSave.setOnClickListener {
+                saveNewProfile()
+            }
+            tvChangePhoto.setOnClickListener {
+                showPhotoUrlDialog()
+            }
+        }
+    }
+
+    private fun saveNewProfile() {
+        binding.apply {
+            if(tvUsernameFill.text.toString() != user?.usernname){
+                viewModel.checkIfUserTaken(tvUsernameFill.text.toString()).observe(this@EditActivity){
+                    if(it){
+                        tvUsernameFill.requestFocus()
+                        Toast.makeText(applicationContext, "Username is Taken", Toast.LENGTH_SHORT).show()
+                    } else{
+                        viewModel.editUsername(tvUsernameFill.text.toString())
+                    }
+                }
+            }
+            if(tvBioFill.text.toString() != user?.bio){
+                viewModel.editBio(tvBioFill.text.toString())
+            }
+            if(tvNameFill.text.toString() != user?.name){
+                viewModel.editName(tvNameFill.text.toString())
+            }
+            startActivity(Intent(applicationContext, MainActivity::class.java))
+            finish()
         }
     }
 

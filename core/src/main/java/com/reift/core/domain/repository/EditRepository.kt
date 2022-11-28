@@ -10,4 +10,5 @@ interface EditRepository {
     fun editPhotoUrl(photoUrl: String)
     fun checkIfUserTaken(username: String): LiveData<Boolean>
     fun getCurrentUser(): LiveData<User>
+    fun logout()
 }

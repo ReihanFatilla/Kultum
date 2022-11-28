@@ -22,4 +22,8 @@ class LocalDataSource(
         return preferenceHelper.getBoolean(key)
     }
 
+    fun clear(){
+        preferenceHelper.clear()
+    }
+
 }

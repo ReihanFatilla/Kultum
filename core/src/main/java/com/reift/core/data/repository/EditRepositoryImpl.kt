@@ -95,6 +95,14 @@ class EditRepositoryImpl(
         return user
     }
 
+    override fun logout() {
+        firebaseDataSource.getReference(Ref.USER)
+            .child(currentUser)
+            .removeValue()
+
+        localDataSource.clear()
+    }
+
     private fun changeNewUsername(userRef: DatabaseReference, newUsername: String): User? {
         var username: User? = null
         userRef.addValueEventListener(object : ValueEventListener {

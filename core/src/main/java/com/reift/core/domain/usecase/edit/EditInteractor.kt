@@ -31,4 +31,8 @@ class EditInteractor(
     override fun getCurrentUser(): LiveData<User> {
         return editRepository.getCurrentUser()
     }
+
+    override fun logout() {
+        editRepository.logout()
+    }
 }

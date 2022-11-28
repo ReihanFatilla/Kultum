@@ -64,6 +64,9 @@ class EditActivity : AppCompatActivity() {
             btnSave.setOnClickListener {
                 saveNewProfile()
             }
+            btnLogout.setOnClickListener {
+
+            }
             tvChangePhoto.setOnClickListener {
                 showPhotoUrlDialog()
             }

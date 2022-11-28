@@ -26,6 +26,11 @@ class PreferenceHelper(val context: Context) {
         return sharedPreferences.getBoolean(key, false)
     }
 
+    fun clear(){
+        editor.clear()
+            .commit()
+    }
+
     companion object {
         const val PREF_USER = "pref_user_database"
     }

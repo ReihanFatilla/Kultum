@@ -4,6 +4,7 @@ import com.reift.core.domain.usecase.splash.SplashUseCase
 import com.reift.kultum.presentation.edit.EditViewModel
 import com.reift.kultum.presentation.home.HomeViewModel
 import com.reift.kultum.presentation.login.LoginViewModel
+import com.reift.kultum.presentation.profile.ProfileViewModel
 import com.reift.kultum.presentation.register.RegisterViewModel
 import com.reift.kultum.presentation.splash.SplashViewModel
 import org.koin.android.viewmodel.dsl.viewModel
@@ -15,4 +16,5 @@ val viewModelModule = module {
     viewModel { RegisterViewModel(get()) }
     viewModel { HomeViewModel(get()) }
     viewModel { EditViewModel(get()) }
+    viewModel { ProfileViewModel(get()) }
 }

@@ -8,7 +8,7 @@
     tools:context=".presentation.edit.EditActivity">
 
     <ImageView
-        android:id="@+id/img_back"
+        android:id="@+id/btn_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
@@ -27,9 +27,9 @@
         android:src="@drawable/ic_logout"
         android:focusable="true"
         android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="@id/img_back"
+        app:layout_constraintBottom_toBottomOf="@id/btn_back"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/img_back" />
+        app:layout_constraintTop_toTopOf="@id/btn_back" />
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@id/img_profile"

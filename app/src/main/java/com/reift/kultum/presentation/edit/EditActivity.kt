@@ -12,7 +12,6 @@ import com.reift.core.domain.model.User
 import com.reift.kultum.MainActivity
 import com.reift.kultum.databinding.ActivityEditBinding
 import com.reift.kultum.presentation.edit.dialog.PhotoUrlDialogFragment
-import com.reift.kultum.presentation.home.HomeFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class EditActivity : AppCompatActivity() {
@@ -47,7 +46,7 @@ class EditActivity : AppCompatActivity() {
 
                 tvNameFill.setText(name)
                 tvBioFill.setText(bio)
-                tvUsernameFill.setText(usernname)
+                tvUsernameFill.setText(username)
 
 
                 Glide.with(this@EditActivity)
@@ -68,12 +67,15 @@ class EditActivity : AppCompatActivity() {
             tvChangePhoto.setOnClickListener {
                 showPhotoUrlDialog()
             }
+            btnBack.setOnClickListener {
+                finish()
+            }
         }
     }
 
     private fun saveNewProfile() {
         binding.apply {
-            if(tvUsernameFill.text.toString() != user?.usernname){
+            if(tvUsernameFill.text.toString() != user?.username){
                 viewModel.checkIfUserTaken(tvUsernameFill.text.toString()).observe(this@EditActivity){
                     if(it){
                         tvUsernameFill.requestFocus()

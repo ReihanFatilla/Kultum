@@ -26,7 +26,7 @@ class LoginRepositoryImpl(
                         if(user?.email != email) continue
                         if(user.password != password) continue
                         isLoginValid.value = true
-                        localDataSource.add(Pref.CURRENT_USER, user.usernname)
+                        localDataSource.add(Pref.CURRENT_USER, user.username)
                         localDataSource.add(Pref.IS_USER_LOGIN, true)
                     }
                     if(isLoginValid.value != true){

@@ -23,7 +23,7 @@ class UsernameChangeHelper(
                             user?.followers?.forEach {
                                 if (it.username != currentUser) return
                                 val followersRef = firebaseDataSource.getReference(Ref.USER)
-                                    .child(user.usernname)
+                                    .child(user.username)
                                     .child(Ref.FOLLOWERS)
                                 followersRef.child(currentUser).removeValue()
                                 followersRef.child(newUsername).setValue(newUsername)
@@ -31,7 +31,7 @@ class UsernameChangeHelper(
                             user?.follwings?.forEach {
                                 if (it.username != currentUser) return
                                 val followingsRef = firebaseDataSource.getReference(Ref.USER)
-                                    .child(user.usernname)
+                                    .child(user.username)
                                     .child(Ref.FOLLOWINGS)
                                 followingsRef.child(currentUser).removeValue()
                                 followingsRef.child(newUsername).setValue(newUsername)

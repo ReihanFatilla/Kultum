@@ -94,7 +94,7 @@ class RegisterActivity : AppCompatActivity() {
                     } else {
                         viewModel.saveUser(
                             User(
-                                usernname = edtUsername.text.toString(),
+                                username = edtUsername.text.toString(),
                                 email = edtEmail.text.toString(),
                                 password = edtPassword.text.toString()
                             )

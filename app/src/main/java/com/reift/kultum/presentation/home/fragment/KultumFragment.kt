@@ -40,8 +40,21 @@ class KultumFragment : Fragment() {
         lifecycle.addObserver(binding.ytPlayer)
         setUpShortsVideo()
         setUpHelfpulButton()
+        setUpView()
 
         return binding.root
+    }
+
+    private fun setUpView() {
+        binding.apply {
+            with(kultum){
+                tvCaption.text = caption
+                tvCreator.text = creator
+                tvCommentAmount.text = comments.size.toString()
+                tvHelfpulAmount.text = helpful.size.toString()
+                tvShareAmount.text = share.toString()
+            }
+        }
     }
 
     private fun setUpHelfpulButton() {

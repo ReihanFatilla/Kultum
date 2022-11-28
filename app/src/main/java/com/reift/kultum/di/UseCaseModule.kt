@@ -10,6 +10,8 @@ import com.reift.core.domain.usecase.home.HomeInteractor
 import com.reift.core.domain.usecase.home.HomeUseCase
 import com.reift.core.domain.usecase.login.LoginInteractor
 import com.reift.core.domain.usecase.login.LoginUseCase
+import com.reift.core.domain.usecase.post.PostInteractor
+import com.reift.core.domain.usecase.post.PostUseCase
 import com.reift.core.domain.usecase.profile.ProfileInteractor
 import com.reift.core.domain.usecase.profile.ProfileUseCase
 import com.reift.core.domain.usecase.register.RegisterInteractor
@@ -27,4 +29,5 @@ val useCaseModule = module {
     single<ProfileUseCase> { ProfileInteractor(get()) }
     single<RegisterUseCase> { RegisterInteractor(get()) }
     single<SplashUseCase> { SplashInteractor(get()) }
+    single<PostUseCase> { PostInteractor(get()) }
 }

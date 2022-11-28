@@ -7,7 +7,7 @@ data class User(
     var photoUrl: String= "",
     var bio: String= "",
     var password: String= "",
-    var kultum: List<Kultum> = listOf(),
+    var kultumAmount: String = "0",
     var followers: List<Follow> = listOf(),
     var follwings: List<Follow> = listOf(),
 )

@@ -64,7 +64,7 @@ class ProfileFragment : Fragment() {
                 tvBio.text = bio
                 tvFollowersAmount.text = followers.size.toString()
                 tvFollowingAmount.text = followers.size.toString()
-                tvKultumAmount.text = kultum.size.toString()
+                tvKultumAmount.text = kultumAmount
                 Glide.with(this@ProfileFragment)
                     .load(photoUrl)
                     .apply(RequestOptions())

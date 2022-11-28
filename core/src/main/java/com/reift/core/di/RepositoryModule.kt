@@ -13,4 +13,5 @@ val repositoryModule = module {
     single<ProfileRepository> { ProfileRepositoryImpl(get(), get()) }
     single<RegisterRepository> { RegisterRepositoryImpl(get(), get()) }
     single<SplashRepository> { SplashRepositoryImpl(get()) }
+    single<PostRepository> { PostRepositoryImpl(get(), get()) }
 }

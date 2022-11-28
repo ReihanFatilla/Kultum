@@ -5,10 +5,10 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Kultum(
-    var urlKey: String,
-    var helpful: List<String>,
-    var comments: List<Comments>,
-    var creator: String,
-    var caption: String,
-    var share: Int
+    var urlKey: String = "",
+    var helpful: List<String> = listOf(),
+    var comments: List<Comments> = listOf(),
+    var creator: String = "",
+    var caption: String = "",
+    var share: Int = 0
 ): Parcelable

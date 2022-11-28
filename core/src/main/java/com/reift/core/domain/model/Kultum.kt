@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Kultum(
     var urlKey: String = "",
-    var helpful: List<String> = listOf(),
+    var helpful: Map<String, String> = mapOf(),
     var comments: List<Comments> = listOf(),
     var creator: String = "",
     var caption: String = "",

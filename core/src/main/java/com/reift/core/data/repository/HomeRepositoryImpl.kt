@@ -44,8 +44,9 @@ class HomeRepositoryImpl(
     }
 
     override fun isKultumHelpfuled(urlKultum: String): LiveData<Boolean> {
-        val isHelpfuled = MutableLiveData(false)
+        val isHelpfuled = MutableLiveData<Boolean>()
         firebaseDataSource.getReference(Ref.KULTUM)
+            .child(urlKultum)
             .child(Ref.HELPFUL)
             .addValueEventListener(
                 object : ValueEventListener{
@@ -53,6 +54,9 @@ class HomeRepositoryImpl(
                         for(i in snapshot.children){
                             val userHelpful = i.getValue<String>()
                             if(userHelpful == currentUser) isHelpfuled.value = true
+                        }
+                        if(isHelpfuled.value != true){
+                            isHelpfuled.value = false
                         }
                     }
 

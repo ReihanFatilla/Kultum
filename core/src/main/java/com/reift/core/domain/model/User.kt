@@ -9,5 +9,5 @@ data class User(
     var password: String= "",
     var kultumAmount: String = "0",
     var followers: List<Follow> = listOf(),
-    var follwings: List<Follow> = listOf(),
+    var follwings: List<Follow> = listOf()
 )

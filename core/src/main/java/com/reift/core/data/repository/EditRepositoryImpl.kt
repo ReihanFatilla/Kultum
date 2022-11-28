@@ -96,9 +96,6 @@ class EditRepositoryImpl(
     }
 
     override fun logout() {
-        firebaseDataSource.getReference(Ref.USER)
-            .child(currentUser)
-            .removeValue()
 
         localDataSource.clear()
     }
@@ -117,7 +114,7 @@ class EditRepositoryImpl(
                             this.photoUrl,
                             this.bio,
                             password,
-                            kultum,
+                            kultumAmount,
                             followers,
                             follwings
                         )

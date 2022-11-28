@@ -27,7 +27,10 @@ class ConnectRepositoryImpl(
             .addValueEventListener(
                 object : ValueEventListener{
                     override fun onDataChange(snapshot: DataSnapshot) {
-                        user.value = snapshot.getValue(User::class.java)
+                        if(snapshot.exists()){
+                            user.value = snapshot.getValue(User::class.java)
+                        }
+
                     }
 
                     override fun onCancelled(error: DatabaseError) {

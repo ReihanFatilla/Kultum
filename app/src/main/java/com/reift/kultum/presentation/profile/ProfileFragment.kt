@@ -59,7 +59,7 @@ class ProfileFragment : Fragment() {
     private fun setUpProfileDetail(user: User) {
         binding.apply {
             with(user){
-                tvUsername.text = username
+                tvUsername.text = "@$username"
                 tvName.text = name
                 tvBio.text = bio
                 tvFollowersAmount.text = followers.size.toString()

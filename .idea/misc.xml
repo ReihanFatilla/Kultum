@@ -11,6 +11,8 @@
         <entry key="app/src/main/res/drawable/bg_edit_text.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/bg_splash.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_book.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_chat.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_connect.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_helpful_selector.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_post.xml" value="0.1" />

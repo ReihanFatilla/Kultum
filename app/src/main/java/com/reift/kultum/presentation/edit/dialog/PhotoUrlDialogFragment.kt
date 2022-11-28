@@ -41,7 +41,7 @@ class PhotoUrlDialogFragment : DialogFragment() {
                 if (edtImageUrl.text.isNullOrEmpty()) {
                     edtImageUrl.requestFocus()
                     edtImageUrl.error = "Please fill the Url"
-                } else if (edtImageUrl.text.contains("png") || edtImageUrl.text.contains("jpeg") || edtImageUrl.text.contains("jpg")) {
+                } else if (edtImageUrl.text.contains("png") || edtImageUrl.text.contains("jpeg") || edtImageUrl.text.contains("jpg") || edtImageUrl.text.contains("profile-display")) {
                     viewModel.editPhotoUrl(edtImageUrl.text.toString())
                     dismiss()
                 } else {

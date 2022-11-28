@@ -9,6 +9,10 @@ class EditViewModel(
     val editUseCase: EditUseCase
 ): ViewModel() {
 
+    fun logout(){
+        editUseCase.logout()
+    }
+
     fun getCurrentUser(): LiveData<User> {
         return editUseCase.getCurrentUser()
     }

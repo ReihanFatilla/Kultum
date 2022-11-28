@@ -12,6 +12,7 @@ import com.reift.core.domain.model.User
 import com.reift.kultum.MainActivity
 import com.reift.kultum.databinding.ActivityEditBinding
 import com.reift.kultum.presentation.edit.dialog.PhotoUrlDialogFragment
+import com.reift.kultum.presentation.login.LoginActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class EditActivity : AppCompatActivity() {
@@ -65,7 +66,9 @@ class EditActivity : AppCompatActivity() {
                 saveNewProfile()
             }
             btnLogout.setOnClickListener {
-
+                viewModel.logout()
+                startActivity(Intent(this@EditActivity, LoginActivity::class.java))
+                finish()
             }
             tvChangePhoto.setOnClickListener {
                 showPhotoUrlDialog()

@@ -42,7 +42,6 @@ class ProfileRepositoryImpl(
     override fun getPostedKultum(): LiveData<List<Kultum>> {
         val listKultum = MutableLiveData<List<Kultum>>()
         firebaseDataSource.getReference(Ref.KULTUM)
-            .child(Ref.CREATOR)
             .addValueEventListener(
                 object : ValueEventListener{
                     override fun onDataChange(snapshot: DataSnapshot) {
@@ -67,7 +66,6 @@ class ProfileRepositoryImpl(
     override fun getHelpfulKultum(): LiveData<List<Kultum>> {
         val listKultum = MutableLiveData<List<Kultum>>()
         firebaseDataSource.getReference(Ref.KULTUM)
-            .child(Ref.HELPFUL)
             .addValueEventListener(
                 object : ValueEventListener{
                     override fun onDataChange(snapshot: DataSnapshot) {

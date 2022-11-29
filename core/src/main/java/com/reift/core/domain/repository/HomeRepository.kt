@@ -7,6 +7,7 @@ import org.w3c.dom.Comment
 
 interface HomeRepository {
     fun getKultumForYou(): LiveData<List<Kultum>>
+    fun getKultumDetail(urlKultum: String): LiveData<Kultum>
     fun isKultumHelpfuled(urlKultum: String): LiveData<Boolean>
     fun addHelpfulKultum(urlKultum: String)
     fun removeHelpfulKultum(urlKultum: String)

@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.PermissionRequest
+import android.webkit.WebChromeClient
 import androidx.fragment.app.Fragment
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
@@ -40,12 +42,18 @@ class KultumFragment : Fragment() {
         lifecycle.addObserver(binding.ytPlayer)
         setUpShortsVideo()
         setUpHelfpulButton()
-        setUpView()
+        initObserver()
 
         return binding.root
     }
 
-    private fun setUpView() {
+    private fun initObserver() {
+        viewModel.getKultumDetail(kultum.urlKey).observe(viewLifecycleOwner){
+            setUpDetail(it)
+        }
+    }
+
+    private fun setUpDetail(kultum: Kultum) {
         binding.apply {
             with(kultum) {
                 tvCaption.text = caption

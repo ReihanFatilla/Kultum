@@ -19,10 +19,7 @@
         android:theme="@style/Theme.Kultum"
         tools:targetApi="31">
         <activity
-            android:name=".ConnectProfileActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SearchActivity"
+            android:name=".presentation.connect.fragment.ConnectProfileActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.post.PostActivity"
@@ -53,6 +50,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
+            android:launchMode="singleTop"
             android:theme="@style/transparentStatusBar" />
     </application>
 

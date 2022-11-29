@@ -40,7 +40,7 @@ class ProfileKultumContainerFragment : Fragment() {
 
         kultum = arguments?.getParcelable(KultumViewPagerAdapter.BUNDLE_KULTUM)!!
 
-        lifecycle.addObserver(binding.ytPlayer)
+        viewLifecycleOwner.lifecycle.addObserver(binding.ytPlayer)
         setUpShortsVideo()
         setUpHelfpulButton()
         initObserver()

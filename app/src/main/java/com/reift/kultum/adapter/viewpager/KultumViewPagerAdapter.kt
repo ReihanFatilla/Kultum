@@ -15,7 +15,7 @@ class KultumViewPagerAdapter(
     val listKultum: List<Kultum>
 ) : FragmentPagerAdapter(fm){
 
-    override fun getCount() = 2
+    override fun getCount() = listKultum.size
 
     override fun getItem(position: Int): Fragment {
         val bundle = Bundle()

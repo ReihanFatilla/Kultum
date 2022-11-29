@@ -1,25 +1,27 @@
 package com.reift.kultum.presentation.home.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.PermissionRequest
-import android.webkit.WebChromeClient
 import androidx.fragment.app.Fragment
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerTracker
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.ui.views.YouTubePlayerSeekBarListener
 import com.reift.core.domain.model.Kultum
+import com.reift.kultum.*
 import com.reift.kultum.`interface`.YoutubePlayCallBack
 import com.reift.kultum.adapter.viewpager.KultumViewPagerAdapter
 import com.reift.kultum.databinding.FragmentKultumBinding
 import com.reift.kultum.presentation.home.HomeViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
+
 
 class KultumFragment : Fragment() {
 
@@ -41,23 +43,32 @@ class KultumFragment : Fragment() {
 
         kultum = arguments?.getParcelable(KultumViewPagerAdapter.BUNDLE_KULTUM)!!
 
-        lifecycle.addObserver(binding.ytPlayer)
-        setUpShortsVideo()
-        setUpHelfpulButton()
-        initObserver()
+
+
+
 
         return binding.root
     }
 
+    override fun onStart() {
+        super.onStart()
+
+        initObserver()
+        setUpHelfpulButton()
+    }
+
+
     private fun initObserver() {
         viewModel.getKultumDetail(kultum.urlKey).observe(viewLifecycleOwner){
             setUpDetail(it)
+            setUpShortsVideo()
         }
     }
 
     private fun setUpDetail(kultum: Kultum) {
 
-        Log.i("setUpKultumViewPagerASdsa", "sudah disini: $kultum")
+//        viewLifecycleOwner.lifecycle.addObserver(binding.ytPlayer)
+
         binding.apply {
             with(kultum) {
                 tvCaption.text = caption
@@ -121,6 +132,10 @@ class KultumFragment : Fragment() {
                             youTubePlayer.seekTo(time)
                         }
                     }
+
+                    val tracker = YouTubePlayerTracker()
+                    youTubePlayer.addListener(tracker)
+
                 }
             })
 
@@ -136,14 +151,46 @@ class KultumFragment : Fragment() {
                 }
             }
 
+            binding.ytPlayer.enableBackgroundPlayback(true)
+
             val options = IFramePlayerOptions.Builder()
                 .controls(0)
                 .ivLoadPolicy(3)
                 .ccLoadPolicy(1)
                 .build()
-            ytPlayer.enableAutomaticInitialization = false
-            ytPlayer.initialize(listener, options)
+            ytPlayer.enableAutomaticInitialization = true
+//            ytPlayer.initialize(listener, options)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.i("lifecycleCheck", "onDestroy: onDestroy runned")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.i("lifecycleCheck", "onResume runned")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.i("lifecycleCheck", "onStop runned")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.i("lifecycleCheck", "onStop runned")
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Log.i("lifecycleCheck", "onDetach runned")
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        Log.i("lifecycleCheck", "onAttach runned")
     }
 
 }

@@ -6,11 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.reift.core.domain.model.Kultum
 import com.reift.kultum.R
+import com.reift.kultum.`interface`.OnItemClickCallBack
 import com.reift.kultum.adapter.recyclerview.KultumAdapter
 import com.reift.kultum.databinding.FragmentProfileKultumBinding
+import com.reift.kultum.presentation.profile.ProfileFragmentDirections
 import com.reift.kultum.presentation.profile.ProfileViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -43,6 +46,18 @@ class ProfileKultumFragment : Fragment() {
             layoutManager = GridLayoutManager(context, 3)
             adapter = mAdapter
             mAdapter.setKultum(listKultum)
+            mAdapter.setItemClickCallback(
+                object : OnItemClickCallBack {
+                    override fun onClick(position: Int) {
+                        findNavController().navigate(
+                            ProfileFragmentDirections.actionNavigationProfileToProfileShortsFragment(
+                                ProfileShortsFragment.TYPE_KULTUM,
+                                position
+                            )
+                        )
+                    }
+                }
+            )
         }
     }
 

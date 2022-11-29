@@ -94,7 +94,7 @@ class ConnectRepositoryImpl(
                         for(i in snapshot.children){
                             val kultum = i.getValue(Kultum::class.java)
                             kultum?.helpful?.forEach {
-                                if(it != username) return
+                                if(it.value != username) return
                                 list.add(kultum)
                             }
                         }

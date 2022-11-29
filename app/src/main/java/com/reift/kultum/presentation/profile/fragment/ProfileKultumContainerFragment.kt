@@ -1,13 +1,11 @@
-package com.reift.kultum.presentation.home.fragment
+package com.reift.kultum.presentation.profile.fragment
 
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.PermissionRequest
-import android.webkit.WebChromeClient
-import androidx.fragment.app.Fragment
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
@@ -15,18 +13,19 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.You
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.ui.views.YouTubePlayerSeekBarListener
 import com.reift.core.domain.model.Kultum
+import com.reift.kultum.R
 import com.reift.kultum.`interface`.YoutubePlayCallBack
 import com.reift.kultum.adapter.viewpager.KultumViewPagerAdapter
 import com.reift.kultum.databinding.FragmentKultumBinding
+import com.reift.kultum.databinding.FragmentProfileKultumContainerBinding
 import com.reift.kultum.presentation.home.HomeViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class KultumFragment : Fragment() {
-
+class ProfileKultumContainerFragment : Fragment() {
     private val viewModel: HomeViewModel by viewModel()
 
-    private var _binding: FragmentKultumBinding? = null
-    private val binding get() = _binding as FragmentKultumBinding
+    private var _binding: FragmentProfileKultumContainerBinding? = null
+    private val binding get() = _binding as FragmentProfileKultumContainerBinding
 
     private lateinit var kultum: Kultum
 
@@ -37,7 +36,7 @@ class KultumFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentKultumBinding.inflate(layoutInflater)
+        _binding = FragmentProfileKultumContainerBinding.inflate(layoutInflater)
 
         kultum = arguments?.getParcelable(KultumViewPagerAdapter.BUNDLE_KULTUM)!!
 
@@ -145,5 +144,4 @@ class KultumFragment : Fragment() {
             ytPlayer.initialize(listener, options)
         }
     }
-
 }

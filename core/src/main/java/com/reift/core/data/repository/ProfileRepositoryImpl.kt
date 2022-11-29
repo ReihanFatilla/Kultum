@@ -73,7 +73,7 @@ class ProfileRepositoryImpl(
                         for(i in snapshot.children){
                             val kultum = i.getValue(Kultum::class.java)
                             kultum?.helpful?.forEach {
-                                if(it != currentUser) return
+                                if(it.value != currentUser) return
                                 list.add(kultum)
                             }
                         }

@@ -19,5 +19,27 @@
         android:id="@+id/navigation_profile"
         android:name="com.reift.kultum.presentation.profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_navigation_profile_to_profileShortsFragment"
+            app:destination="@id/profileShortsFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/profileShortsFragment"
+        android:name="com.reift.kultum.presentation.profile.fragment.ProfileShortsFragment"
+        android:label="fragment_profile_shorts"
+        tools:layout="@layout/fragment_profile_shorts" >
+
+        <argument
+            android:name="type"
+            app:argType="string"
+            android:defaultValue="type_kultum" />
+
+        <argument
+            android:name="currentPosition"
+            app:argType="integer"
+            android:defaultValue="0" />
+
+    </fragment>
 </navigation>

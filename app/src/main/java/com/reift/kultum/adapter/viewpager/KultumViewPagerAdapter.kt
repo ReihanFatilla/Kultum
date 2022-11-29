@@ -13,7 +13,8 @@ import com.reift.kultum.presentation.home.fragment.KultumFragment
 class KultumViewPagerAdapter(
     fm: FragmentManager,
     val url: List<Kultum>,
-    val totalVideo: Int
+    val totalVideo: Int,
+    val kultumPosition: Int = 0
 ) : FragmentPagerAdapter(fm){
 
     override fun getCount()= totalVideo
@@ -22,12 +23,14 @@ class KultumViewPagerAdapter(
         val bundle = Bundle()
         val kultumFragment = KultumFragment()
         bundle.putParcelable(BUNDLE_KULTUM, url[position])
+        bundle.putInt(BUNDLE_POSITION, kultumPosition)
         kultumFragment.arguments = bundle
         return kultumFragment
     }
 
     companion object{
         const val BUNDLE_KULTUM = "BUNDLE_KULTUM"
+        const val BUNDLE_POSITION = "BUNDLE_POSITION"
     }
 
 }

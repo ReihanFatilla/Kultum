@@ -1,5 +1,6 @@
 package com.reift.kultum.presentation.profile.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.reift.core.domain.model.Kultum
 import com.reift.kultum.R
+import com.reift.kultum.`interface`.OnItemClickCallBack
 import com.reift.kultum.adapter.recyclerview.KultumAdapter
 import com.reift.kultum.databinding.FragmentProfileHelpfulBinding
 import com.reift.kultum.presentation.profile.ProfileViewModel
@@ -23,8 +25,7 @@ class ProfileHelpfulFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View {
         _binding = FragmentProfileHelpfulBinding.inflate(layoutInflater)
 
         initObserver()
@@ -44,6 +45,13 @@ class ProfileHelpfulFragment : Fragment() {
             layoutManager = GridLayoutManager(context, 3)
             adapter = mAdapter
             mAdapter.setKultum(listKultum)
+            mAdapter.setItemClickCallback(
+                object : OnItemClickCallBack{
+                    override fun onClick(position: Int) {
+
+                    }
+                }
+            )
         }
     }
 }

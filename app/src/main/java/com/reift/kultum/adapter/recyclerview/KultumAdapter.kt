@@ -1,6 +1,5 @@
 package com.reift.kultum.adapter.recyclerview
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,7 +8,7 @@ import com.bumptech.glide.Priority
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.reift.core.domain.model.Kultum
-import com.reift.kultum.R
+import com.reift.kultum.`interface`.OnItemClickCallBack
 import com.reift.kultum.databinding.ItemKultumBinding
 import com.reift.kultum.utils.ThumbnailUrlFormatter
 
@@ -17,9 +16,15 @@ class KultumAdapter:RecyclerView.Adapter<KultumAdapter.KultumViewHolder>() {
 
     private var listKultum = arrayListOf<Kultum>()
 
+    var onItemClickCallBack: OnItemClickCallBack? = null
+
     fun setKultum(list: List<Kultum>){
         listKultum.clear()
         listKultum.addAll(list)
+    }
+
+    fun setItemClickCallback(onItemClickCallBack: OnItemClickCallBack){
+        this.onItemClickCallBack = onItemClickCallBack
     }
 
     class KultumViewHolder(val binding: ItemKultumBinding): RecyclerView.ViewHolder(binding.root)
@@ -36,8 +41,11 @@ class KultumAdapter:RecyclerView.Adapter<KultumAdapter.KultumViewHolder>() {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .priority(Priority.HIGH)
                 .into(root)
+
+            root.setOnClickListener{
+                onItemClickCallBack?.onClick(position)
+            }
         }
-        Log.i("setUpKultumAA", ThumbnailUrlFormatter.format(listKultum[position].urlKey))
     }
 
     override fun getItemCount() = listKultum.size

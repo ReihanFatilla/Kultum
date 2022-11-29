@@ -35,6 +35,7 @@ class KultumFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         _binding = FragmentKultumBinding.inflate(layoutInflater)
 
         kultum = arguments?.getParcelable(KultumViewPagerAdapter.BUNDLE_KULTUM)!!
@@ -139,6 +140,12 @@ class KultumFragment : Fragment() {
             ytPlayer.enableAutomaticInitialization = false
             ytPlayer.initialize(listener, options)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.ytPlayer.release()
+        _binding = null
     }
 
 }

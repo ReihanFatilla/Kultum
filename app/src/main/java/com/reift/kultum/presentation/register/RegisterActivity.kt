@@ -3,6 +3,7 @@ package com.reift.kultum.presentation.register
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.reift.core.domain.model.User
 import com.reift.kultum.databinding.ActivityRegisterBinding
@@ -74,7 +75,6 @@ class RegisterActivity : AppCompatActivity() {
         binding.apply {
             viewModel.checkIfEmailTaken(edtEmail.text.toString())
                 .observe(this@RegisterActivity) {
-                    Log.i("emailValidationObserverAA", "1: $it")
                     if (it) {
                         edtEmail.error = "Email is Taken"
                     } else {
@@ -88,7 +88,13 @@ class RegisterActivity : AppCompatActivity() {
         binding.apply {
             viewModel.checkIfUsernameTaken(edtUsername.text.toString())
                 .observe(this@RegisterActivity) {
-                    Log.i("emailValidationObserverAA", "2: $it")
+                    val username = edtUsername.text.toString()
+                    for(i in username.indices){
+                        if(username[i].isUpperCase() || username[i].isDigit() || username[i].isWhitespace()){
+                            Toast.makeText(applicationContext, "Username Cannot Contains Digit, Uppercase or White Space", Toast.LENGTH_SHORT).show()
+                            return@observe
+                        }
+                    }
                     if (it) {
                         edtUsername.error = "Username is Taken"
                     } else {

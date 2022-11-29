@@ -12,6 +12,10 @@ class HomeInteractor(
         return homeRepository.getKultumForYou()
     }
 
+    override fun getKultumDetail(urlKultum: String): LiveData<Kultum> {
+        return homeRepository.getKultumDetail(urlKultum)
+    }
+
     override fun isKultumHelpfuled(urlKultum: String): LiveData<Boolean> {
         return homeRepository.isKultumHelpfuled(urlKultum)
     }

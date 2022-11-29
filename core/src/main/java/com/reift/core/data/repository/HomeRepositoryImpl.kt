@@ -43,9 +43,29 @@ class HomeRepositoryImpl(
         return listKultum
     }
 
-    override fun isKultumHelpfuled(urlKultum: String): LiveData<Boolean> {
-        val isHelpfuled = MutableLiveData(false)
+    override fun getKultumDetail(urlKultum: String): LiveData<Kultum> {
+        val kultum = MutableLiveData<Kultum>()
         firebaseDataSource.getReference(Ref.KULTUM)
+            .child(urlKultum)
+            .addValueEventListener(
+                object : ValueEventListener{
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        kultum.value = snapshot.getValue(Kultum::class.java)
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+
+                }
+            )
+        return kultum
+    }
+
+    override fun isKultumHelpfuled(urlKultum: String): LiveData<Boolean> {
+        val isHelpfuled = MutableLiveData<Boolean>()
+        firebaseDataSource.getReference(Ref.KULTUM)
+            .child(urlKultum)
             .child(Ref.HELPFUL)
             .addValueEventListener(
                 object : ValueEventListener{
@@ -53,6 +73,9 @@ class HomeRepositoryImpl(
                         for(i in snapshot.children){
                             val userHelpful = i.getValue<String>()
                             if(userHelpful == currentUser) isHelpfuled.value = true
+                        }
+                        if(isHelpfuled.value != true){
+                            isHelpfuled.value = false
                         }
                     }
 

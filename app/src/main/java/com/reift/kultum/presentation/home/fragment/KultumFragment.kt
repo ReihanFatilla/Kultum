@@ -1,10 +1,12 @@
 package com.reift.kultum.presentation.home.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.PermissionRequest
+import android.webkit.WebChromeClient
+import androidx.fragment.app.Fragment
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
@@ -40,14 +42,20 @@ class KultumFragment : Fragment() {
         lifecycle.addObserver(binding.ytPlayer)
         setUpShortsVideo()
         setUpHelfpulButton()
-        setUpView()
+        initObserver()
 
         return binding.root
     }
 
-    private fun setUpView() {
+    private fun initObserver() {
+        viewModel.getKultumDetail(kultum.urlKey).observe(viewLifecycleOwner){
+            setUpDetail(it)
+        }
+    }
+
+    private fun setUpDetail(kultum: Kultum) {
         binding.apply {
-            with(kultum){
+            with(kultum) {
                 tvCaption.text = caption
                 tvCreator.text = creator
                 tvCommentAmount.text = comments.size.toString()
@@ -59,13 +67,17 @@ class KultumFragment : Fragment() {
 
     private fun setUpHelfpulButton() {
         binding.apply {
-            viewModel.isKultumHelpfuled(kultum.urlKey).observe(viewLifecycleOwner){
-                if(it){
+            viewModel.isKultumHelpfuled(kultum.urlKey).observe(viewLifecycleOwner) {
+                if (it) {
                     btnHelpful.isChecked = true
-                    viewModel.addHelpfulKultum(kultum.urlKey)
+                    btnHelpful.setOnClickListener {
+                        viewModel.removeKultum(kultum.urlKey)
+                    }
                 } else {
                     btnHelpful.isChecked = false
-                    viewModel.removeKultum(kultum.urlKey)
+                    btnHelpful.setOnClickListener {
+                        viewModel.addHelpfulKultum(kultum.urlKey)
+                    }
                 }
             }
         }
@@ -90,7 +102,7 @@ class KultumFragment : Fragment() {
                         }
                     }
 
-                    youtubePlayCallBack = object : YoutubePlayCallBack{
+                    youtubePlayCallBack = object : YoutubePlayCallBack {
                         override fun onCalled(youTubePlayer: YouTubePlayer) {
                             youTubePlayer.seekTo(0f)
                         }
@@ -113,7 +125,7 @@ class KultumFragment : Fragment() {
                     state: PlayerConstants.PlayerState
                 ) {
                     super.onStateChange(youTubePlayer, state)
-                    if(state == PlayerConstants.PlayerState.ENDED){
+                    if (state == PlayerConstants.PlayerState.ENDED) {
                         youtubePlayCallBack?.onCalled(youTubePlayer)
                     }
                 }

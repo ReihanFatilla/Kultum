@@ -13,6 +13,10 @@ class HomeViewModel(
         return homeUseCase.getKultumForYou()
     }
 
+    fun getKultumDetail(urlKultum: String): LiveData<Kultum>{
+        return homeUseCase.getKultumDetail(urlKultum)
+    }
+
     fun isKultumHelpfuled(urlKultum: String): LiveData<Boolean>{
         return homeUseCase.isKultumHelpfuled(urlKultum)
     }

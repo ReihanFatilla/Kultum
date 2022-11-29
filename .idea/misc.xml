@@ -10,6 +10,7 @@
         <entry key="app/src/main/res/drawable/bg_bottom_navigation.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/bg_edit_text.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/bg_splash.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_back.xml" value="0.1755" />
         <entry key="app/src/main/res/drawable/ic_book.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_chat.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_connect.xml" value="0.1" />
@@ -19,12 +20,15 @@
         <entry key="app/src/main/res/drawable/ic_profile.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/shadow_bottom_home.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/tab_icon_color_selector.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_connect_profile.xml" value="0.19519927536231885" />
         <entry key="app/src/main/res/layout/activity_edit.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.19776407877604166" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25400950113932297" />
         <entry key="app/src/main/res/layout/activity_post.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.2210845947265625" />
+        <entry key="app/src/main/res/layout/activity_search.xml" value="0.3073073073073073" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.18926086425781252" />
+        <entry key="app/src/main/res/layout/fragment_connect.xml" value="0.3073376420615376" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_kultum.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.28229166666666666" />
@@ -39,7 +43,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -36,6 +36,7 @@ class ProfileKultumFragment : Fragment() {
 
     private fun initObserver() {
         viewModel.getPostedKultum().observe(viewLifecycleOwner){
+
             setUpKultum(it)
         }
     }

@@ -43,31 +43,23 @@ class KultumFragment : Fragment() {
 
         kultum = arguments?.getParcelable(KultumViewPagerAdapter.BUNDLE_KULTUM)!!
 
-
-
-
-
-        return binding.root
-    }
-
-    override fun onStart() {
-        super.onStart()
-
         initObserver()
         setUpHelfpulButton()
+        setUpShortsVideo()
+
+        return binding.root
     }
 
 
     private fun initObserver() {
         viewModel.getKultumDetail(kultum.urlKey).observe(viewLifecycleOwner){
             setUpDetail(it)
-            setUpShortsVideo()
         }
     }
 
     private fun setUpDetail(kultum: Kultum) {
 
-//        viewLifecycleOwner.lifecycle.addObserver(binding.ytPlayer)
+        viewLifecycleOwner.lifecycle.addObserver(binding.ytPlayer)
 
         binding.apply {
             with(kultum) {
@@ -158,39 +150,9 @@ class KultumFragment : Fragment() {
                 .ivLoadPolicy(3)
                 .ccLoadPolicy(1)
                 .build()
-            ytPlayer.enableAutomaticInitialization = true
-//            ytPlayer.initialize(listener, options)
+            ytPlayer.enableAutomaticInitialization = false
+            ytPlayer.initialize(listener, options)
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.i("lifecycleCheck", "onDestroy: onDestroy runned")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.i("lifecycleCheck", "onResume runned")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.i("lifecycleCheck", "onStop runned")
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Log.i("lifecycleCheck", "onStop runned")
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        Log.i("lifecycleCheck", "onDetach runned")
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        Log.i("lifecycleCheck", "onAttach runned")
     }
 
 }

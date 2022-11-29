@@ -62,7 +62,6 @@ class ProfileShortsFragment : Fragment() {
         val mAdapter =  ProfileShortsViewPagerAdapter(requireActivity().supportFragmentManager, listKultum)
         binding.vpProfileKultum.adapter = mAdapter
         binding.vpProfileKultum.currentItem = currentPosition
-        Log.i("getItemAAAA", "$mAdapter")
     }
 
     companion object{

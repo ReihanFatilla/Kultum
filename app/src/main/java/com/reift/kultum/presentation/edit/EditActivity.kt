@@ -68,7 +68,7 @@ class EditActivity : AppCompatActivity() {
             btnLogout.setOnClickListener {
                 viewModel.logout()
                 startActivity(Intent(this@EditActivity, LoginActivity::class.java))
-                finish()
+                finishAffinity()
             }
             tvChangePhoto.setOnClickListener {
                 showPhotoUrlDialog()

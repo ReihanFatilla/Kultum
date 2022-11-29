@@ -1,5 +1,6 @@
 package com.reift.core.data.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.database.DataSnapshot
@@ -23,7 +24,8 @@ class HomeRepositoryImpl(
 
     override fun getKultumForYou(): LiveData<List<Kultum>> {
         val listKultum = MutableLiveData<List<Kultum>>()
-        firebaseDataSource.getReference(Ref.KULTUM).addValueEventListener(
+        firebaseDataSource.getReference(Ref.KULTUM)
+            .addValueEventListener(
             object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val list = arrayListOf<Kultum>()

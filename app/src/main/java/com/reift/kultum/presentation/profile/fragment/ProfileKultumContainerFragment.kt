@@ -55,8 +55,6 @@ class ProfileKultumContainerFragment : Fragment() {
     }
 
     private fun setUpDetail(kultum: Kultum) {
-
-        Log.i("setUpKultumViewPagerASdsa", "sudah disini: $kultum")
         binding.apply {
             with(kultum) {
                 tvCaption.text = caption

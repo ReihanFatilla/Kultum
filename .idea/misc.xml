@@ -13,12 +13,14 @@
         <entry key="app/src/main/res/drawable/ic_book.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_chat.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_connect.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_helpful_active.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_helpful_selector.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_post.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_profile.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/shadow_bottom_home.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/tab_icon_color_selector.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_connect_profile.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_edit.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.19776407877604166" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25400950113932297" />
@@ -26,6 +28,7 @@
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.2210845947265625" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.18926086425781252" />
         <entry key="app/src/main/res/layout/fragment_connect.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_connect_helpful.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_kultum.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.28229166666666666" />

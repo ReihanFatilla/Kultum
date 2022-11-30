@@ -9,8 +9,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="24dp"
-        android:layout_marginTop="86dp">
+        android:paddingHorizontal="28dp"
+        android:paddingTop="86dp">
 
         <ImageView
             android:id="@+id/img_back"

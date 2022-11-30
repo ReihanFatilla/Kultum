@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
@@ -38,68 +39,72 @@ class ConnectFragment : Fragment() {
 
     private fun setUpSearchUser() {
         binding.apply {
-            svUser.setOnQueryTextListener(
-                object : SearchView.OnQueryTextListener{
-                    override fun onQueryTextSubmit(query: String?): Boolean {
-                        if (query != null) {
-                            viewModel.getUserByUsername(query).observe(viewLifecycleOwner){
-                                if(it == null) return@observe
-                                displaySearchedUser(it)
-                            }
-                        }
-                        return true
+            btnSearch.setOnClickListener {
+                if (isQueryValid()) {
+                    viewModel.getUserByUsername(svUser.text.toString()).observe(viewLifecycleOwner){
+                        if(it == null) return@observe
+                        displaySearchedUser(it)
                     }
-
-                    override fun onQueryTextChange(p0: String?): Boolean {
-                        return false
-                    }
-
                 }
-            )
+            }
         }
+    }
+
+    private fun isQueryValid(): Boolean {
+        var isValid = false
+        val username = binding.svUser.text.toString()
+        for(i in username.indices){
+            isValid = if(username[i].isUpperCase() || username[i].isDigit() || username[i].isWhitespace()){
+                Toast.makeText(context, "Username Cannot Contains Digit, Uppercase or White Space", Toast.LENGTH_SHORT).show()
+                false
+            } else {
+                true
+            }
+        }
+        return isValid
     }
 
     private fun displaySearchedUser(user: User) {
         binding.apply {
-            profileContainer.visibility = View.VISIBLE
+//            profileContainer.visibility = View.VISIBLE
+//
+//            with(user){
+//                tvName.text = name
+//                tvUsername.text = username
+//                Glide.with(this@ConnectFragment)
+//                    .load(photoUrl)
+//                    .apply(RequestOptions())
+//                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                    .priority(Priority.HIGH)
+//                    .into(imgProfile)
+//
+//
+//                viewModel.getPostedKultum(username).observe(viewLifecycleOwner){
+//                    setUpPostedKultumRV(it.take(3))
+//                }
+//            }
 
-            with(user){
-                tvName.text = name
-                tvUsername.text = username
-                Glide.with(this@ConnectFragment)
-                    .load(photoUrl)
-                    .apply(RequestOptions())
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .priority(Priority.HIGH)
-                    .into(imgProfile)
-
-
-                viewModel.getPostedKultum(username).observe(viewLifecycleOwner){
-                    setUpPostedKultumRV(it.take(3))
-                }
-            }
-
-            setUserClickListener(user.username)
+//            setUserClickListener(user.username)
         }
     }
 
-    private fun setUserClickListener(username: String) {
-        binding.profileContainer.setOnClickListener {
-            startActivity(
-                Intent(context, ConnectProfileActivity::class.java)
-                    .putExtra(EXTRA_USERNAME, username)
-            )
-        }
-    }
-
-    private fun setUpPostedKultumRV(listKultum: List<Kultum>) {
-        binding.rvKultum.apply {
-            val mAdapter = KultumAdapter()
-            adapter = mAdapter
-            layoutManager = GridLayoutManager(context, 3)
-            mAdapter.setKultum(listKultum)
-        }
-    }
+//    private fun setUserClickListener(username: String) {
+//        binding.profileContainer.setOnClickListener {
+//            startActivity(
+//                Intent(context, ConnectProfileActivity::class.java)
+//                    .putExtra(EXTRA_USERNAME, username)
+//            )
+//        }
+//    }
+//
+//    private fun setUpPostedKultumRV(listKultum: List<Kultum>) {
+//        binding.rvKultum.apply {
+//            val mAdapter = KultumAdapter()
+//            adapter = mAdapter
+//            layoutManager = GridLayoutManager(context, 3)
+//            mAdapter.setKultum(listKultum)
+//        }
+//    }
 
     companion object{
         const val EXTRA_USERNAME = "extra_username"

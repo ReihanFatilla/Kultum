@@ -69,15 +69,17 @@ class ProfileShortsFragment : Fragment() {
 
     private fun onBackPressed() {
         binding.btnBack.setOnClickListener {
-            Toast.makeText(context, "clicked", Toast.LENGTH_SHORT).show()
-
-                val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-                val profileFragment = requireActivity().supportFragmentManager.findFragmentByTag("3") ?: ProfileFragment()
-                val profileShortsFragment = requireActivity().supportFragmentManager.findFragmentByTag("4") ?: ProfileShortsFragment()
-
-                fragmentTransaction.hide(profileShortsFragment).show(profileFragment).commit()
-            requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav).visibility = View.VISIBLE
+            backToProfile()
         }
+    }
+
+    private fun backToProfile() {
+        val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+        val profileFragment = requireActivity().supportFragmentManager.findFragmentByTag("3") ?: ProfileFragment()
+        val profileShortsFragment = requireActivity().supportFragmentManager.findFragmentByTag("4") ?: ProfileShortsFragment()
+
+        fragmentTransaction.hide(profileShortsFragment).show(profileFragment).commit()
+        requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav).visibility = View.VISIBLE
     }
 
     companion object{

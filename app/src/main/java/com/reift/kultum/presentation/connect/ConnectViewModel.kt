@@ -1,6 +1,7 @@
 package com.reift.kultum.presentation.connect
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.reift.core.domain.model.Kultum
 import com.reift.core.domain.model.User
@@ -10,7 +11,7 @@ class ConnectViewModel(
     val connectUseCase: ConnectUseCase
 ): ViewModel() {
 
-    fun getUserByUsername(username: String): LiveData<User>{
+    fun getUserByUsername(username: String? = null): LiveData<List<User>> {
         return connectUseCase.getUserByUsername(username)
     }
 

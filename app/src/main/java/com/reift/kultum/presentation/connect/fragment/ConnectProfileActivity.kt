@@ -37,9 +37,9 @@ class ConnectProfileActivity : AppCompatActivity() {
 
 	private fun initObserver() {
 		val username = intent.getStringExtra(ConnectFragment.EXTRA_USERNAME) ?: ""
-		viewModel.getUserByUsername(username).observe(this){
-			setUpProfileDetail(it)
-		}
+//		viewModel.getUserByUsername(username).observe(this){
+//			setUpProfileDetail(it[0])
+//		}
 	}
 
 	private fun setUpProfileDetail(user: User) {

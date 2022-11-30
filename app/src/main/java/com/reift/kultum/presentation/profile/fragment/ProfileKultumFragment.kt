@@ -5,9 +5,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.reift.core.domain.model.Kultum
 import com.reift.kultum.R
 import com.reift.kultum.`interface`.OnItemClickCallBack
@@ -31,7 +33,16 @@ class ProfileKultumFragment : Fragment() {
         _binding = FragmentProfileKultumBinding.inflate(layoutInflater)
 
         initObserver()
+        onBackPressed()
         return binding.root
+    }
+
+    private fun onBackPressed() {
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+
+            }
+        })
     }
 
     private fun initObserver() {
@@ -50,12 +61,17 @@ class ProfileKultumFragment : Fragment() {
             mAdapter.setItemClickCallback(
                 object : OnItemClickCallBack {
                     override fun onClick(position: Int) {
-                        findNavController().navigate(
-                            ProfileFragmentDirections.actionNavigationProfileToProfileShortsFragment(
-                                ProfileShortsFragment.TYPE_KULTUM,
-                                position
-                            )
-                        )
+                        val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+                        val profileShortsFragment = requireActivity().supportFragmentManager.findFragmentByTag("4") ?: ProfileShortsFragment()
+                        val bundle = Bundle()
+                        bundle.putString(ProfileShortsFragment.BUNDLE_TYPE ,ProfileShortsFragment.TYPE_KULTUM)
+                        bundle.putInt(ProfileShortsFragment.BUNDLE_POSITION, position)
+                        profileShortsFragment.arguments = bundle
+
+                        val profileFragment = requireActivity().supportFragmentManager.findFragmentByTag("3") ?: ProfileShortsFragment()
+
+                        fragmentTransaction.hide(profileFragment).show(profileShortsFragment).commit()
+                        requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav).visibility = View.INVISIBLE
                     }
                 }
             )

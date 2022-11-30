@@ -23,7 +23,7 @@ class UserConnectAdapter: RecyclerView.Adapter<UserConnectAdapter.UserViewHolder
         listUser.addAll(list)
     }
 
-    fun setUserKultum(getUserKultumCallBack: GetUserKultumCallBack){
+    fun setUserKultumCallBack(getUserKultumCallBack: GetUserKultumCallBack){
         this.getUserKultumCallBack = getUserKultumCallBack
     }
 
@@ -45,17 +45,8 @@ class UserConnectAdapter: RecyclerView.Adapter<UserConnectAdapter.UserViewHolder
                     .priority(Priority.HIGH)
                     .into(imgProfile)
 
-                setUpKultumRV(holder.binding.rvKultum)
+                getUserKultumCallBack?.getUserKultum(holder.binding.rvKultum, username)
             }
-        }
-    }
-
-    private fun setUpKultumRV(rvKultum: RecyclerView) {
-        rvKultum.apply {
-            val mAdapter = KultumAdapter()
-            adapter = mAdapter
-            layoutManager = GridLayoutManager(context, 3)
-            getUserKultumCallBack?.getUserKultum()?.let { mAdapter.setKultum(it) }
         }
     }
 

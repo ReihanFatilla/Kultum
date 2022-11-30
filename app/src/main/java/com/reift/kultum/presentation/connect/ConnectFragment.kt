@@ -1,27 +1,19 @@
 package com.reift.kultum.presentation.connect
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
-import com.bumptech.glide.Priority
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.request.RequestOptions
-import com.reift.core.domain.model.Kultum
+import androidx.recyclerview.widget.RecyclerView
 import com.reift.core.domain.model.User
 import com.reift.kultum.`interface`.GetUserKultumCallBack
 import com.reift.kultum.adapter.recyclerview.KultumAdapter
 import com.reift.kultum.adapter.recyclerview.UserConnectAdapter
 import com.reift.kultum.databinding.FragmentConnectBinding
-import com.reift.kultum.presentation.connect.fragment.ConnectProfileActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class ConnectFragment : Fragment() {
@@ -65,16 +57,21 @@ class ConnectFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = mAdapter
             mAdapter.setUserList(listUser)
-            viewModel.getPostedKultum(binding.svUser.text.toString()).observe(viewLifecycleOwner){
-                Log.i("setUpUserRVAAA", "setUpUserRV: $it")
-                mAdapter.setUserKultum(
-                    object : GetUserKultumCallBack{
-                        override fun getUserKultum(): List<Kultum> {
-                            return it
+            mAdapter.setUserKultumCallBack(
+                object : GetUserKultumCallBack{
+                    override fun getUserKultum(rvKultum: RecyclerView, username: String) {
+                        viewModel.getPostedKultum(username).observe(viewLifecycleOwner){
+                            rvKultum.apply {
+                                val kutlumAdapter = KultumAdapter()
+                                adapter = kutlumAdapter
+                                layoutManager = GridLayoutManager(context, 3)
+                                kutlumAdapter.setKultum(it)
+                            }
                         }
                     }
-                )
-            }
+                }
+            )
+
         }
     }
 

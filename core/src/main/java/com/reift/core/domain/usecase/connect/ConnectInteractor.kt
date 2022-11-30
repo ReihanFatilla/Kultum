@@ -8,7 +8,7 @@ import com.reift.core.domain.repository.ConnectRepository
 class ConnectInteractor(
     val connectRepository: ConnectRepository
 ): ConnectUseCase {
-    override fun getUserByUsername(username: String): LiveData<User> {
+    override fun getUserByUsername(username: String?): LiveData<List<User>> {
         return connectRepository.getUserByUsername(username)
     }
 

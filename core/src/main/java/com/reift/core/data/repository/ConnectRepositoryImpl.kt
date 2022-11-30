@@ -1,6 +1,5 @@
 package com.reift.core.data.repository
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.database.DataSnapshot
@@ -17,19 +16,27 @@ import com.reift.core.domain.repository.ConnectRepository
 class ConnectRepositoryImpl(
     val firebaseDataSource: FirebaseDataSource,
     val localDataSource: LocalDataSource
-): ConnectRepository {
+) : ConnectRepository {
 
     val currentUser = localDataSource.getString(Pref.CURRENT_USER) ?: ""
 
-    override fun getUserByUsername(username: String): LiveData<User> {
-        val user = MutableLiveData<User>()
+    override fun getUserByUsername(username: String?): LiveData<List<User>> {
+        val listUser = MutableLiveData<List<User>>()
         firebaseDataSource.getReference(Ref.USER)
-            .child(username)
             .addValueEventListener(
-                object : ValueEventListener{
+                object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
-                        if(snapshot.exists()){
-                            user.value = snapshot.getValue(User::class.java)
+                        val list = arrayListOf<User>()
+                        if (username.isNullOrEmpty()) {
+                            for (i in snapshot.children) {
+                                val user = i.getValue(User::class.java) ?: continue
+                                list.add(user)
+                            }
+                            listUser.value = list
+                        } else {
+                            snapshot.child(username).getValue(User::class.java)
+                                ?.let { list.add(it) }
+                            listUser.value = list
                         }
 
                     }
@@ -40,7 +47,7 @@ class ConnectRepositoryImpl(
 
                 }
             )
-        return user
+        return listUser
     }
 
     override fun followUser(username: String) {
@@ -63,12 +70,12 @@ class ConnectRepositoryImpl(
         val listKultum = MutableLiveData<List<Kultum>>()
         firebaseDataSource.getReference(Ref.KULTUM)
             .addValueEventListener(
-                object : ValueEventListener{
+                object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         val list = arrayListOf<Kultum>()
-                        for(i in snapshot.children){
+                        for (i in snapshot.children) {
                             val kultum = i.getValue(Kultum::class.java)
-                            if(kultum?.creator != username) continue
+                            if (kultum?.creator != username) continue
                             list.add(kultum)
                         }
                         listKultum.value = list
@@ -88,13 +95,13 @@ class ConnectRepositoryImpl(
         firebaseDataSource.getReference(Ref.KULTUM)
             .child(Ref.HELPFUL)
             .addValueEventListener(
-                object : ValueEventListener{
+                object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         val list = arrayListOf<Kultum>()
-                        for(i in snapshot.children){
+                        for (i in snapshot.children) {
                             val kultum = i.getValue(Kultum::class.java)
                             kultum?.helpful?.forEach {
-                                if(it.value != username) return
+                                if (it.value != username) return
                                 list.add(kultum)
                             }
                         }

@@ -5,7 +5,7 @@ import com.reift.core.domain.model.Kultum
 import com.reift.core.domain.model.User
 
 interface ConnectRepository {
-    fun getUserByUsername(username: String): LiveData<User>
+    fun getUserByUsername(username: String? = null): LiveData<List<User>>
     fun followUser(username: String)
     fun unfollowUser(username: String)
     fun getPostedKultum(username: String): LiveData<List<Kultum>>

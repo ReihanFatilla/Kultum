@@ -7,96 +7,46 @@
     android:paddingHorizontal="28dp"
     tools:context=".presentation.connect.ConnectFragment">
 
-    <SearchView
+    <EditText
         android:id="@+id/sv_user"
-        android:layout_width="match_parent"
-        android:layout_marginTop="16dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="73dp"
         android:background="@drawable/bg_edit_text"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:paddingVertical="14dp"
+        android:paddingHorizontal="20dp"
+        android:hint="Find other user"
+        android:inputType="textEmailAddress"
+        android:layout_marginEnd="16dp"
+        android:textSize="15sp"
+        android:fontFamily="@font/poppins_medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_search"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/profile_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:visibility="invisible"
-        app:layout_constraintTop_toBottomOf="@id/sv_user">
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/btn_search"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="@color/primary_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/sv_user"
+        app:layout_constraintBottom_toBottomOf="@id/sv_user">
 
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/img_profile"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:scaleType="centerCrop"
-
-            app:layout_constraintTop_toTopOf="parent"
-            app:riv_corner_radius="100dp"
-            android:src="@drawable/img_profile_sample"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <LinearLayout
-            android:id="@+id/linear_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginHorizontal="16dp"
-            app:layout_constraintTop_toTopOf="@id/img_profile"
-            app:layout_constraintBottom_toBottomOf="@id/img_profile"
-            app:layout_constraintStart_toEndOf="@id/img_profile">
-
-            <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="Reihan Fatilla"
-                android:maxLines="1"/>
-
-            <TextView
-                android:id="@+id/tv_username"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="11sp"
-                android:textColor="@color/gray_text"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="\@reihanfatilla"
-                android:maxLines="1" />
-        </LinearLayout>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_edit_profile"
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/primary_color"
-            android:fontFamily="@font/poppins_medium"
-            android:textSize="12sp"
-            android:text="Ikuti"
-            android:textAllCaps="false"
-            app:elevation="0dp"
-            app:cornerRadius="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/img_profile"
-            app:layout_constraintBottom_toBottomOf="@id/img_profile" />
+            android:layout_gravity="center"
+            android:src="@drawable/ic_search" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_kultum"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/item_kultum"
-            app:spanCount="3"
-            app:layout_constraintTop_toBottomOf="@id/linear_name"
-            android:layout_marginTop="24dp"
-            tools:itemCount="3"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
+    </com.google.android.material.card.MaterialCardView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/sv_user"
+        tools:listitem="@layout/item_connect_user"
+        android:layout_marginTop="24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

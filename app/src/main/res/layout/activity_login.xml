@@ -40,6 +40,7 @@
         android:background="@drawable/bg_edit_text"
         android:paddingVertical="14dp"
         android:paddingHorizontal="20dp"
+        android:fontFamily="@font/poppins_medium"
         android:hint="@string/txt_email"
         android:inputType="textEmailAddress"
         android:autofillHints="" />
@@ -56,6 +57,7 @@
         android:background="@drawable/bg_edit_text"
         android:paddingVertical="14dp"
         android:paddingHorizontal="20dp"
+        android:fontFamily="@font/poppins_medium"
         android:hint="@string/txt_password"
         android:inputType="textPassword"
         android:autofillHints="" />

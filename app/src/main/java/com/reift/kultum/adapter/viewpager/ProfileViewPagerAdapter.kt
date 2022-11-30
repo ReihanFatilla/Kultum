@@ -14,7 +14,8 @@ class ProfileViewPagerAdapter(
     override fun createFragment(position: Int): Fragment {
         return when(position){
             0 -> ProfileKultumFragment()
-            else -> ProfileHelpfulFragment()
+            1 -> ProfileHelpfulFragment()
+            else -> ProfileKultumFragment()
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.reift.kultum.di
 
 import com.reift.core.domain.usecase.splash.SplashUseCase
+import com.reift.kultum.presentation.connect.ConnectViewModel
 import com.reift.kultum.presentation.edit.EditViewModel
 import com.reift.kultum.presentation.home.HomeViewModel
 import com.reift.kultum.presentation.login.LoginViewModel
@@ -19,4 +20,5 @@ val viewModelModule = module {
     viewModel { EditViewModel(get()) }
     viewModel { ProfileViewModel(get()) }
     viewModel { PostViewModel(get()) }
+    viewModel { ConnectViewModel(get()) }
 }

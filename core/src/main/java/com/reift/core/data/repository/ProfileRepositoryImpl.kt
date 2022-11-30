@@ -49,7 +49,7 @@ class ProfileRepositoryImpl(
                         val list = arrayListOf<Kultum>()
                         for(i in snapshot.children){
                             val kultum = i.getValue(Kultum::class.java)
-                            if(kultum?.creator != currentUser) return
+                            if(kultum?.creator != currentUser) continue
                             list.add(kultum)
                         }
                         listKultum.value = list
@@ -74,8 +74,10 @@ class ProfileRepositoryImpl(
                         for(i in snapshot.children){
                             val kultum = i.getValue(Kultum::class.java)
                             kultum?.helpful?.forEach {
-                                if(it.value != currentUser) return
-                                list.add(kultum)
+                                Log.i("asddsadad", "onDataChange: ${it.key} & ${currentUser}")
+                                if(it.key == currentUser){
+                                    list.add(kultum)
+                                }
                             }
                         }
                         listKultum.value = list

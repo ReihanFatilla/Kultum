@@ -19,7 +19,7 @@ class ProfileViewModel(
     }
 
     fun getHelpfuledKultum(): LiveData<List<Kultum>> {
-        return profileUseCase.getPostedKultum()
+        return profileUseCase.getHelpfulKultum()
     }
 
 }

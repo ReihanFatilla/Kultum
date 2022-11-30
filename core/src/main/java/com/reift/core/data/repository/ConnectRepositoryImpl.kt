@@ -1,5 +1,6 @@
 package com.reift.core.data.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.database.DataSnapshot
@@ -61,14 +62,13 @@ class ConnectRepositoryImpl(
     override fun getPostedKultum(username: String): LiveData<List<Kultum>> {
         val listKultum = MutableLiveData<List<Kultum>>()
         firebaseDataSource.getReference(Ref.KULTUM)
-            .child(Ref.CREATOR)
             .addValueEventListener(
                 object : ValueEventListener{
                     override fun onDataChange(snapshot: DataSnapshot) {
                         val list = arrayListOf<Kultum>()
                         for(i in snapshot.children){
                             val kultum = i.getValue(Kultum::class.java)
-                            if(kultum?.creator != username) return
+                            if(kultum?.creator != username) continue
                             list.add(kultum)
                         }
                         listKultum.value = list

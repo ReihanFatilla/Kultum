@@ -23,7 +23,7 @@
         />
 
     <ImageView
-        android:id="@+id/btn_post"
+        android:id="@+id/btn_nav_post"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_post"

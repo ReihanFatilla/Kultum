@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.card.MaterialCardView
 import com.reift.core.domain.model.Kultum
 import com.reift.kultum.R
 import com.reift.kultum.`interface`.OnItemClickCallBack
@@ -67,6 +69,7 @@ class ProfileKultumFragment : Fragment() {
 
         fragmentTransaction.hide(profileFragment).show(profileShortsFragment).commit()
         requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav).visibility = View.INVISIBLE
+        requireActivity().findViewById<ImageView>(R.id.btn_nav_post).visibility = View.INVISIBLE
     }
 
 }

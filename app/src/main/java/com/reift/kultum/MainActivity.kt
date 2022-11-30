@@ -2,6 +2,7 @@ package com.reift.kultum
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -26,12 +27,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         Transparent.statusbar(this)
 
-
-
-//        val navController = findNavController(R.id.nav_host_fragment_activity_main)
-//        binding.bottomNav.setupWithNavController(navController)
-
-        binding.btnPost.setOnClickListener {
+        binding.btnNavPost.setOnClickListener {
             startActivity(
                 Intent(applicationContext, PostActivity::class.java)
             )
@@ -51,8 +47,6 @@ class MainActivity : AppCompatActivity() {
         fm.beginTransaction().add(R.id.main_container, fragment2, "2").hide(fragment2).commit();
         fm.beginTransaction().add(R.id.main_container,fragment1, "1").commit();
 
-        var profileShorts: Fragment = supportFragmentManager.findFragmentByTag("4") ?: ProfileShortsFragment()
-
         val mOnNavigationItemSelectedListener =
             BottomNavigationView.OnNavigationItemSelectedListener { item ->
                 when (item.itemId) {
@@ -70,6 +64,9 @@ class MainActivity : AppCompatActivity() {
                         fm.beginTransaction().hide(active).show(fragment3).commit()
                         active = fragment3
                         return@OnNavigationItemSelectedListener true
+                    }
+                    R.id.navigation_chat -> {
+                        Toast.makeText(applicationContext, "Chat is Coming Soon!", Toast.LENGTH_SHORT).show()
                     }
                 }
                 false

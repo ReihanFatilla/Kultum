@@ -8,8 +8,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
+import com.reift.core.domain.model.Kultum
 import com.reift.core.domain.model.User
 import com.reift.kultum.`interface`.GetUserKultumCallBack
+import com.reift.kultum.`interface`.OnItemClickCallBack
+import com.reift.kultum.`interface`.OnUserClickCallBack
 import com.reift.kultum.databinding.ItemConnectUserBinding
 
 class UserConnectAdapter: RecyclerView.Adapter<UserConnectAdapter.UserViewHolder>() {
@@ -17,6 +20,12 @@ class UserConnectAdapter: RecyclerView.Adapter<UserConnectAdapter.UserViewHolder
     val listUser = arrayListOf<User>()
 
     var getUserKultumCallBack: GetUserKultumCallBack? = null
+
+    var onUserClickCallBack: OnUserClickCallBack? = null
+
+    fun setItemClickCallback(onUserClickCallBack: OnUserClickCallBack){
+        this.onUserClickCallBack = onUserClickCallBack
+    }
 
     fun setUserList(list: List<User>){
         listUser.clear()
@@ -46,6 +55,9 @@ class UserConnectAdapter: RecyclerView.Adapter<UserConnectAdapter.UserViewHolder
                     .into(imgProfile)
 
                 getUserKultumCallBack?.getUserKultum(holder.binding.rvKultum, username)
+                root.setOnClickListener{
+                    onUserClickCallBack?.onUserClicked(username)
+                }
             }
         }
     }

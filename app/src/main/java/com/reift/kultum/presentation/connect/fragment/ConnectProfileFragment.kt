@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
@@ -15,6 +16,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.reift.core.domain.model.User
 import com.reift.kultum.R
+import com.reift.kultum.adapter.viewpager.ConnectViewPagerAdapter
 import com.reift.kultum.adapter.viewpager.ProfileViewPagerAdapter
 import com.reift.kultum.constant.Constant
 import com.reift.kultum.databinding.FragmentConnectProfileBinding
@@ -35,7 +37,6 @@ class ConnectProfileFragment : Fragment() {
 		_binding = FragmentConnectProfileBinding.inflate(layoutInflater)
 
 		initObserver()
-		setUpTabBar()
 
 		return binding.root
 	}
@@ -44,6 +45,7 @@ class ConnectProfileFragment : Fragment() {
 		val username = arguments?.getString(Constant.BUNDLE_USERNAME) ?: ""
 		viewModel.getUserByUsername(username).observe(viewLifecycleOwner){
 			setUpProfileDetail(it[0])
+			setUpTabBar(it[0].username)
 		}
 	}
 
@@ -66,11 +68,11 @@ class ConnectProfileFragment : Fragment() {
 		}
 	}
 
-	private fun setUpTabBar() {
+	private fun setUpTabBar(username: String) {
 
 		binding.apply {
 
-			vpProfile.adapter = ProfileViewPagerAdapter(requireActivity())
+			vpProfile.adapter = ConnectViewPagerAdapter(requireActivity(), username)
 
 			TabLayoutMediator(profileTab, vpProfile){ tab, position ->
 				when(position){

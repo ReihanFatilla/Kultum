@@ -79,7 +79,7 @@ class ConnectFragment : Fragment() {
 
                     fm.beginTransaction().add(R.id.main_container, connectProfileFragment).commit()
 
-                    fm.beginTransaction().show(connectProfileFragment).hide(fm.findFragmentByTag("connect")!!).addToBackStack("connect").commit()
+                    fm.beginTransaction().show(connectProfileFragment).hide(fm.findFragmentByTag("connect")!!).addToBackStack(null).commit()
                 }
             }
         )

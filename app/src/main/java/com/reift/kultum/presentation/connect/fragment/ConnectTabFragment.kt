@@ -14,6 +14,7 @@ import com.reift.kultum.adapter.viewpager.ConnectViewPagerAdapter
 import com.reift.kultum.constant.Constant
 import com.reift.kultum.databinding.FragmentConnectTabBinding
 import com.reift.kultum.presentation.connect.ConnectViewModel
+import com.reift.kultum.presentation.connect.activity.ConnectShortsActivity
 import com.reift.kultum.presentation.profile.activity.ProfileShortsActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -24,18 +25,25 @@ class ConnectTabFragment : Fragment() {
 
     private val viewModel: ConnectViewModel by viewModel()
 
+    private lateinit var type: String
+    private lateinit var username: String
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentConnectTabBinding.inflate(layoutInflater)
+
+        type = arguments?.getString(ConnectViewPagerAdapter.BUNDLE_TYPE).orEmpty()
+        username = arguments?.getString(ConnectViewPagerAdapter.BUNDLE_USERNAME).orEmpty()
+
+
         initObserver()
         return binding.root
     }
 
     private fun initObserver() {
-        val username = arguments?.getString(ConnectViewPagerAdapter.BUNDLE_USERNAME) ?: ""
-        val type = arguments?.getString(ConnectViewPagerAdapter.BUNDLE_TYPE)
+
         when(type){
             ConnectViewPagerAdapter.TYPE_HELPFUL -> {
                 viewModel.getHelpfulKultum(username).observe(viewLifecycleOwner){
@@ -73,11 +81,19 @@ class ConnectTabFragment : Fragment() {
     }
 
     private fun showKultumShorts(position: Int) {
-        startActivity(
-            Intent(context, ProfileShortsActivity::class.java)
-                .putExtra(Constant.EXTRA_TYPE, Constant.TYPE_KULTUM)
-                .putExtra(Constant.EXTRA_POSITION, position)
-        )
+        val intent = Intent(context, ConnectShortsActivity::class.java)
+            .putExtra(Constant.EXTRA_POSITION, position)
+        when(type){
+            ConnectViewPagerAdapter.TYPE_HELPFUL -> {
+                intent.putExtra(Constant.EXTRA_USERNAME, username)
+                intent.putExtra(Constant.EXTRA_TYPE, Constant.TYPE_HELPFUL)
+            }
+            ConnectViewPagerAdapter.TYPE_KULTUM -> {
+                intent.putExtra(Constant.EXTRA_USERNAME, username)
+                intent.putExtra(Constant.EXTRA_TYPE, Constant.TYPE_KULTUM)
+            }
+        }
+        startActivity(intent)
     }
 
 

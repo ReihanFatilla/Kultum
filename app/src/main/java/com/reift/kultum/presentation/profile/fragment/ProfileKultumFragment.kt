@@ -44,18 +44,21 @@ class ProfileKultumFragment : Fragment() {
             layoutManager = GridLayoutManager(context, 3)
             adapter = mAdapter
             mAdapter.setKultum(listKultum)
-            mAdapter.setItemClickCallback(
-                object : OnItemClickCallBack {
-                    override fun onClick(position: Int) {
-                        showKultumShorts(position)
-                    }
-                }
-            )
+            onKultumClicked(mAdapter)
         }
     }
 
-    private fun showKultumShorts(position: Int) {
+    private fun onKultumClicked(mAdapter: KultumAdapter) {
+        mAdapter.setItemClickCallback(
+            object : OnItemClickCallBack {
+                override fun onClick(position: Int) {
+                    showKultumShorts(position)
+                }
+            }
+        )
+    }
 
+    private fun showKultumShorts(position: Int) {
         startActivity(
             Intent(context, ProfileShortsActivity::class.java)
             .putExtra(Constant.EXTRA_TYPE, Constant.TYPE_KULTUM)

@@ -145,14 +145,4 @@ class ProfileKultumContainerFragment : Fragment() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        Toast.makeText(context, "Resume", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Toast.makeText(context, "Pause", Toast.LENGTH_SHORT).show()
-    }
-
 }

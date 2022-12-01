@@ -17,6 +17,7 @@ import com.reift.kultum.constant.Constant
 import com.reift.kultum.databinding.FragmentProfileHelpfulBinding
 import com.reift.kultum.presentation.profile.ProfileFragmentDirections
 import com.reift.kultum.presentation.profile.ProfileViewModel
+import com.reift.kultum.presentation.profile.activity.ProfileShortsActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class ProfileHelpfulFragment : Fragment() {
@@ -52,15 +53,19 @@ class ProfileHelpfulFragment : Fragment() {
             mAdapter.setItemClickCallback(
                 object : OnItemClickCallBack{
                     override fun onClick(position: Int) {
-                        findNavController().navigate(
-                            ProfileFragmentDirections.actionNavigationProfileToProfileShortsFragment(
-                                Constant.TYPE_HELPFUL,
-                                position
-                            )
-                        )
+                        showKultumShorts(position)
                     }
                 }
             )
         }
+    }
+
+    private fun showKultumShorts(position: Int) {
+
+        startActivity(
+            Intent(context, ProfileShortsActivity::class.java)
+                .putExtra(Constant.EXTRA_TYPE, Constant.TYPE_HELPFUL)
+                .putExtra(Constant.EXTRA_POSITION, position)
+        )
     }
 }

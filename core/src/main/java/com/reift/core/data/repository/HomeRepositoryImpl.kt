@@ -1,6 +1,5 @@
 package com.reift.core.data.repository
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.database.DataSnapshot
@@ -11,7 +10,6 @@ import com.reift.core.constant.Pref
 import com.reift.core.constant.Ref
 import com.reift.core.data.source.local.LocalDataSource
 import com.reift.core.data.source.remote.FirebaseDataSource
-import com.reift.core.domain.model.Comments
 import com.reift.core.domain.model.Kultum
 import com.reift.core.domain.repository.HomeRepository
 
@@ -24,24 +22,27 @@ class HomeRepositoryImpl(
 
     override fun getKultumForYou(): LiveData<List<Kultum>> {
         val listKultum = MutableLiveData<List<Kultum>>()
-        firebaseDataSource.getReference(Ref.KULTUM)
-            .addValueEventListener(
-            object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val list = arrayListOf<Kultum>()
-                    for (i in snapshot.children) {
-                        val kultum = i.getValue(Kultum::class.java) ?: return
-                        list.add(kultum)
-                    }
-                    listKultum.value = list.shuffled()
-                }
 
-                override fun onCancelled(error: DatabaseError) {
+        val kultumRef = firebaseDataSource.getReference(Ref.KULTUM)
 
+        val valueEventListener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val list = arrayListOf<Kultum>()
+                for (i in snapshot.children) {
+                    val kultum = i.getValue(Kultum::class.java) ?: return
+                    list.add(kultum)
                 }
+                listKultum.value = list.shuffled()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
 
             }
-        )
+
+        }
+
+        kultumRef.addListenerForSingleValueEvent(valueEventListener)
+
         return listKultum
     }
 
@@ -50,7 +51,7 @@ class HomeRepositoryImpl(
         firebaseDataSource.getReference(Ref.KULTUM)
             .child(urlKultum)
             .addValueEventListener(
-                object : ValueEventListener{
+                object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         kultum.value = snapshot.getValue(Kultum::class.java)
                     }
@@ -70,13 +71,13 @@ class HomeRepositoryImpl(
             .child(urlKultum)
             .child(Ref.HELPFUL)
             .addValueEventListener(
-                object : ValueEventListener{
+                object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
-                        for(i in snapshot.children){
+                        for (i in snapshot.children) {
                             val userHelpful = i.getValue<String>()
-                            if(userHelpful == currentUser) isHelpfuled.value = true
+                            if (userHelpful == currentUser) isHelpfuled.value = true
                         }
-                        if(isHelpfuled.value != true){
+                        if (isHelpfuled.value != true) {
                             isHelpfuled.value = false
                         }
                     }

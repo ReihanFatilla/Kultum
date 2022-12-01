@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.reift.core.domain.model.Kultum
 import com.reift.kultum.adapter.viewpager.KultumViewPagerAdapter
 import com.reift.kultum.databinding.FragmentHomeBinding
@@ -31,6 +32,7 @@ class HomeFragment : Fragment() {
     private fun initObservers() {
         viewModel.getKultumForYou().observe(viewLifecycleOwner){
             setUpKultumViewPager(it)
+            Toast.makeText(context, "Runned", Toast.LENGTH_SHORT).show()
         }
     }
 

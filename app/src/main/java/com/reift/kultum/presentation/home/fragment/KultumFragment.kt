@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
@@ -61,7 +60,7 @@ class KultumFragment : Fragment() {
 
 
     private fun initObserver() {
-        viewModel.getKultumDetail(kultum.urlKey).observe(viewLifecycleOwner){
+        viewModel.getKultumDetail(kultum.urlKey).observe(viewLifecycleOwner) {
             setUpDetail(it)
             setUpHelfpulButton(it)
         }
@@ -81,25 +80,22 @@ class KultumFragment : Fragment() {
 
     private fun setUpHelfpulButton(kultum: Kultum) {
         binding.apply {
-            viewModel.isKultumHelpfuled(kultum.urlKey).observe(viewLifecycleOwner) {
-                if (it) {
-                    btnHelpful.isChecked = true
-                    btnHelpful.setOnClickListener {
+            viewModel.isKultumHelpfuled(kultum.urlKey).observe(viewLifecycleOwner) { isHelpfuled ->
+                btnHelpful.isChecked = isHelpfuled
+                btnHelpful.setOnClickListener {
+                    if (isHelpfuled) {
                         viewModel.removeKultum(kultum.urlKey)
-                    }
-                } else {
-                    btnHelpful.isChecked = false
-                    btnHelpful.setOnClickListener {
+                    } else {
                         viewModel.addHelpfulKultum(kultum.urlKey)
                     }
                 }
+
             }
         }
     }
 
     private fun setUpShortsVideo() {
         binding.apply {
-
             var youtubePlayCallBack: YoutubePlayCallBack? = null
 
             lifecycle.addObserver(binding.ytPlayer)

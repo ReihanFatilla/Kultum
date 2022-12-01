@@ -11,5 +11,4 @@ interface HomeUseCase {
     fun isKultumHelpfuled(urlKultum: String): LiveData<Boolean>
     fun addHelpfulKultum(urlKultum: String)
     fun removeHelpfulKultum(urlKultum: String)
-    fun addComment(comment: Comments, urlKultum: String)
 }

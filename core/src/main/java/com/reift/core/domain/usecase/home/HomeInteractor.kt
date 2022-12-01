@@ -27,8 +27,4 @@ class HomeInteractor(
     override fun removeHelpfulKultum(urlKultum: String) {
         homeRepository.removeHelpfulKultum(urlKultum)
     }
-
-    override fun addComment(comment: Comments, urlKultum: String) {
-        homeRepository.addComment(comment, urlKultum)
-    }
 }

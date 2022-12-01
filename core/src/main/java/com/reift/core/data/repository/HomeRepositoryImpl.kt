@@ -106,12 +106,4 @@ class HomeRepositoryImpl(
             .removeValue()
     }
 
-    override fun addComment(comment: Comments, urlKultum: String) {
-        firebaseDataSource.getReference(Ref.KULTUM)
-            .child(urlKultum)
-            .child(Ref.COMMENTS)
-            .child(comment.creator)
-            .setValue(comment)
-    }
-
 }

@@ -51,6 +51,8 @@ class EditRepositoryImpl(
             .child(currentUser)
             .child(Ref.PHOTO_URL)
             .setValue(photoUrl)
+
+        localDataSource.add(Pref.CURRENT_PHOTO, photoUrl)
     }
 
     override fun checkIfUserTaken(username: String): LiveData<Boolean> {
@@ -96,7 +98,6 @@ class EditRepositoryImpl(
     }
 
     override fun logout() {
-
         localDataSource.clear()
     }
 

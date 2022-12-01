@@ -27,6 +27,7 @@ class LoginRepositoryImpl(
                         if(user.password != password) continue
                         isLoginValid.value = true
                         localDataSource.add(Pref.CURRENT_USER, user.username)
+                        localDataSource.add(Pref.CURRENT_PHOTO, user.photoUrl)
                         localDataSource.add(Pref.IS_USER_LOGIN, true)
                     }
                     if(isLoginValid.value != true){

@@ -19,6 +19,7 @@ class CommentRepositoryImpl(
 ): CommentRepository {
 
     val currentUser = localDataSource.getString(Pref.CURRENT_USER).orEmpty()
+    val currentPhoto = localDataSource.getString(Pref.CURRENT_PHOTO).orEmpty()
 
     override fun getKultumComments(urlKultum: String): LiveData<List<Comments>> {
         val listKultum = MutableLiveData<List<Comments>>()
@@ -49,7 +50,7 @@ class CommentRepositoryImpl(
 
         val comment = Comments(
             currentUser,
-            getUserPhotoUrl().value.orEmpty(),
+            currentPhoto,
             message
         )
 
@@ -58,26 +59,5 @@ class CommentRepositoryImpl(
             .child(Ref.COMMENTS)
             .child(currentUser)
             .setValue(comment)
-    }
-
-    override fun getUserPhotoUrl(): LiveData<String> {
-        val photoUrl = MutableLiveData<String>()
-        firebaseDataSource.getReference(Ref.USER)
-            .child(currentUser)
-            .child(Ref.PHOTO_URL)
-            .addValueEventListener(
-                object : ValueEventListener{
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        photoUrl.value = snapshot.getValue(String::class.java)
-                    }
-
-                    override fun onCancelled(error: DatabaseError) {
-                        TODO("Not yet implemented")
-                    }
-
-                }
-            )
-
-        return photoUrl
     }
 }

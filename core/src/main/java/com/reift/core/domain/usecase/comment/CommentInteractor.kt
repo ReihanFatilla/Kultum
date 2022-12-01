@@ -14,8 +14,4 @@ class CommentInteractor(
     override fun addComment(message: String, urlKultum: String) {
         return commentRepository.addComment(message, urlKultum)
     }
-
-    override fun getUserPhotoUrl(): LiveData<String> {
-        return commentRepository.getUserPhotoUrl()
-    }
 }

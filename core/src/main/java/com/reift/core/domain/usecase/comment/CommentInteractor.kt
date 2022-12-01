@@ -11,7 +11,11 @@ class CommentInteractor(
         return commentRepository.getKultumComments(urlKultum)
     }
 
-    override fun addComment(comment: Comments, urlKultum: String) {
-        return commentRepository.addComment(comment, urlKultum)
+    override fun addComment(message: String, urlKultum: String) {
+        return commentRepository.addComment(message, urlKultum)
+    }
+
+    override fun getUserPhotoUrl(): LiveData<String> {
+        return commentRepository.getUserPhotoUrl()
     }
 }

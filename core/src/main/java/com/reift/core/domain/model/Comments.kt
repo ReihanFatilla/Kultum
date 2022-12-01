@@ -5,8 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Comments(
-    var creator: String,
-    var photoUrl: String,
-    var message: String,
-    var date: String
+    var creator: String = "",
+    var photoUrl: String = "",
+    var message: String = ""
 ): Parcelable

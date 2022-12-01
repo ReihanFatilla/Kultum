@@ -13,8 +13,8 @@ class CommentViewModel(
         return commentUseCase.getKultumComments(urlKultum)
     }
 
-    fun addComment(comment: Comments, urlKultum: String){
-        commentUseCase.addComment(comment, urlKultum)
+    fun addComment(message: String, urlKultum: String){
+        commentUseCase.addComment(message, urlKultum)
     }
 
 }

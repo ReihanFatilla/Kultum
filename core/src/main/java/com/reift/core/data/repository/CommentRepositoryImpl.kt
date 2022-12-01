@@ -45,11 +45,39 @@ class CommentRepositoryImpl(
         return listKultum
     }
 
-    override fun addComment(comment: Comments, urlKultum: String) {
+    override fun addComment(message: String, urlKultum: String) {
+
+        val comment = Comments(
+            currentUser,
+            getUserPhotoUrl().value.orEmpty(),
+            message
+        )
+
         firebaseDataSource.getReference(Ref.KULTUM)
             .child(urlKultum)
             .child(Ref.COMMENTS)
             .child(currentUser)
             .setValue(comment)
+    }
+
+    override fun getUserPhotoUrl(): LiveData<String> {
+        val photoUrl = MutableLiveData<String>()
+        firebaseDataSource.getReference(Ref.USER)
+            .child(currentUser)
+            .child(Ref.PHOTO_URL)
+            .addValueEventListener(
+                object : ValueEventListener{
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        photoUrl.value = snapshot.getValue(String::class.java)
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+
+                }
+            )
+
+        return photoUrl
     }
 }

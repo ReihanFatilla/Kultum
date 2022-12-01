@@ -5,5 +5,6 @@ import com.reift.core.domain.model.Comments
 
 interface CommentUseCase {
     fun getKultumComments(urlKultum: String): LiveData<List<Comments>>
-    fun addComment(comment: Comments, urlKultum: String)
+    fun addComment(message: String, urlKultum: String)
+    fun getUserPhotoUrl(): LiveData<String>
 }

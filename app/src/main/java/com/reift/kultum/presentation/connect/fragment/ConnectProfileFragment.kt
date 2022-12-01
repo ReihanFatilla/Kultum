@@ -1,9 +1,12 @@
 package com.reift.kultum.presentation.connect.fragment
 
 import android.graphics.PorterDuff
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -13,33 +16,35 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.reift.core.domain.model.User
 import com.reift.kultum.R
 import com.reift.kultum.adapter.viewpager.ProfileViewPagerAdapter
-import com.reift.kultum.databinding.ActivityConnectProfileBinding
-import com.reift.kultum.presentation.connect.ConnectFragment
+import com.reift.kultum.constant.Constant
+import com.reift.kultum.databinding.FragmentConnectProfileBinding
 import com.reift.kultum.presentation.connect.ConnectViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class ConnectProfileActivity : AppCompatActivity() {
+class ConnectProfileFragment : Fragment() {
 
-	private var _binding: ActivityConnectProfileBinding? = null
-	private val binding get() =  _binding as ActivityConnectProfileBinding
+	private var _binding: FragmentConnectProfileBinding? = null
+	private val binding get() =  _binding as FragmentConnectProfileBinding
 
 	private val viewModel: ConnectViewModel by viewModel()
 
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-		_binding = ActivityConnectProfileBinding.inflate(layoutInflater)
-		setContentView(binding.root)
+	override fun onCreateView(
+		inflater: LayoutInflater, container: ViewGroup?,
+		savedInstanceState: Bundle?
+	): View {
+		_binding = FragmentConnectProfileBinding.inflate(layoutInflater)
 
 		initObserver()
 		setUpTabBar()
 
+		return binding.root
 	}
 
 	private fun initObserver() {
-		val username = intent.getStringExtra(ConnectFragment.EXTRA_USERNAME) ?: ""
-//		viewModel.getUserByUsername(username).observe(this){
-//			setUpProfileDetail(it[0])
-//		}
+		val username = arguments?.getString(Constant.BUNDLE_USERNAME) ?: ""
+		viewModel.getUserByUsername(username).observe(viewLifecycleOwner){
+			setUpProfileDetail(it[0])
+		}
 	}
 
 	private fun setUpProfileDetail(user: User) {
@@ -51,7 +56,7 @@ class ConnectProfileActivity : AppCompatActivity() {
 				tvFollowersAmount.text = followers.size.toString()
 				tvFollowingAmount.text = followers.size.toString()
 				tvKultumAmount.text = kultumAmount
-				Glide.with(this@ConnectProfileActivity)
+				Glide.with(this@ConnectProfileFragment)
 					.load(photoUrl)
 					.apply(RequestOptions())
 					.diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -65,12 +70,12 @@ class ConnectProfileActivity : AppCompatActivity() {
 
 		binding.apply {
 
-			vpProfile.adapter = ProfileViewPagerAdapter(this@ConnectProfileActivity)
+			vpProfile.adapter = ProfileViewPagerAdapter(requireActivity())
 
 			TabLayoutMediator(profileTab, vpProfile){ tab, position ->
 				when(position){
-					0 -> tab.icon = getDrawable(R.drawable.ic_book)
-					1 -> tab.icon = getDrawable(R.drawable.ic_helpful_inactive)
+					0 -> tab.icon = context?.getDrawable(R.drawable.ic_book)
+					1 -> tab.icon = context?.getDrawable(R.drawable.ic_helpful_inactive)
 				}
 			}.attach()
 
@@ -79,14 +84,14 @@ class ConnectProfileActivity : AppCompatActivity() {
 
 					override fun onTabSelected(tab: TabLayout.Tab) {
 						val tabIconColor =
-							ContextCompat.getColor(applicationContext, R.color.primary_color)
-						tab.icon!!.setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN)
+							context?.let { ContextCompat.getColor(it, R.color.primary_color) }
+						tabIconColor?.let { tab.icon?.setColorFilter(it, PorterDuff.Mode.SRC_IN) }
 					}
 
 					override fun onTabUnselected(tab: TabLayout.Tab) {
 						val tabIconColor =
-							ContextCompat.getColor(applicationContext, R.color.gray_text)
-						tab.icon!!.setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN)
+							context?.let { ContextCompat.getColor(it, R.color.gray_text) }
+						tabIconColor?.let { tab.icon?.setColorFilter(it, PorterDuff.Mode.SRC_IN) }
 					}
 
 					override fun onTabReselected(tab: TabLayout.Tab) {

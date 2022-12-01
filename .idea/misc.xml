@@ -29,8 +29,9 @@
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.2210845947265625" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.3073073073073073" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.18926086425781252" />
-        <entry key="app/src/main/res/layout/fragment_comment.xml" value="0.19519927536231885" />
-        <entry key="app/src/main/res/layout/fragment_connect.xml" value="0.3073376420615376" />
+        <entry key="app/src/main/res/layout/fragment_comment.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/fragment_connect.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_connect_helpful.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_kultum.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.28229166666666666" />

@@ -19,7 +19,7 @@
         android:theme="@style/Theme.Kultum"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.connect.fragment.ConnectProfileActivity"
+            android:name=".presentation.connect.fragment.ConnectProfileFragment"
             android:exported="false" />
         <activity
             android:name=".presentation.profile.activity.ProfileShortsActivity"

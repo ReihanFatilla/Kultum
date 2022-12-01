@@ -1,11 +1,11 @@
 package com.reift.kultum.presentation.connect.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.reift.core.domain.model.Kultum
 import com.reift.kultum.`interface`.OnItemClickCallBack
@@ -14,7 +14,7 @@ import com.reift.kultum.adapter.viewpager.ConnectViewPagerAdapter
 import com.reift.kultum.constant.Constant
 import com.reift.kultum.databinding.FragmentConnectTabBinding
 import com.reift.kultum.presentation.connect.ConnectViewModel
-import com.reift.kultum.presentation.profile.ProfileFragmentDirections
+import com.reift.kultum.presentation.profile.activity.ProfileShortsActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class ConnectTabFragment : Fragment() {
@@ -57,18 +57,28 @@ class ConnectTabFragment : Fragment() {
             layoutManager = GridLayoutManager(context, 3)
             adapter = mAdapter
             mAdapter.setKultum(listKultum)
-            mAdapter.setItemClickCallback(
-                object : OnItemClickCallBack {
-                    override fun onClick(position: Int) {
-                        findNavController().navigate(
-                            ProfileFragmentDirections.actionNavigationProfileToProfileShortsFragment(
-                                Constant.TYPE_KULTUM,
-                                position
-                            )
-                        )
-                    }
-                }
-            )
+            onKultumClicked(mAdapter)
+
         }
     }
+
+    private fun onKultumClicked(mAdapter: KultumAdapter) {
+        mAdapter.setItemClickCallback(
+            object : OnItemClickCallBack {
+                override fun onClick(position: Int) {
+                    showKultumShorts(position)
+                }
+            }
+        )
+    }
+
+    private fun showKultumShorts(position: Int) {
+        startActivity(
+            Intent(context, ProfileShortsActivity::class.java)
+                .putExtra(Constant.EXTRA_TYPE, Constant.TYPE_KULTUM)
+                .putExtra(Constant.EXTRA_POSITION, position)
+        )
+    }
+
+
 }

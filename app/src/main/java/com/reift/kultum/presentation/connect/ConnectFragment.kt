@@ -10,10 +10,15 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.reift.core.domain.model.User
+import com.reift.kultum.R
 import com.reift.kultum.`interface`.GetUserKultumCallBack
+import com.reift.kultum.`interface`.OnItemClickCallBack
+import com.reift.kultum.`interface`.OnUserClickCallBack
 import com.reift.kultum.adapter.recyclerview.KultumAdapter
 import com.reift.kultum.adapter.recyclerview.UserConnectAdapter
+import com.reift.kultum.constant.Constant
 import com.reift.kultum.databinding.FragmentConnectBinding
+import com.reift.kultum.presentation.connect.fragment.ConnectProfileFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class ConnectFragment : Fragment() {
@@ -57,22 +62,44 @@ class ConnectFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = mAdapter
             mAdapter.setUserList(listUser)
-            mAdapter.setUserKultumCallBack(
-                object : GetUserKultumCallBack{
-                    override fun getUserKultum(rvKultum: RecyclerView, username: String) {
-                        viewModel.getPostedKultum(username).observe(viewLifecycleOwner){
-                            rvKultum.apply {
-                                val kutlumAdapter = KultumAdapter()
-                                adapter = kutlumAdapter
-                                layoutManager = GridLayoutManager(context, 3)
-                                kutlumAdapter.setKultum(it)
-                            }
+            setUserKultum(mAdapter)
+            setOnUserClicked(mAdapter)
+        }
+    }
+
+    private fun setOnUserClicked(mAdapter: UserConnectAdapter) {
+        mAdapter.setItemClickCallback(
+            object : OnUserClickCallBack{
+                override fun onUserClicked(username: String) {
+                    val fm = requireActivity().supportFragmentManager
+                    val connectProfileFragment = ConnectProfileFragment()
+                    val bundle = Bundle()
+                    bundle.putString(Constant.BUNDLE_USERNAME, username)
+                    connectProfileFragment.arguments = bundle
+
+                    fm.beginTransaction().add(R.id.main_container, connectProfileFragment).commit()
+
+                    fm.beginTransaction().show(connectProfileFragment).hide(fm.findFragmentByTag("connect")!!).addToBackStack("connect").commit()
+                }
+            }
+        )
+    }
+
+    private fun setUserKultum(mAdapter: UserConnectAdapter) {
+        mAdapter.setUserKultumCallBack(
+            object : GetUserKultumCallBack{
+                override fun getUserKultum(rvKultum: RecyclerView, username: String) {
+                    viewModel.getPostedKultum(username).observe(viewLifecycleOwner){
+                        rvKultum.apply {
+                            val kutlumAdapter = KultumAdapter()
+                            adapter = kutlumAdapter
+                            layoutManager = GridLayoutManager(context, 3)
+                            kutlumAdapter.setKultum(it)
                         }
                     }
                 }
-            )
-
-        }
+            }
+        )
     }
 
     private fun isQueryValid(): Boolean {
@@ -87,10 +114,6 @@ class ConnectFragment : Fragment() {
             }
         }
         return isValid
-    }
-
-    companion object{
-        const val EXTRA_USERNAME = "extra_username"
     }
 
 }

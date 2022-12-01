@@ -11,8 +11,8 @@ class PostViewModel(
 
     val isVideoFound = MutableLiveData(false)
 
-    fun postKultum(kultum: Kultum){
-        postUseCase.postKultum(kultum)
+    fun postKultum(caption: String, urlKultum: String){
+        postUseCase.postKultum(caption, urlKultum)
     }
 
 }

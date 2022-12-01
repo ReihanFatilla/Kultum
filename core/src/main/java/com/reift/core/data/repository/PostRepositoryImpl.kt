@@ -24,11 +24,18 @@ class PostRepositoryImpl(
 
     val currentUser = localDataSource.getString(Pref.CURRENT_USER) ?: ""
 
-    override fun postKultum(kultum: Kultum) {
-        kultum.creator = currentUser
+    override fun postKultum(caption:String, urlKultum: String) {
+        val kultum = Kultum(
+            urlKultum,
+            mapOf(),
+            mapOf(),
+            currentUser,
+            caption,
+            0
+        )
 
         firebaseDataSource.getReference(Ref.KULTUM)
-            .child(kultum.urlKey)
+            .child(urlKultum)
             .setValue(kultum)
     }
 

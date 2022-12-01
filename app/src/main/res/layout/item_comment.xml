@@ -16,24 +16,29 @@
         android:src="@drawable/img_profile_sample"/>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginStart="12dp"
         android:padding="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/img_profile"
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_username"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/gray_text"
             android:text="Username"
+            android:maxLines="1"
             android:fontFamily="@font/poppins_medium"
             android:textSize="12sp"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_message"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLines="2"
             android:textColor="@color/black"
             android:fontFamily="@font/poppins_regular"
             android:text="coment - coment"/>

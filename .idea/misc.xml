@@ -20,6 +20,7 @@
         <entry key="app/src/main/res/drawable/ic_profile.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/shadow_bottom_home.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/tab_icon_color_selector.xml" value="0.1" />
+        <entry key="app/src/main/res/layout-v28/fragment_comment.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_connect_profile.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_edit.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.19776407877604166" />

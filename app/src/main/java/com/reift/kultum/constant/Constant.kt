@@ -10,4 +10,5 @@ object Constant {
 
     // Bundle Key
     const val BUNDLE_USERNAME = "bundle_username"
+    const val BUNDLE_URL_KULTUM = "bundle_url_kultum"
 }

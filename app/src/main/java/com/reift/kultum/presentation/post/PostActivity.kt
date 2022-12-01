@@ -50,16 +50,10 @@ class PostActivity : AppCompatActivity() {
 
     private fun postKultum() {
         binding.apply {
-            val kultum = Kultum(
-                UrlFormatter.format(edtLink.text.toString()) ?: "nFr1Jj1KxVk",
-                mapOf(),
-                listOf(),
-                "",
-                edtCaption.text.toString(),
-                0
-            )
+            val urlKultum = UrlFormatter.format(edtLink.text.toString()) ?: "nFr1Jj1KxVk"
+            val caption = edtCaption.text.toString()
 
-            viewModel.postKultum(kultum)
+            viewModel.postKultum(caption, urlKultum)
         }
     }
 

@@ -7,8 +7,8 @@ class PostInteractor(
     val postRepository: PostRepository
 ) : PostUseCase {
 
-    override fun postKultum(kultum: Kultum) {
-        postRepository.postKultum(kultum)
+    override fun postKultum(caption:String, urlKultum: String) {
+        postRepository.postKultum(caption, urlKultum)
     }
 
 }

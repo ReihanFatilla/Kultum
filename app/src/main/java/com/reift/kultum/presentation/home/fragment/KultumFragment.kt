@@ -18,7 +18,9 @@ import com.reift.core.domain.model.Kultum
 import com.reift.kultum.*
 import com.reift.kultum.`interface`.YoutubePlayCallBack
 import com.reift.kultum.adapter.viewpager.KultumViewPagerAdapter
+import com.reift.kultum.constant.Constant
 import com.reift.kultum.databinding.FragmentKultumBinding
+import com.reift.kultum.presentation.comment.CommentFragment
 import com.reift.kultum.presentation.home.HomeViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -46,8 +48,20 @@ class KultumFragment : Fragment() {
         initObserver()
         setUpHelfpulButton()
         setUpShortsVideo()
+        onCommentClicked()
 
         return binding.root
+    }
+
+    private fun onCommentClicked() {
+        binding.btnComment.setOnClickListener {
+            val commentFragment = CommentFragment()
+            val bundle = Bundle()
+            bundle.putString(Constant.BUNDLE_URL_KULTUM, kultum.urlKey)
+            commentFragment.arguments = bundle
+
+            commentFragment.show(requireActivity().supportFragmentManager, null)
+        }
     }
 
 

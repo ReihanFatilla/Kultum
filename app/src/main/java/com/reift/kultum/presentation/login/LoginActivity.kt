@@ -48,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
                 edtPassword.requestFocus()
                 return false
             }
-            if (!edtEmail.text.contains("@")) {
+            if (!edtEmail.text.toString().contains("@")) {
                 edtEmail.error = "Please use \"@\" for valid Email"
                 edtEmail.requestFocus()
                 return false

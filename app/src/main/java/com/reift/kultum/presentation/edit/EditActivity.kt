@@ -98,7 +98,7 @@ class EditActivity : AppCompatActivity() {
                 viewModel.editName(tvNameFill.text.toString())
             }
             startActivity(Intent(applicationContext, MainActivity::class.java))
-            finish()
+            finishAffinity()
         }
     }
 

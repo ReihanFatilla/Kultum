@@ -13,6 +13,7 @@ import com.reift.core.domain.model.Kultum
 import com.reift.kultum.R
 import com.reift.kultum.`interface`.OnItemClickCallBack
 import com.reift.kultum.adapter.recyclerview.KultumAdapter
+import com.reift.kultum.constant.Constant
 import com.reift.kultum.databinding.FragmentProfileHelpfulBinding
 import com.reift.kultum.presentation.profile.ProfileFragmentDirections
 import com.reift.kultum.presentation.profile.ProfileViewModel
@@ -53,7 +54,7 @@ class ProfileHelpfulFragment : Fragment() {
                     override fun onClick(position: Int) {
                         findNavController().navigate(
                             ProfileFragmentDirections.actionNavigationProfileToProfileShortsFragment(
-                                ProfileShortsFragment.TYPE_HELPFUL,
+                                Constant.TYPE_HELPFUL,
                                 position
                             )
                         )

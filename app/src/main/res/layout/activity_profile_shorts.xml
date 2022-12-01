@@ -11,7 +11,8 @@
     <com.reift.kultum.customview.VerticalViewPager
         android:id="@+id/vp_profile_kultum"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@drawable/ic_back"/>
 
     <ImageView
         android:id="@+id/btn_back"

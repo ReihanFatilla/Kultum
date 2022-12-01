@@ -21,7 +21,6 @@ class ProfileShortsViewPagerAdapter(
     override fun getCount() = listKultum.size
 
     override fun getItem(position: Int): Fragment {
-        Log.i("getItemAAAA", "getItem: Nyampai Sini")
         val bundle = Bundle()
         val kultumFragment = ProfileKultumContainerFragment()
         bundle.putParcelable(BUNDLE_KULTUM, listKultum[position])

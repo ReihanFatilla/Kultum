@@ -1,21 +1,19 @@
 package com.reift.kultum.presentation.profile.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.card.MaterialCardView
 import com.reift.core.domain.model.Kultum
-import com.reift.kultum.R
 import com.reift.kultum.`interface`.OnItemClickCallBack
 import com.reift.kultum.adapter.recyclerview.KultumAdapter
+import com.reift.kultum.constant.Constant
 import com.reift.kultum.databinding.FragmentProfileKultumBinding
 import com.reift.kultum.presentation.profile.ProfileViewModel
+import com.reift.kultum.presentation.profile.activity.ProfileShortsActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class ProfileKultumFragment : Fragment() {
@@ -30,7 +28,6 @@ class ProfileKultumFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentProfileKultumBinding.inflate(layoutInflater)
-
         initObserver()
         return binding.root
     }
@@ -58,18 +55,13 @@ class ProfileKultumFragment : Fragment() {
     }
 
     private fun showKultumShorts(position: Int) {
-        val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-        val profileShortsFragment = requireActivity().supportFragmentManager.findFragmentByTag("4") ?: ProfileShortsFragment()
-        val bundle = Bundle()
-        bundle.putString(ProfileShortsFragment.BUNDLE_TYPE ,ProfileShortsFragment.TYPE_KULTUM)
-        bundle.putInt(ProfileShortsFragment.BUNDLE_POSITION, position)
-        profileShortsFragment.arguments = bundle
 
-        val profileFragment = requireActivity().supportFragmentManager.findFragmentByTag("3") ?: ProfileShortsFragment()
-
-        fragmentTransaction.hide(profileFragment).show(profileShortsFragment).commit()
-        requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav).visibility = View.INVISIBLE
-        requireActivity().findViewById<ImageView>(R.id.btn_nav_post).visibility = View.INVISIBLE
+        startActivity(
+            Intent(context, ProfileShortsActivity::class.java)
+            .putExtra(Constant.EXTRA_TYPE, Constant.TYPE_KULTUM)
+            .putExtra(Constant.EXTRA_POSITION, position)
+        )
     }
+
 
 }

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
@@ -14,8 +15,10 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFram
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.ui.views.YouTubePlayerSeekBarListener
 import com.reift.core.domain.model.Kultum
 import com.reift.kultum.R
+import com.reift.kultum.`interface`.FragmentLifecycleCallBack
 import com.reift.kultum.`interface`.YoutubePlayCallBack
 import com.reift.kultum.adapter.viewpager.KultumViewPagerAdapter
+import com.reift.kultum.adapter.viewpager.ProfileShortsViewPagerAdapter
 import com.reift.kultum.databinding.FragmentKultumBinding
 import com.reift.kultum.databinding.FragmentProfileKultumContainerBinding
 import com.reift.kultum.presentation.home.HomeViewModel
@@ -40,7 +43,6 @@ class ProfileKultumContainerFragment : Fragment() {
 
         kultum = arguments?.getParcelable(KultumViewPagerAdapter.BUNDLE_KULTUM)!!
 
-        viewLifecycleOwner.lifecycle.addObserver(binding.ytPlayer)
         setUpShortsVideo()
         setUpHelfpulButton()
         initObserver()
@@ -142,4 +144,15 @@ class ProfileKultumContainerFragment : Fragment() {
             ytPlayer.initialize(listener, options)
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        Toast.makeText(context, "Resume", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Toast.makeText(context, "Pause", Toast.LENGTH_SHORT).show()
+    }
+
 }

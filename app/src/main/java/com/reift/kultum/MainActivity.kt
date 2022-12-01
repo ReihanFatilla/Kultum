@@ -12,7 +12,6 @@ import com.reift.kultum.presentation.connect.ConnectFragment
 import com.reift.kultum.presentation.home.HomeFragment
 import com.reift.kultum.presentation.post.PostActivity
 import com.reift.kultum.presentation.profile.ProfileFragment
-import com.reift.kultum.presentation.profile.fragment.ProfileShortsFragment
 import com.reift.kultum.utils.Transparent
 
 
@@ -37,15 +36,13 @@ class MainActivity : AppCompatActivity() {
         val fragment1: Fragment = HomeFragment()
         val fragment2: Fragment = ConnectFragment()
         val fragment3: Fragment = ProfileFragment()
-        val fragment4: Fragment = ProfileShortsFragment()
         val fm: FragmentManager = supportFragmentManager
         var active: Fragment = fragment1
 
 
-        fm.beginTransaction().add(R.id.main_container, fragment4, "4").hide(fragment4).commit();
-        fm.beginTransaction().add(R.id.main_container, fragment3, "3").hide(fragment3).commit();
-        fm.beginTransaction().add(R.id.main_container, fragment2, "2").hide(fragment2).commit();
-        fm.beginTransaction().add(R.id.main_container,fragment1, "1").commit();
+        fm.beginTransaction().add(R.id.main_container, fragment3, "profile").hide(fragment3).commit();
+        fm.beginTransaction().add(R.id.main_container, fragment2, "connect").hide(fragment2).commit();
+        fm.beginTransaction().add(R.id.main_container,fragment1, "home").commit();
 
         val mOnNavigationItemSelectedListener =
             BottomNavigationView.OnNavigationItemSelectedListener { item ->

@@ -22,6 +22,10 @@
             android:name=".presentation.connect.fragment.ConnectProfileActivity"
             android:exported="false" />
         <activity
+            android:name=".presentation.profile.activity.ProfileShortsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Kultum.lightStatusBar"/>
+        <activity
             android:name=".presentation.post.PostActivity"
             android:exported="false"
             android:theme="@style/Theme.Kultum.lightStatusBar" />

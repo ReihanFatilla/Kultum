@@ -8,14 +8,13 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.reift.core.domain.model.Kultum
-import com.reift.kultum.R
 import com.reift.kultum.`interface`.OnItemClickCallBack
 import com.reift.kultum.adapter.recyclerview.KultumAdapter
 import com.reift.kultum.adapter.viewpager.ConnectViewPagerAdapter
+import com.reift.kultum.constant.Constant
 import com.reift.kultum.databinding.FragmentConnectTabBinding
 import com.reift.kultum.presentation.connect.ConnectViewModel
 import com.reift.kultum.presentation.profile.ProfileFragmentDirections
-import com.reift.kultum.presentation.profile.fragment.ProfileShortsFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class ConnectTabFragment : Fragment() {
@@ -63,7 +62,7 @@ class ConnectTabFragment : Fragment() {
                     override fun onClick(position: Int) {
                         findNavController().navigate(
                             ProfileFragmentDirections.actionNavigationProfileToProfileShortsFragment(
-                                ProfileShortsFragment.TYPE_KULTUM,
+                                Constant.TYPE_KULTUM,
                                 position
                             )
                         )

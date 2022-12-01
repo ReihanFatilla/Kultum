@@ -27,9 +27,9 @@
     </fragment>
     <fragment
         android:id="@+id/profileShortsFragment"
-        android:name="com.reift.kultum.presentation.profile.fragment.ProfileShortsFragment"
+        android:name="com.reift.kultum.presentation.profile.activity.ProfileShortsActivity"
         android:label="fragment_profile_shorts"
-        tools:layout="@layout/fragment_profile_shorts" >
+        tools:layout="@layout/activity_profile_shorts" >
 
         <argument
             android:name="type"
@@ -42,4 +42,9 @@
             android:defaultValue="0" />
 
     </fragment>
+    <fragment
+        android:id="@+id/kultumFragment"
+        android:name="com.reift.kultum.presentation.home.fragment.KultumFragment"
+        android:label="fragment_profile_kultum_container"
+        tools:layout="@layout/fragment_profile_kultum_container" />
 </navigation>

@@ -1,11 +1,10 @@
 package com.reift.kultum.presentation.home.fragment
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
@@ -15,7 +14,6 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFram
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerTracker
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.ui.views.YouTubePlayerSeekBarListener
 import com.reift.core.domain.model.Kultum
-import com.reift.kultum.*
 import com.reift.kultum.`interface`.YoutubePlayCallBack
 import com.reift.kultum.adapter.viewpager.KultumViewPagerAdapter
 import com.reift.kultum.constant.Constant
@@ -45,10 +43,7 @@ class KultumFragment : Fragment() {
 
         kultum = arguments?.getParcelable(KultumViewPagerAdapter.BUNDLE_KULTUM)!!
 
-        initObserver()
-        setUpHelfpulButton()
         setUpShortsVideo()
-        onCommentClicked()
 
         return binding.root
     }
@@ -68,13 +63,11 @@ class KultumFragment : Fragment() {
     private fun initObserver() {
         viewModel.getKultumDetail(kultum.urlKey).observe(viewLifecycleOwner){
             setUpDetail(it)
+            setUpHelfpulButton(it)
         }
     }
 
     private fun setUpDetail(kultum: Kultum) {
-
-        viewLifecycleOwner.lifecycle.addObserver(binding.ytPlayer)
-
         binding.apply {
             with(kultum) {
                 tvCaption.text = caption
@@ -86,10 +79,9 @@ class KultumFragment : Fragment() {
         }
     }
 
-    private fun setUpHelfpulButton() {
+    private fun setUpHelfpulButton(kultum: Kultum) {
         binding.apply {
             viewModel.isKultumHelpfuled(kultum.urlKey).observe(viewLifecycleOwner) {
-
                 if (it) {
                     btnHelpful.isChecked = true
                     btnHelpful.setOnClickListener {
@@ -109,6 +101,8 @@ class KultumFragment : Fragment() {
         binding.apply {
 
             var youtubePlayCallBack: YoutubePlayCallBack? = null
+
+            lifecycle.addObserver(binding.ytPlayer)
 
             ytPlayer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
                 override fun onReady(youTubePlayer: YouTubePlayer) {
@@ -157,16 +151,22 @@ class KultumFragment : Fragment() {
                 }
             }
 
-            binding.ytPlayer.enableBackgroundPlayback(true)
-
             val options = IFramePlayerOptions.Builder()
                 .controls(0)
                 .ivLoadPolicy(3)
                 .ccLoadPolicy(1)
                 .build()
+
             ytPlayer.enableAutomaticInitialization = false
             ytPlayer.initialize(listener, options)
+
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        initObserver()
+        onCommentClicked()
     }
 
 }

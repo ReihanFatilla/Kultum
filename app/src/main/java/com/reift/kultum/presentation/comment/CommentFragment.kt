@@ -49,6 +49,9 @@ class CommentFragment : BottomSheetDialogFragment() {
                     viewModel.addComment(message, urlKultum)
                 }
             }
+            btnClose.setOnClickListener {
+                dismiss()
+            }
         }
     }
 

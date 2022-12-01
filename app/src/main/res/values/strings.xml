@@ -23,4 +23,7 @@
     <string name="don_t_have_an_account">Don\'t have an Account?</string>
     <string name="image_application">Image Application</string>
     <string name="image_for_search">image for search</string>
+    <string name="comments">comments</string>
+    <string name="image_for_close">image for close</string>
+    <string name="add_comment">Add comment</string>
 </resources>

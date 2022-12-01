@@ -1,5 +1,7 @@
 package com.reift.kultum.di
 
+import com.reift.core.domain.usecase.comment.CommentInteractor
+import com.reift.core.domain.usecase.comment.CommentUseCase
 import com.reift.core.domain.usecase.connect.ConnectInteractor
 import com.reift.core.domain.usecase.connect.ConnectUseCase
 import com.reift.core.domain.usecase.edit.EditInteractor
@@ -30,4 +32,5 @@ val useCaseModule = module {
     single<RegisterUseCase> { RegisterInteractor(get()) }
     single<SplashUseCase> { SplashInteractor(get()) }
     single<PostUseCase> { PostInteractor(get()) }
+    single<CommentUseCase> { CommentInteractor(get()) }
 }

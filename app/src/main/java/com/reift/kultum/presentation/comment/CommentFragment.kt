@@ -1,4 +1,4 @@
-package com.reift.kultum.presentation.home.fragment
+package com.reift.kultum.presentation.comment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -18,7 +18,7 @@ class CommentFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentCommentBinding? = null
     private val binding get() = _binding as FragmentCommentBinding
 
-    private val viewModel: HomeViewModel by viewModel()
+    private val viewModel: CommentViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -14,8 +14,11 @@ import com.reift.core.domain.model.Kultum
 import com.reift.core.domain.repository.CommentRepository
 
 class CommentRepositoryImpl(
-    val firebaseDataSource: FirebaseDataSource
+    val firebaseDataSource: FirebaseDataSource,
+    val localDataSource: LocalDataSource
 ): CommentRepository {
+
+    val currentUser = localDataSource.getString(Pref.CURRENT_USER).orEmpty()
 
     override fun getKultumComments(urlKultum: String): LiveData<List<Comments>> {
         val listKultum = MutableLiveData<List<Comments>>()
@@ -46,7 +49,7 @@ class CommentRepositoryImpl(
         firebaseDataSource.getReference(Ref.KULTUM)
             .child(urlKultum)
             .child(Ref.COMMENTS)
-            .child(comment.creator)
+            .child(currentUser)
             .setValue(comment)
     }
 }

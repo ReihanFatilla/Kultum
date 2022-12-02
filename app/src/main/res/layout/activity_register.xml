@@ -34,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:hint="@string/txt_email"
+        app:helperTextTextColor="@android:color/holo_red_dark"
         app:boxStrokeColor="@color/primary_color"
         app:hintTextColor="@color/primary_color"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,6 +45,7 @@
             android:id="@+id/edt_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLines="1"
             android:fontFamily="@font/poppins_medium" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -55,6 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:hint="@string/username"
+        app:helperTextTextColor="@android:color/holo_red_dark"
         app:boxStrokeColor="@color/primary_color"
         app:hintTextColor="@color/primary_color"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,6 +68,7 @@
             android:id="@+id/edt_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLines="1"
             android:fontFamily="@font/poppins_medium" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -76,6 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:hint="@string/txt_password"
+        app:helperTextTextColor="@android:color/holo_red_dark"
         app:boxStrokeColor="@color/primary_color"
         app:hintTextColor="@color/primary_color"
         app:layout_constraintEnd_toEndOf="parent"
@@ -86,6 +91,7 @@
             android:id="@+id/edt_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLines="1"
             android:fontFamily="@font/poppins_medium" />
 
     </com.google.android.material.textfield.TextInputLayout>

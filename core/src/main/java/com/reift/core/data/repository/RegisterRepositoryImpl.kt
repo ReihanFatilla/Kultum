@@ -1,5 +1,6 @@
 package com.reift.core.data.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.database.DataSnapshot
@@ -22,15 +23,13 @@ class RegisterRepositoryImpl(
         firebaseDataSource.getReference(Ref.USER).addValueEventListener(
             object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    val result = arrayListOf<Boolean>()
                     for (i in snapshot.children) {
                         val user = i.getValue(User::class.java)
-                        if (user?.email == email) continue
+                        if (user?.email == email) result.add(true) else result.add(false)
                         isTaken.value = false
-                        break
                     }
-                    if (isTaken.value != false) {
-                        isTaken.value = true
-                    }
+                    isTaken.value = result.contains(true)
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -43,18 +42,16 @@ class RegisterRepositoryImpl(
 
     override fun checkIfUsernameTaken(username: String): LiveData<Boolean> {
         val isTaken = MutableLiveData<Boolean>()
-        firebaseDataSource.getReference(Ref.USER).addValueEventListener(
+        firebaseDataSource.getReference(Ref.USER)
+            .addValueEventListener(
             object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    val result = arrayListOf<Boolean>()
                     for (i in snapshot.children) {
                         val user = i.getValue(User::class.java)
-                        if (user?.username == username) continue
-                        isTaken.value = false
-                        break
+                        if (user?.username == username) result.add(true) else result.add(false)
                     }
-                    if (isTaken.value != false) {
-                        isTaken.value = true
-                    }
+                    isTaken.value = result.contains(true)
                 }
 
                 override fun onCancelled(error: DatabaseError) {

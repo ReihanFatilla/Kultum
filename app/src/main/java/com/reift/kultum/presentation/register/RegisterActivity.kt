@@ -39,24 +39,27 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun userInputIsValid(): Boolean {
         binding.apply {
+            tilEmail.helperText = ""
+            tilPassword.helperText = ""
+            tilUsername.helperText = ""
             if (edtEmail.text.isNullOrEmpty()) {
-                edtEmail.error = "Please Fill your Email"
+                tilEmail.helperText = "Please Fill your Email"
                 edtEmail.requestFocus()
                 return false
             }
-            if (edtPassword.text.isNullOrEmpty()) {
-                edtPassword.error = "Please Fill your Password"
-                edtPassword.requestFocus()
+            if (!edtEmail.text.toString().contains("@")) {
+                tilEmail.helperText = "Please use \"@\" for valid Email"
+                edtEmail.requestFocus()
                 return false
             }
             if (edtUsername.text.isNullOrEmpty()) {
-                edtUsername.error = "Please Enter Your Username"
+                tilUsername.helperText = "Please Enter Your Username"
                 edtUsername.requestFocus()
                 return false
             }
-            if (!edtEmail.text.contains("@")) {
-                edtEmail.error = "Please use \"@\" for valid Email"
-                edtEmail.requestFocus()
+            if (edtPassword.text.isNullOrEmpty()) {
+                tilPassword.helperText = "Please Fill your Password"
+                edtPassword.requestFocus()
                 return false
             }
             return true
@@ -76,7 +79,7 @@ class RegisterActivity : AppCompatActivity() {
             viewModel.checkIfEmailTaken(edtEmail.text.toString())
                 .observe(this@RegisterActivity) {
                     if (it) {
-                        edtEmail.error = "Email is Taken"
+                        tilEmail.helperText = "Email is Taken"
                     } else {
                         userNameValidationObserver()
                     }
@@ -96,7 +99,7 @@ class RegisterActivity : AppCompatActivity() {
                         }
                     }
                     if (it) {
-                        edtUsername.error = "Username is Taken"
+                        tilUsername.helperText = "Username is Taken"
                     } else {
                         viewModel.saveUser(
                             User(

@@ -20,6 +20,7 @@ import com.reift.kultum.constant.Constant
 import com.reift.kultum.databinding.ActivityProfileShortsBinding
 import com.reift.kultum.presentation.profile.ProfileFragment
 import com.reift.kultum.presentation.profile.ProfileViewModel
+import com.reift.kultum.utils.StatusBar
 import com.reift.kultum.utils.Transparent
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -38,6 +39,7 @@ class ProfileShortsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityProfileShortsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        StatusBar.setLightIcon(this)
         Transparent.statusbar(this)
 
         type = intent.getStringExtra(Constant.EXTRA_TYPE) ?: Constant.TYPE_KULTUM

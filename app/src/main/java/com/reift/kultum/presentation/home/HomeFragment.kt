@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.reift.core.domain.model.Kultum
 import com.reift.kultum.adapter.viewpager.KultumViewPagerAdapter
 import com.reift.kultum.databinding.FragmentHomeBinding
+import com.reift.kultum.utils.StatusBar
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
@@ -29,15 +30,17 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+
+
     private fun initObservers() {
         viewModel.getKultumForYou().observe(viewLifecycleOwner){
             setUpKultumViewPager(it)
-            Toast.makeText(context, "Runned", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun setUpKultumViewPager(listKultum: List<Kultum>) {
         binding.vpKultum.adapter = activity?.let { KultumViewPagerAdapter(it.supportFragmentManager, listKultum) }
     }
+
 
 }

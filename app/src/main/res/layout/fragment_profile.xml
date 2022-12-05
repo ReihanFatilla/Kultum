@@ -11,6 +11,7 @@
         android:layout_height="match_parent"
         android:paddingHorizontal="28dp"
         android:paddingTop="86dp"
+        android:paddingBottom="62dp"
         android:clipToPadding="false">
 
         <com.makeramen.roundedimageview.RoundedImageView

@@ -19,6 +19,7 @@ import com.reift.kultum.R
 import com.reift.kultum.adapter.viewpager.ProfileViewPagerAdapter
 import com.reift.kultum.databinding.FragmentProfileBinding
 import com.reift.kultum.presentation.edit.EditActivity
+import com.reift.kultum.utils.StatusBar
 import org.koin.android.viewmodel.ext.android.viewModel
 
 

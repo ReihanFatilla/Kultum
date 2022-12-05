@@ -19,6 +19,7 @@ import com.reift.kultum.adapter.recyclerview.UserConnectAdapter
 import com.reift.kultum.constant.Constant
 import com.reift.kultum.databinding.FragmentConnectBinding
 import com.reift.kultum.presentation.connect.fragment.ConnectProfileFragment
+import com.reift.kultum.utils.StatusBar
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class ConnectFragment : Fragment() {

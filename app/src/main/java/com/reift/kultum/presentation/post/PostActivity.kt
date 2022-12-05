@@ -52,7 +52,6 @@ class PostActivity : AppCompatActivity() {
         binding.apply {
             val urlKultum = UrlFormatter.format(edtLink.text.toString()) ?: "nFr1Jj1KxVk"
             val caption = edtCaption.text.toString()
-
             viewModel.postKultum(caption, urlKultum)
         }
     }

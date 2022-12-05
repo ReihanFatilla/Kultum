@@ -94,7 +94,7 @@ class RegisterActivity : AppCompatActivity() {
                     val username = edtUsername.text.toString()
                     for(i in username.indices){
                         if(username[i].isUpperCase() || username[i].isDigit() || username[i].isWhitespace()){
-                            Toast.makeText(applicationContext, "Username Cannot Contains Digit, Uppercase or White Space", Toast.LENGTH_SHORT).show()
+                            tilUsername.helperText = "Username Cannot Contains Digit, Uppercase or White Space"
                             return@observe
                         }
                     }

@@ -1,5 +1,6 @@
 package com.reift.kultum.presentation.home.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFram
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerTracker
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.ui.views.YouTubePlayerSeekBarListener
 import com.reift.core.domain.model.Kultum
+import com.reift.kultum.R
 import com.reift.kultum.`interface`.YoutubePlayCallBack
 import com.reift.kultum.adapter.viewpager.KultumViewPagerAdapter
 import com.reift.kultum.constant.Constant
@@ -20,6 +22,7 @@ import com.reift.kultum.databinding.FragmentKultumBinding
 import com.reift.kultum.presentation.comment.CommentFragment
 import com.reift.kultum.presentation.home.HomeViewModel
 import com.reift.kultum.utils.Animator
+import com.reift.kultum.utils.ShareMessage
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
@@ -171,6 +174,15 @@ class KultumFragment : Fragment() {
     private fun onShareClicked() {
         binding.btnShare.setOnClickListener {
             Animator.bouncyAnimation(it)
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, ShareMessage.generateMessage(kultum))
+                type = "text/plain"
+            }
+
+            val shareIntent =
+                Intent.createChooser(sendIntent, getString(R.string.txt_share_msg))
+            startActivity(shareIntent)
         }
     }
 

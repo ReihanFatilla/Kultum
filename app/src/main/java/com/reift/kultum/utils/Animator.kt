@@ -16,4 +16,15 @@ object Animator {
             }
         }
     }
+
+    fun jumpAnimation(view: View) {
+        val interpolator: Interpolator = BounceInterpolator()
+
+        view.animate().translationY(-80f).scaleX(1.4f).scaleY(1.4f).setDuration(200)
+            .withEndAction {
+                view.animate().translationY(40f).scaleX(0.7f).scaleY(0.7f).setDuration(200).withEndAction {
+                    view.animate().translationY(0f).scaleX(1f).scaleY(1f).setDuration(200)
+                }
+            }
+    }
 }

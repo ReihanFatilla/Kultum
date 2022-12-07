@@ -75,7 +75,7 @@ class KultumFragment : Fragment() {
         binding.apply {
             with(kultum) {
                 tvCaption.text = caption
-                tvCreator.text = creator
+                tvCreator.text = "@$creator"
                 tvCommentAmount.text = comments.size.toString()
                 tvHelfpulAmount.text = helpful.size.toString()
             }
@@ -87,7 +87,7 @@ class KultumFragment : Fragment() {
             viewModel.isKultumHelpfuled(kultum.urlKey).observe(viewLifecycleOwner) { isHelpfuled ->
                 btnHelpful.isChecked = isHelpfuled
                 btnHelpful.setOnClickListener {
-                    Animator.bouncyAnimation(btnHelpful)
+                    Animator.jumpAnimation(btnHelpful)
                     if (isHelpfuled) {
                         viewModel.removeKultum(kultum.urlKey)
                     } else {

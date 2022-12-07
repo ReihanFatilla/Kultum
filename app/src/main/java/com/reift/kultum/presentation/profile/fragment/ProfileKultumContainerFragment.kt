@@ -22,6 +22,7 @@ import com.reift.kultum.adapter.viewpager.ProfileShortsViewPagerAdapter
 import com.reift.kultum.databinding.FragmentKultumBinding
 import com.reift.kultum.databinding.FragmentProfileKultumContainerBinding
 import com.reift.kultum.presentation.home.HomeViewModel
+import com.reift.kultum.utils.Animator
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class ProfileKultumContainerFragment : Fragment() {
@@ -71,7 +72,7 @@ class ProfileKultumContainerFragment : Fragment() {
     private fun setUpHelfpulButton() {
         binding.apply {
             viewModel.isKultumHelpfuled(kultum.urlKey).observe(viewLifecycleOwner) {
-
+                Animator.bouncyAnimation(btnHelpful)
                 if (it) {
                     btnHelpful.isChecked = true
                     btnHelpful.setOnClickListener {

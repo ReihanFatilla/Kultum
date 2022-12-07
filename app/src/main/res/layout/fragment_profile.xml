@@ -11,7 +11,6 @@
         android:layout_height="match_parent"
         android:paddingHorizontal="28dp"
         android:paddingTop="86dp"
-        android:paddingBottom="62dp"
         android:clipToPadding="false">
 
         <com.makeramen.roundedimageview.RoundedImageView
@@ -32,13 +31,13 @@
             app:layout_constraintTop_toTopOf="@id/img_profile"
             app:layout_constraintBottom_toBottomOf="@id/img_profile"
             app:layout_constraintStart_toEndOf="@id/img_profile"
-            app:layout_constraintEnd_toStartOf="@id/btn_edit_profile">
+            app:layout_constraintEnd_toEndOf="parent">
 
             <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
+                android:textSize="17sp"
                 android:textColor="@color/black"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Reihan Fatilla"
@@ -48,28 +47,13 @@
                 android:id="@+id/tv_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="11sp"
+                android:textSize="12sp"
                 android:textColor="@color/gray_text"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="\@reihanfatilla"
                 android:maxLines="1" />
 
         </LinearLayout>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_edit_profile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/primary_color"
-            android:fontFamily="@font/poppins_medium"
-            android:textSize="12sp"
-            android:text="Edit"
-            app:elevation="0dp"
-            app:cornerRadius="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/img_profile"
-            app:layout_constraintBottom_toBottomOf="@id/img_profile"
-            />
 
         <View
             android:id="@+id/center_baseline"
@@ -78,107 +62,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_followers_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="120"
-            android:maxLines="1"
-            android:layout_marginTop="42dp"
-            app:layout_constraintTop_toBottomOf="@id/img_profile"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <TextView
-            android:id="@+id/tv_followers_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textColor="@color/gray_text"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Followers"
-            android:maxLines="1"
-            app:layout_constraintTop_toBottomOf="@id/tv_kultum_amount"
-            app:layout_constraintStart_toStartOf="@id/center_baseline"
-            app:layout_constraintEnd_toEndOf="@id/center_baseline"/>
-
-        <TextView
-            android:id="@+id/tv_kultum_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="12"
-            android:maxLines="1"
-            android:layout_marginTop="42dp"
-            android:layout_marginEnd="42dp"
-            app:layout_constraintTop_toBottomOf="@id/img_profile"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/center_baseline"/>
-
-        <TextView
-            android:id="@+id/tv_kultum_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textColor="@color/gray_text"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Kultums"
-            android:maxLines="1"
-            app:layout_constraintTop_toBottomOf="@id/tv_kultum_amount"
-            app:layout_constraintStart_toStartOf="@id/tv_kultum_amount"
-            app:layout_constraintEnd_toEndOf="@id/tv_kultum_amount"
-            />
-
-        <TextView
-            android:id="@+id/tv_following_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="242"
-            android:maxLines="1"
-            android:layout_marginTop="42dp"
-            android:layout_marginStart="42dp"
-            app:layout_constraintTop_toBottomOf="@id/img_profile"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/center_baseline"/>
-
-        <TextView
-            android:id="@+id/tv_following_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textColor="@color/gray_text"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Followings"
-            android:maxLines="1"
-            app:layout_constraintTop_toBottomOf="@id/tv_following_amount"
-            app:layout_constraintStart_toStartOf="@id/tv_following_amount"
-            app:layout_constraintEnd_toEndOf="@id/tv_following_amount"
-            />
-
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_share_profile"
+            android:id="@+id/btn_edit_profile"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
             android:fontFamily="@font/poppins_medium"
             android:textSize="12sp"
             app:elevation="0dp"
-            android:text="Share Profile"
+            android:text="Edit Profile"
             android:layout_marginEnd="4dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="36dp"
             android:textColor="@color/primary_color"
             app:strokeColor="@color/primary_color"
             app:strokeWidth="1.5dp"
             app:cornerRadius="5dp"
-            app:layout_constraintTop_toBottomOf="@id/tv_kultum_title"
+            app:layout_constraintTop_toBottomOf="@id/img_profile"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="@id/center_baseline"
             />
@@ -192,12 +91,12 @@
             android:textSize="12sp"
             android:text="Share Profile"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="36dp"
             app:cornerRadius="5dp"
             app:elevation="0dp"
             app:layout_constraintStart_toStartOf="@id/center_baseline"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_kultum_title"
+            app:layout_constraintTop_toBottomOf="@id/img_profile"
             />
 
         <TextView
@@ -211,7 +110,7 @@
             android:text="sebarkan dakwah islami, jalin silaturahmi"
             android:maxLines="1"
             android:layout_marginTop="24dp"
-            app:layout_constraintTop_toBottomOf="@id/btn_share_profile"/>
+            app:layout_constraintTop_toBottomOf="@id/btn_edit_profile"/>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/profile_tab"

@@ -27,12 +27,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         Transparent.statusbar(this)
 
-        binding.btnNavPost.setOnClickListener {
-            startActivity(
-                Intent(applicationContext, PostActivity::class.java)
-            )
-        }
-
 
         val fragment1: Fragment = HomeFragment()
         val fragment2: Fragment = ConnectFragment()

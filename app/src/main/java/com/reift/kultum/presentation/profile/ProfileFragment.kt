@@ -63,9 +63,6 @@ class ProfileFragment : Fragment() {
                 tvUsername.text = "@$username"
                 tvName.text = name
                 tvBio.text = bio
-                tvFollowersAmount.text = followers.size.toString()
-                tvFollowingAmount.text = followers.size.toString()
-                tvKultumAmount.text = kultumAmount
                 Glide.with(this@ProfileFragment)
                     .load(photoUrl)
                     .apply(RequestOptions())
@@ -94,14 +91,16 @@ class ProfileFragment : Fragment() {
 
                     override fun onTabSelected(tab: TabLayout.Tab) {
                         val tabIconColor =
-                            ContextCompat.getColor(context!!, R.color.primary_color)
-                        tab.icon!!.setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN)
+                            context?.let { ContextCompat.getColor(it, R.color.primary_color) }
+                        tabIconColor?.let { tab.icon?.setColorFilter(it, PorterDuff.Mode.SRC_IN) }
                     }
 
                     override fun onTabUnselected(tab: TabLayout.Tab) {
                         val tabIconColor =
-                            ContextCompat.getColor(context!!, R.color.gray_text)
-                        tab.icon!!.setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN)
+                            context?.let { ContextCompat.getColor(it, R.color.gray_text) }
+                        if (tabIconColor != null) {
+                            tab.icon?.setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN)
+                        }
                     }
 
                     override fun onTabReselected(tab: TabLayout.Tab) {

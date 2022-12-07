@@ -38,7 +38,7 @@
         <entry key="app/src/main/res/layout/fragment_kultum.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/fragment_photo_url_dialog.xml" value="0.28125" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_profile_helpful.xml" value="0.2682291666666667" />
         <entry key="app/src/main/res/layout/fragment_profile_kultum.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/fragment_profile_kultum_container.xml" value="0.2682291666666667" />

@@ -1,6 +1,7 @@
 package com.reift.kultum.constant
 
 object Constant {
+
     // Extra Key
     const val EXTRA_TYPE = "extra_type"
     const val EXTRA_POSITION = "extra_position"
@@ -11,4 +12,5 @@ object Constant {
     // Bundle Key
     const val BUNDLE_USERNAME = "bundle_username"
     const val BUNDLE_URL_KULTUM = "bundle_url_kultum"
+
 }

@@ -19,6 +19,7 @@ import com.reift.kultum.constant.Constant
 import com.reift.kultum.databinding.FragmentKultumBinding
 import com.reift.kultum.presentation.comment.CommentFragment
 import com.reift.kultum.presentation.home.HomeViewModel
+import com.reift.kultum.utils.Animator
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
@@ -51,6 +52,7 @@ class KultumFragment : Fragment() {
         binding.btnComment.setOnClickListener {
             val commentFragment = CommentFragment()
             val bundle = Bundle()
+            Animator.bouncyAnimation(it)
             bundle.putString(Constant.BUNDLE_URL_KULTUM, kultum.urlKey)
             commentFragment.arguments = bundle
 
@@ -73,7 +75,6 @@ class KultumFragment : Fragment() {
                 tvCreator.text = creator
                 tvCommentAmount.text = comments.size.toString()
                 tvHelfpulAmount.text = helpful.size.toString()
-                tvShareAmount.text = share.toString()
             }
         }
     }
@@ -83,6 +84,7 @@ class KultumFragment : Fragment() {
             viewModel.isKultumHelpfuled(kultum.urlKey).observe(viewLifecycleOwner) { isHelpfuled ->
                 btnHelpful.isChecked = isHelpfuled
                 btnHelpful.setOnClickListener {
+                    Animator.bouncyAnimation(btnHelpful)
                     if (isHelpfuled) {
                         viewModel.removeKultum(kultum.urlKey)
                     } else {
@@ -163,6 +165,13 @@ class KultumFragment : Fragment() {
         super.onResume()
         initObserver()
         onCommentClicked()
+        onShareClicked()
+    }
+
+    private fun onShareClicked() {
+        binding.btnShare.setOnClickListener {
+            Animator.bouncyAnimation(it)
+        }
     }
 
 }

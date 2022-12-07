@@ -95,27 +95,16 @@
         app:layout_constraintBottom_toTopOf="@id/tv_caption"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_share_amount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:text="20k"
-        android:textColor="@color/white"
-        android:fontFamily="@font/poppins_semibold"
-        app:layout_constraintBottom_toBottomOf="@id/bottom_guide_line"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
-
     <ImageView
         android:id="@+id/btn_share"
         android:layout_width="28dp"
         android:layout_height="28dp"
         android:src="@drawable/ic_share"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/tv_share_amount"
-        app:layout_constraintBottom_toTopOf="@id/tv_share_amount" />
+        app:layout_constraintStart_toStartOf="@id/tv_comment_amount"
+        app:layout_constraintBottom_toBottomOf="@id/bottom_guide_line"
+        />
 
     <TextView
         android:id="@+id/tv_comment_amount"

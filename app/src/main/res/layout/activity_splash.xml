@@ -6,4 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".presentation.splash.SplashActivity">
 
+    <TextView
+        android:id="@+id/tv_powered"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/tv_youtube"
+        android:textColor="@color/white"
+        android:text="@string/powered_by"/>
+
+    <TextView
+        android:id="@+id/tv_youtube"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="24sp"
+        android:layout_marginBottom="46dp"
+        android:fontFamily="@font/youtube_sans_bold"
+        android:textColor="@color/white"
+        android:text="@string/Youtube"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

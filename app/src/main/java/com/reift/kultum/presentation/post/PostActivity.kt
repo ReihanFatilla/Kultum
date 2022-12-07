@@ -1,5 +1,6 @@
 package com.reift.kultum.presentation.post
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -7,6 +8,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
 import com.reift.core.domain.model.Kultum
+import com.reift.kultum.MainActivity
 import com.reift.kultum.`interface`.YoutubePlayCallBack
 import com.reift.kultum.databinding.ActivityPostBinding
 import com.reift.kultum.utils.UrlFormatter
@@ -42,6 +44,7 @@ class PostActivity : AppCompatActivity() {
                 }
             }
             btnBack.setOnClickListener{
+                startActivity(Intent(this@PostActivity, MainActivity::class.java))
                 finish()
             }
 
@@ -53,6 +56,8 @@ class PostActivity : AppCompatActivity() {
             val urlKultum = UrlFormatter.format(edtLink.text.toString()) ?: "nFr1Jj1KxVk"
             val caption = edtCaption.text.toString()
             viewModel.postKultum(caption, urlKultum)
+            startActivity(Intent(this@PostActivity, MainActivity::class.java))
+            finish()
         }
     }
 

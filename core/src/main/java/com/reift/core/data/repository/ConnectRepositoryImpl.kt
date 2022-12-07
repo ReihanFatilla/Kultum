@@ -34,8 +34,12 @@ class ConnectRepositoryImpl(
                             }
                             listUser.value = list
                         } else {
-                            snapshot.child(username).getValue(User::class.java)
-                                ?.let { list.add(it) }
+                            for (i in snapshot.children) {
+                                val user = i.getValue(User::class.java) ?: continue
+                                if(user.username.contains(username) || user.name.contains(username)) {
+                                    list.add(user)
+                                }
+                            }
                             listUser.value = list
                         }
 

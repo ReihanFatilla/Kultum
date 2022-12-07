@@ -55,9 +55,6 @@ class ConnectProfileFragment : Fragment() {
 				tvUsername.text = "@$username"
 				tvName.text = name
 				tvBio.text = bio
-				tvFollowersAmount.text = followers.size.toString()
-				tvFollowingAmount.text = followers.size.toString()
-				tvKultumAmount.text = kultumAmount
 				Glide.with(this@ConnectProfileFragment)
 					.load(photoUrl)
 					.apply(RequestOptions())

@@ -2,11 +2,13 @@ package com.reift.kultum
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 import com.reift.kultum.databinding.ActivityMainBinding
 import com.reift.kultum.presentation.connect.ConnectFragment
 import com.reift.kultum.presentation.home.HomeFragment
@@ -26,6 +28,11 @@ class MainActivity : AppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         Transparent.statusbar(this)
+
+        binding.btnNavPost.setOnClickListener {
+            startActivity(Intent(this, PostActivity::class.java))
+            finish()
+        }
 
 
         val fragment1: Fragment = HomeFragment()
@@ -71,5 +78,10 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNav.setOnNavigationItemSelectedListener(
             mOnNavigationItemSelectedListener
         )
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

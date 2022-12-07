@@ -30,8 +30,6 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-
-
     private fun initObservers() {
         viewModel.getKultumForYou().observe(viewLifecycleOwner){
             setUpKultumViewPager(it)
@@ -41,6 +39,5 @@ class HomeFragment : Fragment() {
     private fun setUpKultumViewPager(listKultum: List<Kultum>) {
         binding.vpKultum.adapter = activity?.let { KultumViewPagerAdapter(it.supportFragmentManager, listKultum) }
     }
-
 
 }

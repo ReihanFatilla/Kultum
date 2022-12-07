@@ -6,7 +6,7 @@
             android:gravity="center"
             android:src="@drawable/logo_kultum"/>
     </item>
-    <item android:bottom="50dp">
+    <item android:bottom="100dp">
         <bitmap
             android:gravity="bottom"
             android:src="@drawable/powered_by_youtube"/>

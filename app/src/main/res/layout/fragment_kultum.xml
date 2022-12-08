@@ -29,6 +29,7 @@
                 android:layout_gravity="bottom"
                 android:layout_marginBottom="92dp"
                 android:background="@android:color/transparent" />
+
         </com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView>
 
         <View
@@ -144,6 +145,20 @@
         app:layout_constraintEnd_toEndOf="@id/btn_share"
         app:layout_constraintStart_toStartOf="@id/btn_share"
         />
+
+    <ImageView
+        android:id="@+id/ic_play"
+        android:layout_height="55dp"
+        android:layout_width="55dp"
+        android:src="@drawable/ic_play"
+        android:alpha="0"
+        android:scaleY="0"
+        android:scaleX="0"
+        app:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ToggleButton
         android:id="@+id/btn_helpful"

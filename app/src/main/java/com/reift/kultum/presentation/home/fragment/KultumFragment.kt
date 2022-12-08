@@ -113,10 +113,10 @@ class KultumFragment : Fragment() {
                     playPauseArea.setOnClickListener {
                         isPlaying = if (isPlaying) {
                             youTubePlayer.pause()
-                            icPlay.animate().scaleX(1f).scaleY(1f).alpha(1f).setDuration(500)
+                            icPlay.animate().scaleX(1f).scaleY(1f).alpha(1f).setDuration(300)
                             false
                         } else {
-                            icPlay.animate().scaleX(0f).scaleY(0f).alpha(0f).setDuration(500)
+                            icPlay.animate().scaleX(0f).scaleY(0f).alpha(0f).setDuration(300)
                             youTubePlayer.play()
                             true
                         }

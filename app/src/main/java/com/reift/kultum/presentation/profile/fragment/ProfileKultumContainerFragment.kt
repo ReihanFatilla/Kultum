@@ -1,5 +1,6 @@
 package com.reift.kultum.presentation.profile.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerTracker
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.ui.views.YouTubePlayerSeekBarListener
 import com.reift.core.domain.model.Kultum
 import com.reift.kultum.R
@@ -19,10 +21,13 @@ import com.reift.kultum.`interface`.FragmentLifecycleCallBack
 import com.reift.kultum.`interface`.YoutubePlayCallBack
 import com.reift.kultum.adapter.viewpager.KultumViewPagerAdapter
 import com.reift.kultum.adapter.viewpager.ProfileShortsViewPagerAdapter
+import com.reift.kultum.constant.Constant
 import com.reift.kultum.databinding.FragmentKultumBinding
 import com.reift.kultum.databinding.FragmentProfileKultumContainerBinding
+import com.reift.kultum.presentation.comment.CommentFragment
 import com.reift.kultum.presentation.home.HomeViewModel
 import com.reift.kultum.utils.Animator
+import com.reift.kultum.utils.ShareMessage
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class ProfileKultumContainerFragment : Fragment() {
@@ -45,15 +50,27 @@ class ProfileKultumContainerFragment : Fragment() {
         kultum = arguments?.getParcelable(KultumViewPagerAdapter.BUNDLE_KULTUM)!!
 
         setUpShortsVideo()
-        setUpHelfpulButton()
-        initObserver()
 
         return binding.root
     }
 
+    private fun onCommentClicked() {
+        binding.btnComment.setOnClickListener {
+            val commentFragment = CommentFragment()
+            val bundle = Bundle()
+            Animator.bouncyAnimation(it)
+            bundle.putString(Constant.BUNDLE_URL_KULTUM, kultum.urlKey)
+            commentFragment.arguments = bundle
+
+            commentFragment.show(requireActivity().supportFragmentManager, null)
+        }
+    }
+
+
     private fun initObserver() {
-        viewModel.getKultumDetail(kultum.urlKey).observe(viewLifecycleOwner){
+        viewModel.getKultumDetail(kultum.urlKey).observe(viewLifecycleOwner) {
             setUpDetail(it)
+            setUpHelfpulButton(it)
         }
     }
 
@@ -61,37 +78,35 @@ class ProfileKultumContainerFragment : Fragment() {
         binding.apply {
             with(kultum) {
                 tvCaption.text = caption
-                tvCreator.text = creator
+                tvCreator.text = "@$creator"
                 tvCommentAmount.text = comments.size.toString()
                 tvHelfpulAmount.text = helpful.size.toString()
-                tvShareAmount.text = share.toString()
             }
         }
     }
 
-    private fun setUpHelfpulButton() {
+    private fun setUpHelfpulButton(kultum: Kultum) {
         binding.apply {
-            viewModel.isKultumHelpfuled(kultum.urlKey).observe(viewLifecycleOwner) {
-                Animator.bouncyAnimation(btnHelpful)
-                if (it) {
-                    btnHelpful.isChecked = true
-                    btnHelpful.setOnClickListener {
+            viewModel.isKultumHelpfuled(kultum.urlKey).observe(viewLifecycleOwner) { isHelpfuled ->
+                btnHelpful.isChecked = isHelpfuled
+                btnHelpful.setOnClickListener {
+                    Animator.jumpAnimation(btnHelpful)
+                    if (isHelpfuled) {
                         viewModel.removeKultum(kultum.urlKey)
-                    }
-                } else {
-                    btnHelpful.isChecked = false
-                    btnHelpful.setOnClickListener {
+                    } else {
                         viewModel.addHelpfulKultum(kultum.urlKey)
                     }
                 }
+
             }
         }
     }
 
     private fun setUpShortsVideo() {
         binding.apply {
-
             var youtubePlayCallBack: YoutubePlayCallBack? = null
+
+            lifecycle.addObserver(binding.ytPlayer)
 
             ytPlayer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
                 override fun onReady(youTubePlayer: YouTubePlayer) {
@@ -100,8 +115,10 @@ class ProfileKultumContainerFragment : Fragment() {
                     playPauseArea.setOnClickListener {
                         isPlaying = if (isPlaying) {
                             youTubePlayer.pause()
+                            icPlay.animate().scaleX(1f).scaleY(1f).alpha(1f).setDuration(300)
                             false
                         } else {
+                            icPlay.animate().scaleX(0f).scaleY(0f).alpha(0f).setDuration(300)
                             youTubePlayer.play()
                             true
                         }
@@ -121,6 +138,10 @@ class ProfileKultumContainerFragment : Fragment() {
                             youTubePlayer.seekTo(time)
                         }
                     }
+
+                    val tracker = YouTubePlayerTracker()
+                    youTubePlayer.addListener(tracker)
+
                 }
             })
 
@@ -141,8 +162,32 @@ class ProfileKultumContainerFragment : Fragment() {
                 .ivLoadPolicy(3)
                 .ccLoadPolicy(1)
                 .build()
+
             ytPlayer.enableAutomaticInitialization = false
             ytPlayer.initialize(listener, options)
+
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        initObserver()
+        onCommentClicked()
+        onShareClicked()
+    }
+
+    private fun onShareClicked() {
+        binding.btnShare.setOnClickListener {
+            Animator.bouncyAnimation(it)
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, ShareMessage.generateMessage(kultum))
+                type = "text/plain"
+            }
+
+            val shareIntent =
+                Intent.createChooser(sendIntent, getString(R.string.txt_share_msg))
+            startActivity(shareIntent)
         }
     }
 

@@ -48,6 +48,9 @@ class KultumFragment : Fragment() {
         kultum = arguments?.getParcelable(KultumViewPagerAdapter.BUNDLE_KULTUM)!!
 
         setUpShortsVideo()
+        initObserver()
+        onCommentClicked()
+        onShareClicked()
 
         return binding.root
     }
@@ -165,13 +168,6 @@ class KultumFragment : Fragment() {
             ytPlayer.initialize(listener, options)
 
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        initObserver()
-        onCommentClicked()
-        onShareClicked()
     }
 
     private fun onShareClicked() {

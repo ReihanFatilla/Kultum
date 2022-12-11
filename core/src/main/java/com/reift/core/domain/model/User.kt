@@ -4,7 +4,7 @@ data class User(
     var name: String = "",
     var username: String= "",
     var email: String= "",
-    var photoUrl: String= "",
+    var photoUrl: String= "https://i.ibb.co/JnjLb55/profile-picture-temp.jpg",
     var bio: String= "",
     var password: String= "",
     var kultumAmount: String = "0",

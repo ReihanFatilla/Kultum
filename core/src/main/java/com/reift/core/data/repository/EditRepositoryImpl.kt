@@ -24,12 +24,12 @@ class EditRepositoryImpl(
     val currentUser = localDataSource.getString(Pref.CURRENT_USER) ?: ""
 
     override fun editUsername(username: String) {
-        val userRef = firebaseDataSource.getReference(Ref.USER).child(currentUser)
-        if (checkIfUserTaken(username).value == true) return
-        userRef.setValue(changeNewUsername(userRef, username))
-        val changeHelper = UsernameChangeHelper(username, currentUser, firebaseDataSource)
-        changeHelper.changeKultumCreator()
-        changeHelper.changeFollowOnNewUsername()
+//        val userRef = firebaseDataSource.getReference(Ref.USER).child(currentUser)
+//        if (checkIfUserTaken(username).value == true) return
+//        userRef.setValue(changeNewUsername(userRef, username))
+//        val changeHelper = UsernameChangeHelper(username, currentUser, firebaseDataSource)
+//        changeHelper.changeKultumCreator()
+//        changeHelper.changeFollowOnNewUsername()
     }
 
     override fun editName(name: String) {

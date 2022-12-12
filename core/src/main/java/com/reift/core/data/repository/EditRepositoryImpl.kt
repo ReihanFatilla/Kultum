@@ -101,35 +101,35 @@ class EditRepositoryImpl(
         localDataSource.clear()
     }
 
-    private fun changeNewUsername(userRef: DatabaseReference, newUsername: String): User? {
-        var username: User? = null
-        userRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val user = snapshot.getValue(User::class.java)
-                if (username != null && user != null) {
-                    with(user) {
-                        username = User(
-                            this.name,
-                            newUsername,
-                            email,
-                            this.photoUrl,
-                            this.bio,
-                            password,
-                            kultumAmount,
-                            followers,
-                            follwings
-                        )
-                    }
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-
-
-        })
-        return username
-    }
+//    private fun changeNewUsername(userRef: DatabaseReference, newUsername: String): User? {
+//        var username: User? = null
+//        userRef.addValueEventListener(object : ValueEventListener {
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                val user = snapshot.getValue(User::class.java)
+//                if (username != null && user != null) {
+//                    with(user) {
+//                        username = User(
+//                            this.name,
+//                            newUsername,
+//                            email,
+//                            this.photoUrl,
+//                            this.bio,
+//                            password,
+//                            kultumAmount,
+//                            followers,
+//                            follwings
+//                        )
+//                    }
+//                }
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//                TODO("Not yet implemented")
+//            }
+//
+//
+//        })
+//        return username
+//    }
 
 }

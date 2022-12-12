@@ -2,6 +2,7 @@ package com.reift.kultum.presentation.connect.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -48,6 +49,7 @@ class ConnectTabFragment : Fragment() {
             ConnectViewPagerAdapter.TYPE_HELPFUL -> {
                 viewModel.getHelpfulKultum(username).observe(viewLifecycleOwner){
                     setUpKultum(it)
+                    Log.i("initObserverinitObserver", "initObserver: $it")
                 }
             }
             ConnectViewPagerAdapter.TYPE_KULTUM -> {

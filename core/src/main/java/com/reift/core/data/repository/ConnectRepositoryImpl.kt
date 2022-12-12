@@ -97,7 +97,6 @@ class ConnectRepositoryImpl(
     override fun getHelpfulKultum(username: String): LiveData<List<Kultum>> {
         val listKultum = MutableLiveData<List<Kultum>>()
         firebaseDataSource.getReference(Ref.KULTUM)
-            .child(Ref.HELPFUL)
             .addListenerForSingleValueEvent(
                 object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
@@ -105,8 +104,9 @@ class ConnectRepositoryImpl(
                         for (i in snapshot.children) {
                             val kultum = i.getValue(Kultum::class.java)
                             kultum?.helpful?.forEach {
-                                if (it.value != username) return
-                                list.add(kultum)
+                                if (it.value == username) {
+                                    list.add(kultum)
+                                }
                             }
                         }
                         listKultum.value = list

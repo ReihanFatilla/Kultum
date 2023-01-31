@@ -1,24 +1,11 @@
 package com.reift.kultum.presentation.profile.activity
 
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.findFragment
-import androidx.viewpager.widget.ViewPager.OnPageChangeListener
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.reift.core.domain.model.Kultum
-import com.reift.kultum.R
-import com.reift.kultum.adapter.viewpager.ProfileShortsViewPagerAdapter
+import com.reift.kultum.adapter.viewpager.KultumViewPagerAdapter
 import com.reift.kultum.constant.Constant
 import com.reift.kultum.databinding.ActivityProfileShortsBinding
-import com.reift.kultum.presentation.profile.ProfileFragment
 import com.reift.kultum.presentation.profile.ProfileViewModel
 import com.reift.kultum.utils.StatusBar
 import com.reift.kultum.utils.Transparent
@@ -68,7 +55,7 @@ class ProfileShortsActivity : AppCompatActivity() {
     }
 
     private fun setUpKultumViewPager(listKultum: List<Kultum>) {
-        val mAdapter =  ProfileShortsViewPagerAdapter(this, listKultum)
+        val mAdapter =  KultumViewPagerAdapter(this, listKultum)
 
         binding.vpProfileKultum.adapter = mAdapter
         binding.vpProfileKultum.currentItem = currentPosition

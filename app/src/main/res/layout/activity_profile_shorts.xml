@@ -6,10 +6,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.home.HomeFragment">
 
-    <com.reift.kultum.customview.VerticalViewPager
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vp_profile_kultum"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         android:background="@drawable/ic_back"/>
 
     <ImageView

@@ -7,8 +7,9 @@
     android:background="@color/black"
     tools:context=".presentation.home.HomeFragment">
 
-    <com.reift.kultum.customview.VerticalViewPager
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vp_kultum"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

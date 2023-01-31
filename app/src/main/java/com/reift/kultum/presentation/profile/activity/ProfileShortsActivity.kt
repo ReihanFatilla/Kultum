@@ -68,7 +68,7 @@ class ProfileShortsActivity : AppCompatActivity() {
     }
 
     private fun setUpKultumViewPager(listKultum: List<Kultum>) {
-        val mAdapter =  ProfileShortsViewPagerAdapter(supportFragmentManager, listKultum)
+        val mAdapter =  ProfileShortsViewPagerAdapter(this, listKultum)
 
         binding.vpProfileKultum.adapter = mAdapter
         binding.vpProfileKultum.currentItem = currentPosition

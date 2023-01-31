@@ -14,13 +14,13 @@ import com.reift.kultum.presentation.home.fragment.KultumFragment
 import com.reift.kultum.presentation.profile.fragment.ProfileKultumContainerFragment
 
 class ProfileShortsViewPagerAdapter(
-    fm: FragmentManager,
+    fa: FragmentActivity,
     val listKultum: List<Kultum>
-) : FragmentPagerAdapter(fm){
+) : FragmentStateAdapter(fa) {
 
-    override fun getCount() = listKultum.size
+    override fun getItemCount( )= listKultum.size
 
-    override fun getItem(position: Int): Fragment {
+    override fun createFragment(position: Int): Fragment {
         val bundle = Bundle()
         val kultumFragment = ProfileKultumContainerFragment()
         bundle.putParcelable(BUNDLE_KULTUM, listKultum[position])

@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUpKultumViewPager(listKultum: List<Kultum>) {
-        binding.vpKultum.adapter = activity?.let { KultumViewPagerAdapter(it.supportFragmentManager, listKultum) }
+        binding.vpKultum.adapter = KultumViewPagerAdapter(requireActivity(), listKultum)
     }
 
 }
